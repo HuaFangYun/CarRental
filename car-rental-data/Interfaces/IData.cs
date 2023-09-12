@@ -7,6 +7,6 @@ namespace car_rental_data.Interfaces
     {
         IEnumerable<IBooking> GetBookings();
         IEnumerable<ICustomer> GetCustomers();
-        IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = 0);
+        IEnumerable<IVehicle> GetVehicles(VehicleStatuses status);
     }
 }
