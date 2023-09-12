@@ -1,13 +1,18 @@
-﻿//Input control for every value?
-
-using car_rental_common.Interfaces;
+﻿using car_rental_common.Interfaces;
 
 namespace car_rental_common.Classes
 {
     public class Booking : IBooking
     {
-        double IBooking.KmRented { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        DateOnly IBooking.RentedDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        DateOnly IBooking.Returned { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public double KmRented { get; set; }
+        public DateOnly RentedDate { get; set; }
+        public DateOnly Returned { get; set; }
+
+        public Booking(double kmRented, DateOnly rentedDate, DateOnly returned)
+        {
+            KmRented = kmRented;
+            RentedDate = rentedDate;
+            Returned = returned;
+        }
     }
 }

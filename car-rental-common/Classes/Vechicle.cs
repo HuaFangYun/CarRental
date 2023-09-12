@@ -1,18 +1,27 @@
-﻿//Input control for every value?
-
-using car_rental_common.Enums;
+﻿using car_rental_common.Enums;
 using car_rental_common.Interfaces;
 
 namespace car_rental_common.Classes
 {
     public class Vehicle : IVehicle
     {
-        public string RegNo { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Make { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Odometer { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public decimal CostKm { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public VehicleTypes VehicleType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int CostDay { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public VehicleStatuses Status { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string RegNo { get; set; }
+        public string Make { get; set; }
+        public int Odometer { get; set; }
+        public decimal CostKm { get; set; }
+        public VehicleTypes VehicleType { get; set; }
+        public int CostDay { get; set; }
+        public VehicleStatuses Status { get; set; }
+
+        public Vehicle(string regNo, string make, int odometer, decimal costKm, VehicleTypes vehicleType, int costDay, VehicleStatuses status)
+        {
+            RegNo = regNo;
+            Make = make;
+            Odometer = odometer;
+            CostKm = costKm;
+            VehicleType = vehicleType;
+            CostDay = costDay;
+            Status = status;
+        }
     }
 }

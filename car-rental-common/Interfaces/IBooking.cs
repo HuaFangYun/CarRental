@@ -1,9 +1,9 @@
 ﻿namespace car_rental_common.Interfaces
 {
-    internal interface IBooking
+    public interface IBooking
     {
-        public double KmRented { get; set; }
-        public DateOnly RentedDate { get; set; }
-        public DateOnly Returned { get; set; }
+        double KmRented { get; set; }
+        DateOnly RentedDate { get; set; }
+        DateOnly Returned { get; set; }
     }
 }
