@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace car_rental_common.Enums
+﻿namespace car_rental_common.Enums
 {
-    internal class VehicleStatuses
+    public enum VehicleStatuses
     {
+        Booked = 1,
+        Available = 2
     }
 }
