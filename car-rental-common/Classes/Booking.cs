@@ -5,27 +5,27 @@ namespace car_rental_common.Classes
 {
     public class Booking : IBooking
     {
-        public double KmRented { get; set; }
-        public double? KmTotal { get; set; }
-        public DateOnly RentedDate { get; set; }
-        public DateOnly Returned { get; set; }
+        public double? OdometerAtStart { get; set; }
+        public double? KilometersTraveled { get; set; }
+        public DateOnly StartDate { get; set; }
+        public DateOnly EndDate { get; set; }
         public Vehicle Vehicle { get; set; }
         public Customer Customer { get; set; }
 
-        public bool IsBooked
+        public bool? IsBooked
         {
             get
             {
-                return Returned > DateOnly.FromDateTime(DateTime.Today);
+                return EndDate > DateOnly.FromDateTime(DateTime.Today);
             }
         }
 
-        public Booking(double kmRented, double? kmTotal, string rentedDateStr, string returnedDateStr, Vehicle vehicle, Customer customer)
+        public Booking(double? odometerAtStart, double? kilometersTraveled, string startDateStr, string endDateStr, Vehicle vehicle, Customer customer)
         {
-            KmRented = kmRented;
-            KmTotal = kmTotal;
-            RentedDate = ParseDate(rentedDateStr);
-            Returned = ParseDate(returnedDateStr);
+            OdometerAtStart = odometerAtStart;
+            KilometersTraveled = kilometersTraveled;
+            StartDate = ParseDate(startDateStr);
+            EndDate = ParseDate(endDateStr);
             Vehicle = vehicle;
             Customer = customer;
         }
@@ -34,7 +34,7 @@ namespace car_rental_common.Classes
         {
             if (string.IsNullOrEmpty(dateStr))
             {
-                return DateOnly.MaxValue;
+                return DateOnly.MinValue;
             }
 
             if (DateOnly.TryParse(dateStr, out var date))

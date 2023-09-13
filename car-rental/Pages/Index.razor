@@ -1,14 +1,9 @@
 ﻿@page "/"
-@using System.Linq; <!-- Nödvändig? -->
+@using System.Linq;
 @using car_rental_business_logic.Classes;
-@using car_rental_common.Classes; <!-- Nödvändig? -->
 @using car_rental_common.Interfaces;
 @using car_rental_common.Enums;
-@using car_rental_data.Interfaces; <!-- Nödvändig? -->
-
-<!-- Nödvändig? (nedan) -->
-@inject IData DataService
-@inject BookingProcessor bp
+@inject BookingProcessor BookingService
 
 <PageTitle>Index</PageTitle>
 
@@ -21,27 +16,85 @@
             <th scope="col">Km Rented</th>
             <th scope="col">Rented Date</th>
             <th scope="col">Returned</th>
-            <th scope="col">Cost</th>
+            <!--<th scope="col">Cost</th>-->
             <th scope="col">Status</th>
         </tr>
     </thead>
     <tbody>
-        
+        @foreach (IBooking booking in bookings)
+        {
+            <tr>
+                <td>@booking.Vehicle.RegNo</td>
+                <td>@booking.Customer.FirstName @booking.Customer.LastName</td>
+                <td>@booking.OdometerAtStart</td>
+                <td>@booking.StartDate</td>
+                <td>@(booking.EndDate == DateOnly.MinValue ? "" : booking.EndDate.ToString())</td>
+                <!--<td>@booking.Cost</td>--> <!-- This assumes that Booking has a Cost property. If not, calculate it or fetch it accordingly. -->
+                <td>@booking.Vehicle.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
+<h3>Customers</h3>
+<table class="table table-hover">
+    <thead>
         <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td></td>
+            <th scope="col">Social Security No.</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
         </tr>
+    </thead>
+    <tbody>
+        @foreach (ICustomer customer in customers)
+        {
+            <tr>
+                <td>@customer.SSN</td>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Vehicles</h3>
+<table class="table table-hover">
+    <thead>
         <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td></td>
+            <th scope="col">Reg No.</th>
+            <th scope="col">Make</th>
+            <th scope="col">Odometer</th>
+            <th scope="col">Cost/Km</th>
+            <th scope="col">Vehicle type</th>
+            <th scope="col">Cost/Day</th>
+            <th scope="col">Status</th>
         </tr>
+    </thead>
+    <tbody>
+        @foreach (IVehicle vehicle in vehicles)
+        {
+            <tr>
+                <td>@vehicle.RegNo</td>
+                <td>@vehicle.Make</td>
+                <td>@vehicle.Odometer</td>
+                <td>@vehicle.CostKm</td>
+                <td>@vehicle.VehicleType</td>
+                <td>@vehicle.CostDay</td>
+                <td>@vehicle.Status</td>
+            </tr>
+        }
     </tbody>
 </table>
 
 @code {
-    
+    private List<IBooking> bookings;
+    private List<ICustomer> customers;
+    private List<IVehicle> vehicles;
+
+    protected override void OnInitialized()
+    {
+        bookings = BookingService.GetBookings().ToList();
+        customers = BookingService.GetCustomers().ToList();
+        vehicles = BookingService.GetVehicles().ToList();
+    }
 }
