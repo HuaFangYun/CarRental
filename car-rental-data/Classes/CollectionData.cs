@@ -11,11 +11,6 @@ namespace car_rental_data.CollectionData
         readonly List<ICustomer> _customers = new List<ICustomer>();
         readonly List<IVehicle> _vehicles = new List<IVehicle>();
 
-        public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status)
-        {
-            return _vehicles.Where(v => v.Status == status);
-        }
-
         public CollectionData() => SeedData();
 
         void SeedData()
@@ -47,6 +42,6 @@ namespace car_rental_data.CollectionData
 
         public IEnumerable<IBooking> GetBookings() => _bookings;
         public IEnumerable<ICustomer> GetCustomers() => _customers;
-        public IEnumerable<IVehicle> GetVehicles() => _vehicles;
+        public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default) => _vehicles; //Måste göra ett urval med t.ex linq
     }
 }
