@@ -37,7 +37,7 @@ fixa nullable types
                 <td><input @bind="booking.OdometerAfterDriving" placeholder="Enter once vehicle is returned" /></td>
                 <td><input type="date" @bind="booking.StartDate" /></td>
                 <td><input type="date" @bind="booking.ReturnDate" placeholder="yyyy-MM-dd" /></td>
-                <td class="@(BookingService.Returned(booking) == "Closed" ? "text-success border-5" : "text-danger")">
+                <td class="@(BookingService.Returned(booking) == "Closed" ? "text-success" : "text-warning")">
                     @BookingService.Returned(booking)
                 </td>
                 <td>@BookingService.CalculateCostForBooking(booking)</td>
