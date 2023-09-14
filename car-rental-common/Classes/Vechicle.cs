@@ -7,13 +7,13 @@ namespace car_rental_common.Classes
     {
         public string RegNo { get; set; }
         public string Make { get; set; }
-        public int Odometer { get; set; }
+        public decimal Odometer { get; set; }
         public decimal CostKm { get; set; }
         public VehicleTypes VehicleType { get; set; }
-        public int CostDay { get; set; }
-        public VehicleStatuses Status { get; set; }
+        public decimal CostDay { get; set; }
+        public VehicleStatuses Status { get; set; } //Ska inte vara fördefinierat - ska påverkas av huruvia Returned är ifyllt i bookings eller ej?
 
-        public Vehicle(string regNo, string make, int odometer, decimal costKm, VehicleTypes vehicleType, int costDay, VehicleStatuses status)
+        public Vehicle(string regNo, string make, int odometer, decimal costKm, VehicleTypes vehicleType, decimal costDay, VehicleStatuses status)
         {
             RegNo = regNo;
             Make = make;

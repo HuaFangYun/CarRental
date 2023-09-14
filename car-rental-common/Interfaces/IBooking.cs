@@ -4,12 +4,12 @@ namespace car_rental_common.Interfaces
 {
     public interface IBooking
     {
-        double? OdometerAtStart { get; set; }
-        double? KilometersTraveled { get; set; }
+        decimal OdometerBeforeDriving { get; set; }
+        decimal? OdometerAfterDriving { get; set; }
         DateOnly StartDate { get; set; }
-        DateOnly EndDate { get; set; }
+        DateOnly ReturnDate { get; set; }
         Vehicle Vehicle { get; set; }
         Customer Customer { get; set; }
-        bool? IsBooked { get; }
+        decimal? Cost { get; set; }
     }
 }

@@ -6,10 +6,10 @@ namespace car_rental_common.Interfaces
     {
         string RegNo { get; set; }
         string Make { get; set; }
-        int Odometer { get; set; }
+        decimal Odometer { get; set; }
         decimal CostKm { get; set; }
         VehicleTypes VehicleType { get; set; }
-        int CostDay { get; set; }
+        decimal CostDay { get; set; }
         VehicleStatuses Status { get; set; }
     }
 }
