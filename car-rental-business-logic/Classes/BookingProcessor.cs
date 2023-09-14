@@ -13,7 +13,6 @@ namespace car_rental_business_logic.Classes
 
         public IEnumerable<IBooking> GetBookings()
         {
-            // Any additional business logic related to bookings can be applied here.
             return _db.GetBookings();
         }
 
@@ -29,12 +28,20 @@ namespace car_rental_business_logic.Classes
 
         public decimal CalculateCostForBooking(IBooking booking)
         {
-            var cost = 0m;
+            decimal cost = 0;
 
             if (booking.OdometerAfterDriving.HasValue)
-                cost = (((booking.OdometerAfterDriving.Value - booking.OdometerBeforeDriving) * booking.Vehicle.CostKm)) + (booking.Vehicle.CostDay * (booking.ReturnDate.DayNumber - booking.StartDate.DayNumber + 1));
+                cost += ((booking.OdometerAfterDriving.Value - booking.OdometerBeforeDriving) * booking.Vehicle.CostKm) + (booking.Vehicle.CostDay * (booking.ReturnDate.DayNumber - booking.StartDate.DayNumber + 1));
 
-            return cost;
+            return (int)Math.Round(cost);
+        }
+
+        public string Returned(IBooking booking)
+        {
+            if (booking.OdometerAfterDriving.HasValue)
+                return "Closed";
+
+            return "Open";
         }
     }
 }

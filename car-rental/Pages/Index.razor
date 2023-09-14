@@ -7,15 +7,9 @@
 
 <PageTitle>Index</PageTitle>
 
-<!-- Fixa bznz logic så att Cost fungerar (och allt annat för den delen)
-    KmReturned, numera 
-omplacera variabler på rätt ställe
+<!--
 ordna decor för cellerna beroende på status
 fixa nullable types
-
-fixa OdometerAfterDriving variabeln till user input FRÅN table - samma med Returned date!
-Därifrån ska status påverkas (görs i bznz logic).
-
 -->
 
 
@@ -40,10 +34,12 @@ Därifrån ska status påverkas (görs i bznz logic).
                 <td>@booking.Vehicle.RegNo</td>
                 <td>@booking.Customer.FirstName @booking.Customer.LastName</td>
                 <td>@booking.OdometerBeforeDriving</td>
-                <td><input @bind="booking.OdometerAfterDriving" /></td>
-                <td><input type="date" @bind="booking.StartDate" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{2}-\d{2}" /></td>
-                <td><input type="date" @bind="booking.ReturnDate" placeholder="yyyy-MM-dd" pattern="\d{4}-\d{2}-\d{2}" /></td>
-                <td>@booking.Vehicle.Status</td>
+                <td><input @bind="booking.OdometerAfterDriving" placeholder="Enter once vehicle is returned" /></td>
+                <td><input type="date" @bind="booking.StartDate" /></td>
+                <td><input type="date" @bind="booking.ReturnDate" placeholder="yyyy-MM-dd" /></td>
+                <td class="@(BookingService.Returned(booking) == "Closed" ? "text-success border-5" : "text-danger")">
+                    @BookingService.Returned(booking)
+                </td>
                 <td>@BookingService.CalculateCostForBooking(booking)</td>
             </tr>
         }
@@ -105,17 +101,10 @@ Därifrån ska status påverkas (görs i bznz logic).
     private List<ICustomer> customers;
     private List<IVehicle> vehicles;
 
-    // Adding the missing ElementReference variable declaration
-    private ElementReference dateInput;
-
     protected override void OnInitialized()
     {
         bookings = BookingService.GetBookings().ToList();
         customers = BookingService.GetCustomers().ToList();
         vehicles = BookingService.GetVehicles().ToList();
     }
-
-
-
-    //<td>@(booking.ReturnDate == DateOnly.MinValue? "" : booking.ReturnDate.ToString())</td>
 }
