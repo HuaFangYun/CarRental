@@ -8,23 +8,26 @@ namespace car_rental_business_logic.Classes
 {
     public class BookingProcessor
     {
-        private readonly IData _db;
+        private readonly IData _dataBase;
 
-        public BookingProcessor(IData db) => _db = db;
+        public BookingProcessor(IData dataBase)
+        {  
+            _dataBase = dataBase;
+        }
 
         public IEnumerable<IBooking> GetBookings()
         {
-            return _db.GetBookings();
+            return _dataBase.GetBookings();
         }
 
         public IEnumerable<ICustomer> GetCustomers()
         {
-            return _db.GetCustomers();
+            return _dataBase.GetCustomers();
         }
 
         public IEnumerable<IVehicle> GetVehicles()
         {
-            return _db.GetVehicles();
+            return _dataBase.GetVehicles();
         }
 
         public decimal CalculateCostForBooking(IBooking booking)
@@ -47,8 +50,9 @@ namespace car_rental_business_logic.Classes
 
         public VehicleStatuses IsVehicleBooked(string regNo)
         {
-            var bookingsForVehicle = _db.GetBookings().Where(b => b.Vehicle.RegNo == regNo);
+            var bookingsForVehicle = _dataBase.GetBookings().Where(b => b.Vehicle.RegNo == regNo);
             return bookingsForVehicle.Any(b => !b.OdometerAfterDriving.HasValue) ? VehicleStatuses.Booked : VehicleStatuses.Available;
         }
+
     }
 }

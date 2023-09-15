@@ -11,9 +11,9 @@ namespace car_rental_common.Classes
         public DateOnly ReturnDate { get; set; }
         public Vehicle Vehicle { get; set; }
         public Customer Customer { get; set; }
-        public decimal? Cost { get; set; }
+        public decimal Cost { get; set; }
 
-        public Booking(decimal odometerBeforeDriving, decimal? odometerAfterDriving, string startDateStr, string endDateStr, Vehicle vehicle, Customer customer, decimal cost = 0)
+        public Booking(decimal odometerBeforeDriving, decimal? odometerAfterDriving, string startDateStr, string endDateStr, Vehicle vehicle, Customer customer)
         {
             OdometerBeforeDriving = odometerBeforeDriving;
             OdometerAfterDriving = odometerAfterDriving;
@@ -21,7 +21,7 @@ namespace car_rental_common.Classes
             ReturnDate = ParseDate(endDateStr);
             Vehicle = vehicle;
             Customer = customer;
-            Cost = cost;
+            Cost = 0;
         }
 
         private DateOnly ParseDate(string dateStr)

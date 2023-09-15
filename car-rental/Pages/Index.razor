@@ -1,8 +1,8 @@
 ﻿@page "/"
-@using System.Linq;
 @using car_rental_business_logic.Classes;
 @using car_rental_common.Interfaces;
 @using car_rental_common.Enums;
+@using System.Linq;
 @inject BookingProcessor BookingService
 
 <PageTitle>Index</PageTitle>
@@ -20,6 +20,12 @@
             <th scope="col">Status</th>
             <th scope="col">Total cost</th>
         </tr>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="row" class="text-light-secondary fw-light fst-italic text-nowrap">Enterering the Odo. value will close the booking.</th>
+        </tr>
     </thead>
     <tbody>
         @foreach (IBooking booking in bookings)
@@ -35,27 +41,6 @@
                     @BookingService.GetBookingStatus(booking)
                 </td>
                 <td>@BookingService.CalculateCostForBooking(booking)</td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<h3>Customers</h3>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Social Security No.</th>
-            <th scope="col">First name</th>
-            <th scope="col">Last name</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (ICustomer customer in customers)
-        {
-            <tr>
-                <td>@customer.SSN</td>
-                <td>@customer.FirstName</td>
-                <td>@customer.LastName</td>
             </tr>
         }
     </tbody>
@@ -90,6 +75,28 @@
                     @vehicleStatus
                 </td>
 
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h3>Customers</h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Social Security No.</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ICustomer customer in customers)
+        {
+            <tr>
+                <td>@customer.SSN</td>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
             </tr>
         }
     </tbody>

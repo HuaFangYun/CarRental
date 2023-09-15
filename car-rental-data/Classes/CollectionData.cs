@@ -36,8 +36,8 @@ namespace car_rental_data.CollectionData
             _vehicles.Add(vehicle6);
 
             var booking1 = new Booking(1000, null, "", "", vehicle1, customer1);
-            var booking2 = new Booking(5000, null, "2023-09-09", "2023-09-09", vehicle2, customer2);
-            var booking3 = new Booking(2000, 4000, "2023-09-09", "2023-09-11", vehicle6, customer3);
+            var booking2 = new Booking(5000, null, "", "", vehicle2, customer2);
+            var booking3 = new Booking(2000, null, "", "", vehicle6, customer3);
             _bookings.Add(booking1);
             _bookings.Add(booking2);
             _bookings.Add(booking3);

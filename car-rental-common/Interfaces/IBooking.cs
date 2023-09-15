@@ -10,6 +10,6 @@ namespace car_rental_common.Interfaces
         DateOnly ReturnDate { get; set; }
         Vehicle Vehicle { get; set; }
         Customer Customer { get; set; }
-        decimal? Cost { get; set; }
+        decimal Cost { get; set; }
     }
 }
