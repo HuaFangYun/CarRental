@@ -13,32 +13,15 @@ namespace car_rental_common.Classes
         public Customer Customer { get; set; }
         public decimal Cost { get; set; }
 
-        public Booking(decimal odometerBeforeDriving, decimal? odometerAfterDriving, string startDateStr, string endDateStr, Vehicle vehicle, Customer customer)
+        public Booking(decimal odometerBeforeDriving, decimal? odometerAfterDriving, Vehicle vehicle, Customer customer)
         {
             OdometerBeforeDriving = odometerBeforeDriving;
             OdometerAfterDriving = odometerAfterDriving;
-            StartDate = ParseDate(startDateStr);
-            ReturnDate = ParseDate(endDateStr);
+            StartDate = DateOnly.FromDateTime(DateTime.Now);
+            ReturnDate = DateOnly.FromDateTime(DateTime.Now);
             Vehicle = vehicle;
             Customer = customer;
             Cost = 0;
-        }
-
-        private DateOnly ParseDate(string dateStr)
-        {
-            if (string.IsNullOrEmpty(dateStr))
-            {
-                return DateOnly.MinValue;
-            }
-
-            if (DateOnly.TryParse(dateStr, out var date))
-            {
-                return date;
-            }
-            else
-            {
-                throw new ArgumentException($"Invalid date string: {dateStr}. Expected format: yyyy-MM-dd");
-            }
         }
     }
 }
