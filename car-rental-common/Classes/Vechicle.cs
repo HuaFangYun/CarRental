@@ -13,7 +13,7 @@ namespace car_rental_common.Classes
         public decimal CostDay { get; set; }
         public VehicleStatuses Status { get; set; }
 
-        public Vehicle(string regNo, string make, int odometer, decimal costKm, VehicleTypes vehicleType, decimal costDay)
+        public Vehicle(string regNo = "", string make = "", int odometer = 0, decimal costKm = 0, VehicleTypes vehicleType = VehicleTypes.Undefined, decimal costDay = 0)
         {
             RegNo = regNo;
             Make = make;

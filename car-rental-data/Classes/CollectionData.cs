@@ -22,12 +22,12 @@ namespace car_rental_data.CollectionData
             _customers.Add(customer2);
             _customers.Add(customer3);
 
-            var vehicle1 = new Vehicle("ABC123", "Volvo", 10000, 1m, VehicleTypes.Combi, 200);
-            var vehicle2 = new Vehicle("DEF456", "Saab", 20000, 1m, VehicleTypes.Sedan, 100);
+            var vehicle1 = new Vehicle("ABC123", "Volvo", 1000, 1m, VehicleTypes.Combi, 200);
+            var vehicle2 = new Vehicle("DEF456", "Saab", 2000, 1m, VehicleTypes.Sedan, 100);
             var vehicle3 = new Vehicle("GHI789", "Tesla", 1000, 3m, VehicleTypes.Sedan, 100);
-            var vehicle4 = new Vehicle("JKL123", "Jeep", 50000, 1.5m, VehicleTypes.Van, 300);
-            var vehicle5 = new Vehicle("MNO456", "Yamaha", 30000, 0.5m, VehicleTypes.Motorcycle, 50);
-            var vehicle6 = new Vehicle("PQR789", "Suzuki", 10000, 0.5m, VehicleTypes.Motorcycle, 50);
+            var vehicle4 = new Vehicle("JKL123", "Jeep", 5000, 1.5m, VehicleTypes.Van, 300);
+            var vehicle5 = new Vehicle("MNO456", "Yamaha", 3000, 0.5m, VehicleTypes.Motorcycle, 50);
+            var vehicle6 = new Vehicle("PQR789", "Suzuki", 1000, 0.5m, VehicleTypes.Motorcycle, 50);
             _vehicles.Add(vehicle1);
             _vehicles.Add(vehicle2);
             _vehicles.Add(vehicle3);
@@ -46,5 +46,52 @@ namespace car_rental_data.CollectionData
         public IEnumerable<IBooking> GetBookings() => _bookings;
         public IEnumerable<ICustomer> GetCustomers() => _customers;
         public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default) => _vehicles; //Måste göra ett urval med t.ex linq
+
+        public void AddBooking(IBooking booking)
+        {
+            _bookings.Add(booking);
+        }
+
+        public void AddCustomer(ICustomer customer)
+        {
+            _customers.Add(customer);
+        }
+
+        public void AddVehicle(IVehicle vehicle)
+        {
+            _vehicles.Add(vehicle);
+        }
+
+        public void UpdateBooking(IBooking updatedBooking)
+        {
+            var booking = _bookings.FirstOrDefault(b => b.Customer == updatedBooking.Customer);
+            if (booking != null)
+            {
+                int index = _bookings.IndexOf(booking);
+                _bookings[index] = updatedBooking;
+            }
+        }
+
+        public void UpdateCustomer(ICustomer updatedCustomer)
+        {
+            var customer = _customers.FirstOrDefault(c => c.SSN == updatedCustomer.SSN);
+            if (customer != null)
+            {
+                int index = _customers.IndexOf(customer);
+                _customers[index] = updatedCustomer;
+            }
+        }
+
+
+        public void UpdateVehicle(IVehicle updatedVehicle)
+        {
+            var vehicle = _vehicles.FirstOrDefault(v => v.RegNo == updatedVehicle.RegNo);
+            if (vehicle != null)
+            {
+                int index = _vehicles.IndexOf(vehicle);
+                _vehicles[index] = updatedVehicle;
+            }
+        }
+
     }
 }

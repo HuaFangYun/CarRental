@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using car_rental_common.Classes <!-- Försök få bort denna -->
 @using car_rental_business_logic.Classes;
 @using car_rental_common.Interfaces;
 @using car_rental_common.Enums;
@@ -7,8 +8,22 @@
 
 <PageTitle>Index</PageTitle>
 
+<!--
+    Nullhantering
+    Forcerat format i alla input fält
+    Exception handeling relaterat till ovan.
+    Delete knapp, motsatsen till Add-knappen
+    Update knapp, -> välj en rad, uppdatera värdena, spara (CRUD?)
+    Ta bort alla decimals - ints räcker?
+    Skapa switchar för alla metoder
+    Hitta ett värde för "update"-metoden, se ovan (CRUD?)
+    Separera Seeddata och lägg till kommentar i vyn om att det är "exempelbokningar, möjliggör sedan tillägg och ändringar för nytillagda fordon och kunder"
+    Skapa en "rent" och "return"knapp, där return egentligen funkar som Odometer after driving-knappen
+-->
+
+
 <h3>Bookings</h3>
-<table class="table table-hover">
+<table>
     <thead>
         <tr>
             <th scope="col" colspan="8" class="text-danger fw-light">- Instructions -</th>
@@ -22,6 +37,10 @@
         <tr>
             <th scope="col" colspan="8" class="text-danger fw-light">For specific price information, please refer to the 'Vehicle' table below.</th>
         </tr>
+    </thead>
+</table>
+<table class="table table-hover">
+    <thead>
         <tr>
             <th scope="col">RegNo</th>
             <th scope="col">Customer</th>
@@ -66,6 +85,16 @@
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td><input @bind="newVehicle.RegNo" placeholder="Enter Reg No." /></td>
+            <td><input @bind="newVehicle.Make" placeholder="Enter Make" /></td>
+            <td><input @bind="newVehicle.Odometer" placeholder="Enter Odometer" /></td>
+            <td><input @bind="newVehicle.CostKm" placeholder="Enter Cost/Km" /></td>
+            <td><input @bind="newVehicle.VehicleType" placeholder="Enter Vehicle Type" /></td>
+            <td><input @bind="newVehicle.CostDay" placeholder="Enter Cost/Day" /></td>
+            <td><button @onclick="AddNewVehicle">Add</button></td>
+        </tr>
+
         @foreach (IVehicle vehicle in vehicles)
         {
             var vehicleStatus = BookingService.IsVehicleBooked(vehicle.RegNo);
@@ -115,8 +144,16 @@
 
     protected override void OnInitialized()
     {
-        bookings = BookingService.GetBookings().ToList();
-        customers = BookingService.GetCustomers().ToList();
-        vehicles = BookingService.GetVehicles().ToList();
+        bookings = BookingService.Get<IBooking>(b => true).ToList();
+        customers = BookingService.Get<ICustomer>(c => true).ToList();
+        vehicles = BookingService.Get<IVehicle>(v => true).ToList();
+    }
+
+    private IVehicle newVehicle = new Vehicle();
+
+    private void AddNewVehicle()
+    {
+        BookingService.Add(newVehicle);
+        vehicles.Add(newVehicle);
     }
 }
