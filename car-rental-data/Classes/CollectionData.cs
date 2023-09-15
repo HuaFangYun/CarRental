@@ -22,12 +22,12 @@ namespace car_rental_data.CollectionData
             _customers.Add(customer2);
             _customers.Add(customer3);
 
-            var vehicle1 = new Vehicle("ABC123", "Volvo", 10000, 1m, VehicleTypes.Combi, 200, VehicleStatuses.Available);
-            var vehicle2 = new Vehicle("DEF456", "Saab", 20000, 1m, VehicleTypes.Sedan, 100, VehicleStatuses.Available);
-            var vehicle3 = new Vehicle("GHI789", "Tesla", 1000, 3m, VehicleTypes.Sedan, 100, VehicleStatuses.Booked);
-            var vehicle4 = new Vehicle("JKL123", "Jeep", 50000, 1.5m, VehicleTypes.Van, 300, VehicleStatuses.Available);
-            var vehicle5 = new Vehicle("MNO456", "Yamaha", 30000, 0.5m, VehicleTypes.Motorcycle, 50, VehicleStatuses.Available);
-            var vehicle6 = new Vehicle("PQR789", "Suzuki", 10000, 0.5m, VehicleTypes.Motorcycle, 50, VehicleStatuses.Available);
+            var vehicle1 = new Vehicle("ABC123", "Volvo", 10000, 1m, VehicleTypes.Combi, 200);
+            var vehicle2 = new Vehicle("DEF456", "Saab", 20000, 1m, VehicleTypes.Sedan, 100);
+            var vehicle3 = new Vehicle("GHI789", "Tesla", 1000, 3m, VehicleTypes.Sedan, 100);
+            var vehicle4 = new Vehicle("JKL123", "Jeep", 50000, 1.5m, VehicleTypes.Van, 300);
+            var vehicle5 = new Vehicle("MNO456", "Yamaha", 30000, 0.5m, VehicleTypes.Motorcycle, 50);
+            var vehicle6 = new Vehicle("PQR789", "Suzuki", 10000, 0.5m, VehicleTypes.Motorcycle, 50);
             _vehicles.Add(vehicle1);
             _vehicles.Add(vehicle2);
             _vehicles.Add(vehicle3);

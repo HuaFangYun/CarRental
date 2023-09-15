@@ -1,4 +1,5 @@
-﻿using car_rental_common.Enums;
+﻿using car_rental_common.Classes;
+using car_rental_common.Enums;
 using car_rental_common.Interfaces;
 using car_rental_data.Interfaces;
 using System;
@@ -21,9 +22,9 @@ namespace car_rental_business_logic.Classes
             return _db.GetCustomers();
         }
 
-        public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default)
+        public IEnumerable<IVehicle> GetVehicles()
         {
-            return _db.GetVehicles(status);
+            return _db.GetVehicles();
         }
 
         public decimal CalculateCostForBooking(IBooking booking)
@@ -36,12 +37,18 @@ namespace car_rental_business_logic.Classes
             return (int)Math.Round(cost);
         }
 
-        public string Returned(IBooking booking)
+        public string GetBookingStatus(IBooking booking)
         {
             if (booking.OdometerAfterDriving.HasValue)
                 return "Closed";
 
             return "Open";
+        }
+
+        public VehicleStatuses IsVehicleBooked(string regNo)
+        {
+            var bookingsForVehicle = _db.GetBookings().Where(b => b.Vehicle.RegNo == regNo);
+            return bookingsForVehicle.Any(b => !b.OdometerAfterDriving.HasValue) ? VehicleStatuses.Booked : VehicleStatuses.Available;
         }
     }
 }

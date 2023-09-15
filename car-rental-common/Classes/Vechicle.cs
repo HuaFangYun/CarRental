@@ -13,7 +13,7 @@ namespace car_rental_common.Classes
         public decimal CostDay { get; set; }
         public VehicleStatuses Status { get; set; } //Ska inte vara fördefinierat - ska påverkas av huruvia Returned är ifyllt i bookings eller ej?
 
-        public Vehicle(string regNo, string make, int odometer, decimal costKm, VehicleTypes vehicleType, decimal costDay, VehicleStatuses status)
+        public Vehicle(string regNo, string make, int odometer, decimal costKm, VehicleTypes vehicleType, decimal costDay)
         {
             RegNo = regNo;
             Make = make;
@@ -21,7 +21,7 @@ namespace car_rental_common.Classes
             CostKm = costKm;
             VehicleType = vehicleType;
             CostDay = costDay;
-            Status = status;
+            Status = VehicleStatuses.Available; // By default, a vehicle is available.
         }
     }
 }
