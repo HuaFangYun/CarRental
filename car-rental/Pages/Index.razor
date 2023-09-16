@@ -10,7 +10,7 @@
 
 <!--
     Nullhantering
-    Forcerat format i alla input fält
+    Forcerat format i alla input fält (var noga med exception handeling för int)
     Exception handeling relaterat till ovan.
     Delete knapp, motsatsen till Add-knappen
     Update knapp, -> välj en rad, uppdatera värdena, spara (CRUD?)
@@ -19,10 +19,10 @@
     Hitta ett värde för "update"-metoden, se ovan (CRUD?)
     Separera Seeddata och lägg till kommentar i vyn om att det är "exempelbokningar, möjliggör sedan tillägg och ändringar för nytillagda fordon och kunder"
     Skapa en "rent" och "return"knapp, där return egentligen funkar som Odometer after driving-knappen
+    Lägg till en Action kategori i vegicles där man kan koppla customer till bokningen - kräver en "rent" och "return" knapp tillsammans med drop-down lista av kunder
 -->
 
 
-<h3>Bookings</h3>
 <table>
     <thead>
         <tr>
@@ -39,6 +39,10 @@
         </tr>
     </thead>
 </table>
+<div>
+    <p></p>
+</div>
+<h3>Bookings</h3>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -90,7 +94,17 @@
             <td><input @bind="newVehicle.Make" placeholder="Enter Make" /></td>
             <td><input @bind="newVehicle.Odometer" placeholder="Enter Odometer" /></td>
             <td><input @bind="newVehicle.CostKm" placeholder="Enter Cost/Km" /></td>
-            <td><input @bind="newVehicle.VehicleType" placeholder="Enter Vehicle Type" /></td>
+            <td>
+                <select @bind="newVehicle.VehicleType" class="form-select">
+                    @foreach (var type in Enum.GetValues<VehicleTypes>())
+                    {
+                        if (type != VehicleTypes.Undefined) // Exclude the Undefined type if you don't want it to show up
+                        {
+                            <option value="@type">@type</option>
+                        }
+                    }
+                </select>
+            </td>
             <td><input @bind="newVehicle.CostDay" placeholder="Enter Cost/Day" /></td>
             <td><button @onclick="AddNewVehicle">Add</button></td>
         </tr>
@@ -126,6 +140,12 @@
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td><input @bind="newCustomer.SSN" placeholder="Social security number." /></td>
+            <td><input @bind="newCustomer.FirstName" placeholder="Enter First Name." /></td>
+            <td><input @bind="newCustomer.LastName" placeholder="Enter Last Name." /></td>
+            <td><button @onclick="AddNewCustomer">Add</button></td>
+        </tr>
         @foreach (ICustomer customer in customers)
         {
             <tr>
@@ -141,6 +161,8 @@
     private List<IBooking> bookings;
     private List<ICustomer> customers;
     private List<IVehicle> vehicles;
+    private IVehicle newVehicle = new Vehicle();
+    private ICustomer newCustomer = new Customer();
 
     protected override void OnInitialized()
     {
@@ -149,11 +171,17 @@
         vehicles = BookingService.Get<IVehicle>(v => true).ToList();
     }
 
-    private IVehicle newVehicle = new Vehicle();
-
     private void AddNewVehicle()
     {
         BookingService.Add(newVehicle);
         vehicles.Add(newVehicle);
+        newVehicle = new Vehicle();
+    }
+
+    private void AddNewCustomer()
+    {
+        BookingService.Add(newCustomer);
+        customers.Add(newCustomer);
+        newCustomer = new Customer();
     }
 }
