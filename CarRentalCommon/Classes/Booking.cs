@@ -13,7 +13,7 @@ public class Booking : IBooking
     public IPersons Customer { get; init; }
     public VehicleStatuses Status { get; set; }
 
-    public Booking(IVehicle vehicle, IPersons customer, DateTime rentDate, DateTime returnDate, decimal odometer = 0, decimal? kmDriven = null)
+    public Booking(IVehicle vehicle, IPersons customer, DateTime rentDate, DateTime returnDate, decimal odometer, decimal? kmDriven = null)
     {
         Odometer = odometer;
         KmDriven = kmDriven;
