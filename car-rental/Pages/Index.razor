@@ -1,161 +1,123 @@
 ﻿@page "/"
 @using car_rental_common.Classes <!-- Försök få bort denna -->
-@using car_rental_business_logic.Classes;
 @using car_rental_common.Interfaces;
 @using car_rental_common.Enums;
+@using car_rental_business_logic.Classes;
 @using System.Linq;
 @inject BookingProcessor BookingService
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Booking Engine</PageTitle>
 
-<!--
-    Nullhantering
-    Forcerat format i alla input fält (var noga med exception handeling för int)
-    Exception handeling relaterat till ovan.
-    Delete knapp, motsatsen till Add-knappen
-    Update knapp, -> välj en rad, uppdatera värdena, spara (CRUD?)
-    Ta bort alla decimals - ints räcker?
-    Skapa switchar för alla metoder
-    Hitta ett värde för "update"-metoden, se ovan (CRUD?)
-    Separera Seeddata och lägg till kommentar i vyn om att det är "exempelbokningar, möjliggör sedan tillägg och ändringar för nytillagda fordon och kunder"
-    Skapa en "rent" och "return"knapp, där return egentligen funkar som Odometer after driving-knappen
-    Lägg till en Action kategori i vegicles där man kan koppla customer till bokningen - kräver en "rent" och "return" knapp tillsammans med drop-down lista av kunder
--->
-
-
-<table>
-    <thead>
-        <tr>
-            <th scope="col" colspan="8" class="text-danger fw-light">- Instructions -</th>
-        </tr>
-        <tr>
-            <th scope="col" colspan="8" class="text-danger fw-light">By default, the booking dates are set to today's date. However, these dates are fully customizable to match the customer's requirements.</th>
-        </tr>
-        <tr>
-            <th scope="col" colspan="8" class="text-danger fw-light">A booking remains in the "Open" status until a value is entered for "Odometer Reading After Driving (km)". Once this value is provided, the "Total Cost" is automatically calculated based on both the number of days the vehicle is rented and the distance driven by the renter. Ensure you adjust the dates as needed to best serve your customers.</th>
-        </tr>
-        <tr>
-            <th scope="col" colspan="8" class="text-danger fw-light">For specific price information, please refer to the 'Vehicle' table below.</th>
-        </tr>
-    </thead>
-</table>
-<div>
-    <p></p>
-</div>
-<h3>Bookings</h3>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">RegNo</th>
-            <th scope="col">Customer</th>
-            <th scope="col">Odo. before driving (km)</th>
-            <th scope="col">Odo. after driving (km)</th>
-            <th scope="col">Rented Date</th>
-            <th scope="col">Returned</th>
-            <th scope="col">Status</th>
-            <th scope="col">Total cost</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (IBooking booking in bookings)
-        {
-            <tr>
-                <td>@booking.Vehicle.RegNo</td>
-                <td>@booking.Customer.FirstName @booking.Customer.LastName</td>
-                <td>@booking.OdometerBeforeDriving</td>
-                <td><input @bind="booking.OdometerAfterDriving" placeholder="Enter value upon return" /></td>
-                <td><input type="date" @bind="booking.StartDate" /></td>
-                <td><input type="date" @bind="booking.ReturnDate" placeholder="yyyy-MM-dd" /></td>
-                <td class="@(BookingService.GetBookingStatus(booking) == "Closed" ? "text-success" : "text-warning")">
-                    @BookingService.GetBookingStatus(booking)
-                </td>
-                <td>@BookingService.CalculateCostForBooking(booking)</td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<h3>Vehicles</h3>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Reg No.</th>
-            <th scope="col">Make</th>
-            <th scope="col">Odometer</th>
-            <th scope="col">Cost/Km</th>
-            <th scope="col">Vehicle type</th>
-            <th scope="col">Cost/Day</th>
-            <th scope="col">Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><input @bind="newVehicle.RegNo" placeholder="Enter Reg No." /></td>
-            <td><input @bind="newVehicle.Make" placeholder="Enter Make" /></td>
-            <td><input @bind="newVehicle.Odometer" placeholder="Enter Odometer" /></td>
-            <td><input @bind="newVehicle.CostKm" placeholder="Enter Cost/Km" /></td>
-            <td>
-                <select @bind="newVehicle.VehicleType" class="form-select">
-                    @foreach (var type in Enum.GetValues<VehicleTypes>())
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h3>Vehicles</h3>
+            <table class="table table-borderless text-nowrap">
+                <thead>
+                    <tr>
+                        <th scope="col">Reg No.</th>
+                        <th scope="col">Make</th>
+                        <th scope="col">Odometer</th>
+                        <th scope="col">Cost/Km</th>
+                        <th scope="col">Vehicle type</th>
+                        <th scope="col">Cost/Day</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (IVehicle vehicle in vehicles)
                     {
-                        if (type != VehicleTypes.Undefined) // Exclude the Undefined type if you don't want it to show up
-                        {
-                            <option value="@type">@type</option>
-                        }
+                        var vehicleStatus = BookingService.IsVehicleBooked(vehicle.RegNo);
+
+                        <tr>
+                            <td>@vehicle.RegNo</td>
+                            <td>@vehicle.Make</td>
+                            <td>@vehicle.Odometer</td>
+                            <td>@vehicle.CostKm</td>
+                            <td>@vehicle.VehicleType</td>
+                            <td>@vehicle.CostDay</td>
+                            <td class="@(vehicleStatus == VehicleStatuses.Available ? "text-success" : "text-warning")">
+                                @vehicleStatus
+                            </td>
+
+                        </tr>
                     }
-                </select>
-            </td>
-            <td><input @bind="newVehicle.CostDay" placeholder="Enter Cost/Day" /></td>
-            <td><button @onclick="AddNewVehicle">Add</button></td>
-        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-        @foreach (IVehicle vehicle in vehicles)
-        {
-            var vehicleStatus = BookingService.IsVehicleBooked(vehicle.RegNo);
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h3>Bookings</h3>
+            <table class="table table-borderless text-nowrap">
+                <thead>
+                    <tr>
+                        <th scope="col">RegNo</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Odo. before driving (km)</th>
+                        <th scope="col">Odo. after driving (km)</th>
+                        <th scope="col">Rented Date</th>
+                        <th scope="col">Returned</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Total cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (IBooking booking in bookings)
+                    {
+                        <tr>
+                            <td>@booking.Vehicle.RegNo</td>
+                            <td>@booking.Customer.FirstName @booking.Customer.LastName</td>
+                            <td>@booking.OdometerBeforeDriving</td>
+                            <td><input @bind="booking.OdometerAfterDriving" placeholder="Enter value upon return" /></td>
+                            <td><input type="date" @bind="booking.StartDate" /></td>
+                            <td><input type="date" @bind="booking.ReturnDate" placeholder="yyyy-MM-dd" /></td>
+                            <td class="@(BookingService.GetBookingStatus(booking) == "Closed" ? "text-success" : "text-warning")">
+                                @BookingService.GetBookingStatus(booking)
+                            </td>
+                            <td>@BookingService.TotalCost(booking)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-            <tr>
-                <td>@vehicle.RegNo</td>
-                <td>@vehicle.Make</td>
-                <td>@vehicle.Odometer</td>
-                <td>@vehicle.CostKm</td>
-                <td>@vehicle.VehicleType</td>
-                <td>@vehicle.CostDay</td>
-                <td class="@(vehicleStatus == VehicleStatuses.Available ? "text-success" : "text-warning")">
-                    @vehicleStatus
-                </td>
-
-            </tr>
-        }
-    </tbody>
-</table>
-
-
-<h3>Customers</h3>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Social Security No.</th>
-            <th scope="col">First name</th>
-            <th scope="col">Last name</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><input @bind="newCustomer.SSN" placeholder="Social security number." /></td>
-            <td><input @bind="newCustomer.FirstName" placeholder="Enter First Name." /></td>
-            <td><input @bind="newCustomer.LastName" placeholder="Enter Last Name." /></td>
-            <td><button @onclick="AddNewCustomer">Add</button></td>
-        </tr>
-        @foreach (ICustomer customer in customers)
-        {
-            <tr>
-                <td>@customer.SSN</td>
-                <td>@customer.FirstName</td>
-                <td>@customer.LastName</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h3>Customers</h3>
+            <table class="table table-borderless text-nowrap">
+                <thead>
+                    <tr>
+                        <th scope="col">Social Security No.</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input @bind="newCustomer.SSN" placeholder="Social security number." /></td>
+                        <td><input @bind="newCustomer.FirstName" placeholder="Enter First Name." /></td>
+                        <td><input @bind="newCustomer.LastName" placeholder="Enter Last Name." /></td>
+                    </tr>
+                    @foreach (ICustomer customer in customers)
+                    {
+                        <tr>
+                            <td>@customer.SSN</td>
+                            <td>@customer.FirstName</td>
+                            <td>@customer.LastName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 @code {
     private List<IBooking> bookings;
@@ -166,22 +128,8 @@
 
     protected override void OnInitialized()
     {
-        bookings = BookingService.Get<IBooking>(b => true).ToList();
-        customers = BookingService.Get<ICustomer>(c => true).ToList();
-        vehicles = BookingService.Get<IVehicle>(v => true).ToList();
-    }
-
-    private void AddNewVehicle()
-    {
-        BookingService.Add(newVehicle);
-        vehicles.Add(newVehicle);
-        newVehicle = new Vehicle();
-    }
-
-    private void AddNewCustomer()
-    {
-        BookingService.Add(newCustomer);
-        customers.Add(newCustomer);
-        newCustomer = new Customer();
+        bookings = BookingService.GetBookings().ToList();
+        customers = BookingService.GetCustomers().ToList();
+        vehicles = BookingService.GetVehicles().ToList();
     }
 }

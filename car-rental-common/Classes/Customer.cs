@@ -13,6 +13,6 @@ namespace car_rental_common.Classes
             SSN = ssn;
             FirstName = firstName;
             LastName = lastName;
-        }   
+        }
     }
 }

@@ -8,12 +8,5 @@ namespace car_rental_data.Interfaces
         IEnumerable<IBooking> GetBookings();
         IEnumerable<ICustomer> GetCustomers();
         IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default);
-
-        void AddBooking(IBooking booking);
-        void AddCustomer(ICustomer customer);
-        void AddVehicle(IVehicle vehicle);
-        void UpdateBooking(IBooking booking);
-        void UpdateVehicle(IVehicle vehicle);
-        void UpdateCustomer(ICustomer customer);
     }
 }

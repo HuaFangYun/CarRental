@@ -1,5 +1,4 @@
 ﻿using car_rental_common.Interfaces;
-using System;
 
 namespace car_rental_common.Classes
 {
