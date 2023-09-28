@@ -8,7 +8,7 @@ namespace CarRentalData.CollectionData;
 public class CollectionData : IData
 {
     readonly List<IBooking> _bookings = new();
-    readonly List<ICustomer> _customers = new();
+    readonly List<IPersons> _customers = new();
     readonly List<IVehicle> _vehicles = new();
 
     public CollectionData() => SeedData();
@@ -19,12 +19,12 @@ public class CollectionData : IData
         _customers.Add(new Customer("456789", "Visilia", "Studiya"));
         _customers.Add(new Customer("789123", "Blaine", "Bootstrap"));
 
-        _vehicles.Add(new Vehicle("AND243", "Porche", 5900, 1.5m, VehicleTypes.Touring));
-        _vehicles.Add(new Vehicle("VUQ516", "Buick", 3000, 1.5m, VehicleTypes.Convertible));
-        _vehicles.Add(new Vehicle("PQZ552", "Dusenberg", 7500, 2m, VehicleTypes.Luxury));
-        _vehicles.Add(new Vehicle("IEN716", "Chevrolet", 5050, 1m, VehicleTypes.Hardtop));
-        _vehicles.Add(new Vehicle("MBU852", "Yamaha", 3570, 1m, VehicleTypes.Motorcycle));
-        _vehicles.Add(new Vehicle("WCK661", "Benelli", 1200, 0.5m, VehicleTypes.Motorcycle));
+        _vehicles.Add(new Car("AND243", "Porche", 5900, 1.5m, VehicleTypes.Touring));
+        _vehicles.Add(new Car("VUQ516", "Buick", 3000, 1.5m, VehicleTypes.Convertible));
+        _vehicles.Add(new Car("PQZ552", "Dusenberg", 7500, 2m, VehicleTypes.Luxury));
+        _vehicles.Add(new Car("IEN716", "Chevrolet", 5050, 1m, VehicleTypes.Hardtop));
+        _vehicles.Add(new Motorcycle("MBU852", "Yamaha", 3570, 1m));
+        _vehicles.Add(new Motorcycle("WCK661", "Benelli", 1200, 0.5m));
 
         _bookings.Add(new Booking(_vehicles[3], _customers[0], DateTime.Parse("2023-09-20"), DateTime.Parse("2023-09-25"), _vehicles[3].Odometer, 5500));
         _bookings.Add(new Booking(_vehicles[4], _customers[1], DateTime.Now, DateTime.Now, _vehicles[4].Odometer, null));
@@ -32,6 +32,6 @@ public class CollectionData : IData
     }
 
     public IEnumerable<IBooking> GetBookings() => _bookings;
-    public IEnumerable<ICustomer> GetCustomers() => _customers;
+    public IEnumerable<IPersons> GetCustomers() => _customers;
     public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default) => _vehicles;
 }

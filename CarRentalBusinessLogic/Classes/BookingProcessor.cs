@@ -12,7 +12,7 @@ public class BookingProcessor
     public BookingProcessor(IData db) => _db = db;
 
     public IEnumerable<IBooking> GetBookings() => _db.GetBookings();
-    public IEnumerable<ICustomer> GetCustomers() => _db.GetCustomers();
+    public IEnumerable<IPersons> GetCustomers() => _db.GetCustomers();
     public IEnumerable<IVehicle> GetVehicles() => _db.GetVehicles();
 
     public decimal TotalCost(IBooking booking)

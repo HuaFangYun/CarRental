@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (IVehicle vehicle in vehicles)
+                    @foreach (IVehicle vehicle in BookingService.GetVehicles())
                     {
                         var vehicleStatus = BookingService.IsVehicleBooked(vehicle.RegNo);
 
@@ -64,7 +64,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (IBooking booking in bookings)
+                    @foreach (IBooking booking in BookingService.GetBookings())
                     {
                         <tr>
                             <td>@booking.Vehicle.RegNo</td>
@@ -98,7 +98,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (ICustomer customer in customers)
+                    @foreach (IPersons customer in BookingService.GetCustomers())
                     {
                         <tr>
                             <td>@customer.SSN</td>
@@ -111,16 +111,3 @@
         </div>
     </div>
 </div>
-
-@code {
-    private List<IBooking> bookings;
-    private List<ICustomer> customers;
-    private List<IVehicle> vehicles;
-
-    protected override void OnInitialized()
-    {
-        bookings = BookingService.GetBookings().ToList();
-        customers = BookingService.GetCustomers().ToList();
-        vehicles = BookingService.GetVehicles().ToList();
-    }
-}

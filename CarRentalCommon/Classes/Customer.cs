@@ -2,11 +2,11 @@
 
 namespace CarRentalCommon.Classes
 {
-    public class Customer : ICustomer
+    public class Customer : IPersons
     {
-        public string SSN { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string SSN { get; init; }
+        public string FirstName { get; init; }
+        public string LastName { get; init; }
 
         public Customer(string ssn = "", string firstName = "", string lastName = "")
         {

@@ -4,11 +4,12 @@ namespace CarRentalCommon.Interfaces;
 
 public interface IVehicle
 {
-    string RegNo { get; set; }
-    string Make { get; set; }
+    string RegNo { get; }
+    string Make { get; }
+    decimal CostKm { get; }
+    decimal CostDay { get; }
+    VehicleTypes VehicleType { get; }
     decimal Odometer { get; set; }
-    decimal CostKm { get; set; }
-    decimal CostDay { get; set; }
-    VehicleTypes VehicleType { get; set; }
+
     VehicleStatuses Status { get; set; }
 }

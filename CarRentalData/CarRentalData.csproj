@@ -2,13 +2,13 @@
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
-		<RootNamespace>car_rental_data</RootNamespace>
+		<RootNamespace>CarRentalData</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\car-rental-common\CarRentalCommon.csproj" />
+	  <ProjectReference Include="..\CarRentalCommon\CarRentalCommon.csproj" />
 	</ItemGroup>
 
 </Project>
