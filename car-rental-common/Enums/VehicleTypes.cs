@@ -1,4 +1,4 @@
-﻿namespace car_rental_common.Enums;
+﻿namespace CarRentalCommon.Enums;
 
 public enum VehicleTypes
 {

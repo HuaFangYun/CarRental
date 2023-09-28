@@ -8,8 +8,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\car-rental-common\car-rental-common.csproj" />
-		<ProjectReference Include="..\car-rental-data\car-rental-data.csproj" />
+		<ProjectReference Include="..\car-rental-common\CarRentalCommon.csproj" />
+		<ProjectReference Include="..\car-rental-data\CarRentalData.csproj" />
 	</ItemGroup>
 
 </Project>

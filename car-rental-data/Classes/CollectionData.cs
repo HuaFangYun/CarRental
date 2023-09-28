@@ -1,9 +1,9 @@
-﻿using car_rental_common.Classes;
-using car_rental_common.Enums;
-using car_rental_common.Interfaces;
-using car_rental_data.Interfaces;
+﻿using CarRentalCommon.Classes;
+using CarRentalCommon.Enums;
+using CarRentalCommon.Interfaces;
+using CarRentalData.Interfaces;
 
-namespace car_rental_data.CollectionData;
+namespace CarRentalData.CollectionData;
 
 public class CollectionData : IData
 {

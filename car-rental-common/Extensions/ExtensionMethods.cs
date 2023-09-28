@@ -1,4 +1,4 @@
-﻿namespace car_rental_common.Extensions;
+﻿namespace CarRentalCommon.Extensions;
 
 public static class ExtensionMethods
 {

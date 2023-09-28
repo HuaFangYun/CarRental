@@ -1,6 +1,6 @@
-﻿using car_rental_common.Enums;
+﻿using CarRentalCommon.Enums;
 
-namespace car_rental_common.Interfaces;
+namespace CarRentalCommon.Interfaces;
 
 public interface IVehicle
 {

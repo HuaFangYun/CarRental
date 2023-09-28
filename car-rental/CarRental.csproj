@@ -12,7 +12,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\car-rental-business-logic\car-rental-business-logic.csproj" />
+		<ProjectReference Include="..\car-rental-business-logic\CarRentalBusinessLogic.csproj" />
 	</ItemGroup>
 
 </Project>
