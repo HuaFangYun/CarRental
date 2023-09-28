@@ -26,9 +26,9 @@ public class CollectionData : IData
         _vehicles.Add(new Vehicle("MBU852", "Yamaha", 3570, 1m, VehicleTypes.Motorcycle));
         _vehicles.Add(new Vehicle("WCK661", "Benelli", 1200, 0.5m, VehicleTypes.Motorcycle));
 
-        _bookings.Add(new Booking(_vehicles[3].Odometer, 5500, _vehicles[3], _customers[0], DateTime.Parse("2023-09-20"), DateTime.Parse("2023-09-25")));
-        _bookings.Add(new Booking(_vehicles[4].Odometer, null, _vehicles[4], _customers[1], DateTime.Now, DateTime.Now));
-        _bookings.Add(new Booking(_vehicles[5].Odometer, null, _vehicles[5], _customers[2], DateTime.Now, DateTime.Now));
+        _bookings.Add(new Booking(_vehicles[3], _customers[0], DateTime.Parse("2023-09-20"), DateTime.Parse("2023-09-25"), _vehicles[3].Odometer, 5500));
+        _bookings.Add(new Booking(_vehicles[4], _customers[1], DateTime.Now, DateTime.Now, _vehicles[4].Odometer, null));
+        _bookings.Add(new Booking(_vehicles[5], _customers[2], DateTime.Now, DateTime.Now, _vehicles[5].Odometer, null));
     }
 
     public IEnumerable<IBooking> GetBookings() => _bookings;

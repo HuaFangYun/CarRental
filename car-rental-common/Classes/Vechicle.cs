@@ -7,8 +7,8 @@ public class Vehicle : IVehicle
 {
     public string RegNo { get; set; }
     public string Make { get; set; }
-    public decimal? Odometer { get; set; }
-    public decimal? CostKm { get; set; }
+    public decimal Odometer { get; set; }
+    public decimal CostKm { get; set; }
     public decimal CostDay { get; set; }
     public VehicleStatuses Status { get; set; }
     private VehicleTypes _vehicleType;
@@ -22,7 +22,7 @@ public class Vehicle : IVehicle
         }
     }
 
-    public Vehicle(string regNo = "", string make = "", decimal? odometer = null, decimal? costKm = null, VehicleTypes vehicleType = VehicleTypes.Other, VehicleStatuses status = VehicleStatuses.Available)
+    public Vehicle(string regNo = "", string make = "", decimal odometer = 0, decimal costKm = 1, VehicleTypes vehicleType = VehicleTypes.Other, VehicleStatuses status = VehicleStatuses.Available)
     {
         RegNo = regNo;
         Make = make;

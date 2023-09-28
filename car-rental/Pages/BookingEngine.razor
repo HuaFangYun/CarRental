@@ -1,5 +1,4 @@
 ﻿@page "/"
-@using car_rental_common.Classes
 @using car_rental_common.Interfaces;
 @using car_rental_common.Enums;
 @using car_rental_business_logic.Classes;
@@ -39,7 +38,6 @@
                             <td class="@(vehicleStatus == VehicleStatuses.Available ? "badge bg-success" : "badge bg-warning") text-white mt-2">
                                 @vehicleStatus
                             </td>
-
                         </tr>
                     }
                 </tbody>
@@ -118,8 +116,6 @@
     private List<IBooking> bookings;
     private List<ICustomer> customers;
     private List<IVehicle> vehicles;
-    private IVehicle newVehicle = new Vehicle();
-    private ICustomer newCustomer = new Customer();
 
     protected override void OnInitialized()
     {

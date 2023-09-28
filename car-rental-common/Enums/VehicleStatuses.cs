@@ -1,8 +1,7 @@
-﻿namespace car_rental_common.Enums
+﻿namespace car_rental_common.Enums;
+
+public enum VehicleStatuses
 {
-    public enum VehicleStatuses
-    {
-        Available = 0,
-        Booked = 1
-    }
+    Available = 0,
+    Booked = 1
 }
