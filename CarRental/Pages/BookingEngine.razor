@@ -70,7 +70,7 @@
                             <td>@booking.Vehicle.RegNo</td>
                             <td>@booking.Customer.FirstName @booking.Customer.LastName</td>
                             <td>@booking.Odometer</td>
-                            <td><input @bind="booking.KmDriven" placeholder="Enter value upon return" /></td>
+                            <td><input @bind="booking.KmDriven" placeholder="Enter value (then press Enter)" /></td>
                             <td><input type="date" @bind="booking.RentDate" /></td>
                             <td><input type="date" @bind="booking.ReturnDate" placeholder="yyyy-MM-dd" /></td>
                             <td class="@(BookingService.IsVehicleBooked(booking.Vehicle.RegNo) == VehicleStatuses.Booked ? "badge bg-warning" : "badge bg-success") mt-2 text-white">

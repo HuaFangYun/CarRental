@@ -9,7 +9,7 @@ namespace CarRentalCommon.Classes
         public string Make { get; init; }
         public decimal CostKm { get; init; }
         public decimal CostDay { get; init; }
-        public decimal Odometer { get; set; }
+        public decimal Odometer { get; init; }
         public VehicleStatuses Status { get; set; }
         private VehicleTypes _vehicleType;
         public VehicleTypes VehicleType
@@ -21,7 +21,7 @@ namespace CarRentalCommon.Classes
             }
         }
 
-        public Car(string regNo, string make, decimal odometer, decimal costKm, VehicleTypes vehicleType, VehicleStatuses status = VehicleStatuses.Available)
+        public Car(string regNo, string make, decimal odometer, decimal costKm, VehicleTypes vehicleType)
         {
             RegNo = regNo;
             Make = make;
@@ -29,7 +29,7 @@ namespace CarRentalCommon.Classes
             CostKm = costKm;
             VehicleType = vehicleType;
             CostDay = CalculateCostDay();
-            Status = status;
+            Status = VehicleStatuses.Available;
         }
 
         private decimal CalculateCostDay()

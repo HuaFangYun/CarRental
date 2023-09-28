@@ -10,5 +10,5 @@ public interface IBooking
     DateTime ReturnDate { get; set; }
     IVehicle Vehicle { get; }
     IPersons Customer { get; }
-    VehicleStatuses Status { get; set; }
+    VehicleStatuses Status { get; }
 }

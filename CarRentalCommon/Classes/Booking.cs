@@ -11,7 +11,7 @@ public class Booking : IBooking
     public DateTime ReturnDate { get; set; }
     public IVehicle Vehicle { get; init; }
     public IPersons Customer { get; init; }
-    public VehicleStatuses Status { get; set; }
+    public VehicleStatuses Status { get; init; }
 
     public Booking(IVehicle vehicle, IPersons customer, DateTime rentDate, DateTime returnDate, decimal odometer, decimal? kmDriven = null)
     {

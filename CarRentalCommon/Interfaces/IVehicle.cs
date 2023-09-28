@@ -9,7 +9,7 @@ public interface IVehicle
     decimal CostKm { get; }
     decimal CostDay { get; }
     VehicleTypes VehicleType { get; }
-    decimal Odometer { get; set; }
+    decimal Odometer { get; }
 
     VehicleStatuses Status { get; set; }
 }
