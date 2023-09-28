@@ -20,11 +20,11 @@ public class BookingProcessor
     public IEnumerable<ICustomer> GetCustomers() => _db.GetCustomers();
     public IEnumerable<IVehicle> GetVehicles() => _db.GetVehicles();
 
-    public float? TotalCost(IBooking booking)
+    public decimal? TotalCost(IBooking booking)
     {
         if (booking.KmDriven != null)
         { 
-            float kmDriven = (float)(booking.KmDriven - booking.Odometer);
+            var kmDriven = (booking.KmDriven - booking.Odometer);
             return kmDriven * booking.Vehicle.CostKm + booking.Vehicle.CostDay * booking.RentDate.Duration(booking.ReturnDate);
         }
         return 0;

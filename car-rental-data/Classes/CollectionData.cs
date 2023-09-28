@@ -19,12 +19,12 @@ public class CollectionData : IData
         _customers.Add(new Customer("456789", "Visilia", "Studiya"));
         _customers.Add(new Customer("789123", "Blaine", "Bootstrap"));
 
-        _vehicles.Add(new Vehicle("AND243", "Porche", 5900, 1.5f, VehicleTypes.Touring));
-        _vehicles.Add(new Vehicle("VUQ516", "Buick", 3000, 1.5f, VehicleTypes.Convertible));
-        _vehicles.Add(new Vehicle("PQZ552", "Dusenberg", 7500, 2f, VehicleTypes.Luxury));
-        _vehicles.Add(new Vehicle("IEN716", "Chevrolet", 5050, 1f, VehicleTypes.Hardtop));
-        _vehicles.Add(new Vehicle("MBU852", "Yamaha", 3570, 1f, VehicleTypes.Motorcycle));
-        _vehicles.Add(new Vehicle("WCK661", "Benelli", 1200, 0.5f, VehicleTypes.Motorcycle));
+        _vehicles.Add(new Vehicle("AND243", "Porche", 5900, 1.5m, VehicleTypes.Touring));
+        _vehicles.Add(new Vehicle("VUQ516", "Buick", 3000, 1.5m, VehicleTypes.Convertible));
+        _vehicles.Add(new Vehicle("PQZ552", "Dusenberg", 7500, 2m, VehicleTypes.Luxury));
+        _vehicles.Add(new Vehicle("IEN716", "Chevrolet", 5050, 1m, VehicleTypes.Hardtop));
+        _vehicles.Add(new Vehicle("MBU852", "Yamaha", 3570, 1m, VehicleTypes.Motorcycle));
+        _vehicles.Add(new Vehicle("WCK661", "Benelli", 1200, 0.5m, VehicleTypes.Motorcycle));
 
         _bookings.Add(new Booking(_vehicles[3].Odometer, 5500, _vehicles[3], _customers[0], DateTime.Parse("2023-09-20"), DateTime.Parse("2023-09-25")));
         _bookings.Add(new Booking(_vehicles[4].Odometer, null, _vehicles[4], _customers[1], DateTime.Now, DateTime.Now));
