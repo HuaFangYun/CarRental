@@ -1,45 +1,44 @@
-﻿using car_rental_common.Enums;
+﻿using car_rental_common.Classes;
+using car_rental_common.Enums;
+using car_rental_common.Extensions;
 using car_rental_common.Interfaces;
 using car_rental_data.Interfaces;
 
 
-namespace car_rental_business_logic.Classes
+namespace car_rental_business_logic.Classes;
+
+public class BookingProcessor
 {
-    public class BookingProcessor
+    private readonly IData _db;
+
+    public BookingProcessor(IData db)
     {
-        private readonly IData _db;
+        _db = db;
+    }
 
-        public BookingProcessor(IData db)
-        {
-            _db = db;
+    public IEnumerable<IBooking> GetBookings() => _db.GetBookings();
+    public IEnumerable<ICustomer> GetCustomers() => _db.GetCustomers();
+    public IEnumerable<IVehicle> GetVehicles() => _db.GetVehicles();
+
+    public float? TotalCost(IBooking booking)
+    {
+        if (booking.KmDriven != null)
+        { 
+            float kmDriven = (float)(booking.KmDriven - booking.Odometer);
+            return kmDriven * booking.Vehicle.CostKm + booking.Vehicle.CostDay * booking.RentDate.Duration(booking.ReturnDate);
         }
+        return 0;
+    }
 
-        public IEnumerable<IBooking> GetBookings() => _db.GetBookings();
-        public IEnumerable<ICustomer> GetCustomers() => _db.GetCustomers();
-        public IEnumerable<IVehicle> GetVehicles() => _db.GetVehicles();
+    public VehicleStatuses IsVehicleBooked(string regNo)
+    {
+        var bookingsForVehicle = _db.GetBookings().Where(b => b.Vehicle.RegNo == regNo);
 
-        public decimal TotalCost(IBooking booking)
-        {
-            decimal cost = 0;
+        if (bookingsForVehicle.Any(b => b.KmDriven.HasValue))
+            return VehicleStatuses.Available;
 
-            if (booking.OdometerAfterDriving.HasValue)
-                cost += ((booking.OdometerAfterDriving.Value - booking.OdometerBeforeDriving) * booking.Vehicle.CostKm) + (booking.Vehicle.CostDay * (booking.ReturnDate.DayNumber - booking.StartDate.DayNumber + 1));
-
-            return (int)Math.Round(cost);
-        }
-
-        public string GetBookingStatus(IBooking booking)
-        {
-            if (booking.OdometerAfterDriving.HasValue)
-                return "Closed";
-
-            return "Open";
-        }
-
-        public VehicleStatuses IsVehicleBooked(string regNo)
-        {
-            var bookingsForVehicle = _db.GetBookings().Where(b => b.Vehicle.RegNo == regNo);
-            return bookingsForVehicle.Any(b => !b.OdometerAfterDriving.HasValue) ? VehicleStatuses.Booked : VehicleStatuses.Available;
-        }
+        return bookingsForVehicle.Any(b => b.Status == VehicleStatuses.Booked)
+            ? VehicleStatuses.Booked
+            : VehicleStatuses.Available;
     }
 }

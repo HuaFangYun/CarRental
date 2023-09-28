@@ -1,5 +1,5 @@
 ﻿@page "/"
-@using car_rental_common.Classes <!-- Försök få bort denna -->
+@using car_rental_common.Classes
 @using car_rental_common.Interfaces;
 @using car_rental_common.Enums;
 @using car_rental_business_logic.Classes;
@@ -8,20 +8,20 @@
 
 <PageTitle>Booking Engine</PageTitle>
 
-<div class="container-fluid">
+<div class="container-fluid p-5 pb-1">
     <div class="row">
         <div class="col">
             <h3>Vehicles</h3>
             <table class="table table-borderless text-nowrap">
                 <thead>
                     <tr>
-                        <th scope="col">Reg No.</th>
-                        <th scope="col">Make</th>
-                        <th scope="col">Odometer</th>
-                        <th scope="col">Cost/Km</th>
-                        <th scope="col">Vehicle type</th>
-                        <th scope="col">Cost/Day</th>
-                        <th scope="col">Status</th>
+                        <th style="width: 10%;">Reg. No.</th>
+                        <th style="width: 10%;">Vehicle type</th>
+                        <th style="width: 10%;">Make</th>
+                        <th style="width: 10%;">Odometer</th>
+                        <th style="width: 10%;">Cost/Km</th>
+                        <th style="width: 10%;">Cost/Day</th>
+                        <th style="width: 40%;">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,12 +31,12 @@
 
                         <tr>
                             <td>@vehicle.RegNo</td>
-                            <td>@vehicle.Make</td>
-                            <td>@vehicle.Odometer</td>
-                            <td>@vehicle.CostKm</td>
                             <td>@vehicle.VehicleType</td>
-                            <td>@vehicle.CostDay</td>
-                            <td class="@(vehicleStatus == VehicleStatuses.Available ? "text-success" : "text-warning")">
+                            <td>@vehicle.Make</td>
+                            <td>@vehicle.Odometer km</td>
+                            <td>@vehicle.CostKm €</td>
+                            <td>@vehicle.CostDay €</td>
+                            <td class="@(vehicleStatus == VehicleStatuses.Available ? "badge bg-success" : "badge bg-warning") text-white mt-2">
                                 @vehicleStatus
                             </td>
 
@@ -48,21 +48,21 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid p-5 py-1">
     <div class="row">
         <div class="col">
             <h3>Bookings</h3>
             <table class="table table-borderless text-nowrap">
                 <thead>
                     <tr>
-                        <th scope="col">RegNo</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Odo. before driving (km)</th>
-                        <th scope="col">Odo. after driving (km)</th>
-                        <th scope="col">Rented Date</th>
-                        <th scope="col">Returned</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Total cost</th>
+                        <th style="width: 10%;">Reg. No.</th>
+                        <th style="width: 10%;">Customer</th>
+                        <th style="width: 10%;">Odometer (km)</th>
+                        <th style="width: 10%;">Odometer after renting (km)</th>
+                        <th style="width: 10%;">Rented (date)</th>
+                        <th style="width: 10%;">Returned (date)</th>
+                        <th style="width: 10%;">Status</th>
+                        <th style="width: 30%;">Cost</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,12 +71,12 @@
                         <tr>
                             <td>@booking.Vehicle.RegNo</td>
                             <td>@booking.Customer.FirstName @booking.Customer.LastName</td>
-                            <td>@booking.OdometerBeforeDriving</td>
-                            <td><input @bind="booking.OdometerAfterDriving" placeholder="Enter value upon return" /></td>
-                            <td><input type="date" @bind="booking.StartDate" /></td>
+                            <td>@booking.Odometer</td>
+                            <td><input @bind="booking.KmDriven" /></td>
+                            <td><input type="date" @bind="booking.RentDate" /></td>
                             <td><input type="date" @bind="booking.ReturnDate" placeholder="yyyy-MM-dd" /></td>
-                            <td class="@(BookingService.GetBookingStatus(booking) == "Closed" ? "text-success" : "text-warning")">
-                                @BookingService.GetBookingStatus(booking)
+                            <td class="@(BookingService.IsVehicleBooked(booking.Vehicle.RegNo) == VehicleStatuses.Booked ? "badge bg-warning" : "badge bg-success") mt-2 text-white">
+                                    @(BookingService.IsVehicleBooked(booking.Vehicle.RegNo) == VehicleStatuses.Booked ? "On-going" : "Returned")
                             </td>
                             <td>@BookingService.TotalCost(booking)</td>
                         </tr>
@@ -87,24 +87,19 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid p-5 py-1">
     <div class="row">
         <div class="col">
             <h3>Customers</h3>
             <table class="table table-borderless text-nowrap">
                 <thead>
                     <tr>
-                        <th scope="col">Social Security No.</th>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
+                        <th style="width: 15%;">Social Security No.</th>
+                        <th style="width: 15%;">First Name</th>
+                        <th style="width: 70%;">Last Name</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><input @bind="newCustomer.SSN" placeholder="Social security number." /></td>
-                        <td><input @bind="newCustomer.FirstName" placeholder="Enter First Name." /></td>
-                        <td><input @bind="newCustomer.LastName" placeholder="Enter Last Name." /></td>
-                    </tr>
                     @foreach (ICustomer customer in customers)
                     {
                         <tr>

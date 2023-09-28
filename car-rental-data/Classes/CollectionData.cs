@@ -3,48 +3,35 @@ using car_rental_common.Enums;
 using car_rental_common.Interfaces;
 using car_rental_data.Interfaces;
 
-namespace car_rental_data.CollectionData
+namespace car_rental_data.CollectionData;
+
+public class CollectionData : IData
 {
-    public class CollectionData : IData
+    readonly List<IBooking> _bookings = new();
+    readonly List<ICustomer> _customers = new();
+    readonly List<IVehicle> _vehicles = new();
+
+    public CollectionData() => SeedData();
+
+    void SeedData()
     {
-        readonly List<IBooking> _bookings = new List<IBooking>();
-        readonly List<ICustomer> _customers = new List<ICustomer>();
-        readonly List<IVehicle> _vehicles = new List<IVehicle>();
+        _customers.Add(new Customer("123456", "Charlie", "Sharp"));
+        _customers.Add(new Customer("456789", "Visilia", "Studiya"));
+        _customers.Add(new Customer("789123", "Blaine", "Bootstrap"));
 
-        public CollectionData() => SeedData();
+        _vehicles.Add(new Vehicle("AND243", "Porche", 5900, 1.5f, VehicleTypes.Touring));
+        _vehicles.Add(new Vehicle("VUQ516", "Buick", 3000, 1.5f, VehicleTypes.Convertible));
+        _vehicles.Add(new Vehicle("PQZ552", "Dusenberg", 7500, 2f, VehicleTypes.Luxury));
+        _vehicles.Add(new Vehicle("IEN716", "Chevrolet", 5050, 1f, VehicleTypes.Hardtop));
+        _vehicles.Add(new Vehicle("MBU852", "Yamaha", 3570, 1f, VehicleTypes.Motorcycle));
+        _vehicles.Add(new Vehicle("WCK661", "Benelli", 1200, 0.5f, VehicleTypes.Motorcycle));
 
-        void SeedData()
-        {
-            var customer1 = new Customer("123456", "Charlie", "Sharp");
-            var customer2 = new Customer("456789", "Rosie", "Uby");
-            var customer3 = new Customer("789123", "Karen", "Otlin");
-            _customers.Add(customer1);
-            _customers.Add(customer2);
-            _customers.Add(customer3);
-
-            var vehicle1 = new Vehicle("ABC123", "Volvo", 1000, 1m, VehicleTypes.Combi, 200);
-            var vehicle2 = new Vehicle("DEF456", "Saab", 2000, 1m, VehicleTypes.Sedan, 100);
-            var vehicle3 = new Vehicle("GHI789", "Tesla", 1000, 3m, VehicleTypes.Sedan, 100);
-            var vehicle4 = new Vehicle("JKL123", "Jeep", 5000, 1.5m, VehicleTypes.Van, 300);
-            var vehicle5 = new Vehicle("MNO456", "Yamaha", 3000, 0.5m, VehicleTypes.Motorcycle, 50);
-            var vehicle6 = new Vehicle("PQR789", "Suzuki", 1000, 0.5m, VehicleTypes.Motorcycle, 50);
-            _vehicles.Add(vehicle1);
-            _vehicles.Add(vehicle2);
-            _vehicles.Add(vehicle3);
-            _vehicles.Add(vehicle4);
-            _vehicles.Add(vehicle5);
-            _vehicles.Add(vehicle6);
-
-            var booking1 = new Booking(1000, null, vehicle1, customer1);
-            var booking2 = new Booking(5000, null, vehicle2, customer2);
-            var booking3 = new Booking(2000, null, vehicle6, customer3);
-            _bookings.Add(booking1);
-            _bookings.Add(booking2);
-            _bookings.Add(booking3);
-        }
-
-        public IEnumerable<IBooking> GetBookings() => _bookings;
-        public IEnumerable<ICustomer> GetCustomers() => _customers;
-        public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default) => _vehicles;
+        _bookings.Add(new Booking(_vehicles[3].Odometer, 5500, _vehicles[3], _customers[0], DateTime.Parse("2023-09-20"), DateTime.Parse("2023-09-25")));
+        _bookings.Add(new Booking(_vehicles[4].Odometer, null, _vehicles[4], _customers[1], DateTime.Now, DateTime.Now));
+        _bookings.Add(new Booking(_vehicles[5].Odometer, null, _vehicles[5], _customers[2], DateTime.Now, DateTime.Now));
     }
+
+    public IEnumerable<IBooking> GetBookings() => _bookings;
+    public IEnumerable<ICustomer> GetCustomers() => _customers;
+    public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default) => _vehicles;
 }

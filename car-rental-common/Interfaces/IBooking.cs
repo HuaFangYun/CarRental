@@ -1,15 +1,14 @@
-﻿using car_rental_common.Classes;
+﻿using car_rental_common.Enums;
 
-namespace car_rental_common.Interfaces
+namespace car_rental_common.Interfaces;
+
+public interface IBooking
 {
-    public interface IBooking
-    {
-        decimal OdometerBeforeDriving { get; set; }
-        decimal? OdometerAfterDriving { get; set; }
-        DateOnly StartDate { get; set; }
-        DateOnly ReturnDate { get; set; }
-        Vehicle Vehicle { get; set; }
-        Customer Customer { get; set; }
-        decimal Cost { get; set; }
-    }
+    int? Odometer { get; set; }
+    float? KmDriven { get; set; }
+    DateTime RentDate { get; set; }
+    DateTime ReturnDate { get; set; }
+    IVehicle Vehicle { get; set; }
+    ICustomer Customer { get; set; }
+    VehicleStatuses Status { get; set; }
 }

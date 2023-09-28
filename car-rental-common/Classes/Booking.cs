@@ -1,26 +1,26 @@
-﻿using car_rental_common.Interfaces;
+﻿using car_rental_common.Enums;
+using car_rental_common.Interfaces;
 
-namespace car_rental_common.Classes
+namespace car_rental_common.Classes;
+
+public class Booking : IBooking
 {
-    public class Booking : IBooking
-    {
-        public decimal OdometerBeforeDriving { get; set; }
-        public decimal? OdometerAfterDriving { get; set; }
-        public DateOnly StartDate { get; set; }
-        public DateOnly ReturnDate { get; set; }
-        public Vehicle Vehicle { get; set; }
-        public Customer Customer { get; set; }
-        public decimal Cost { get; set; }
+    public int? Odometer { get; set; }
+    public float? KmDriven { get; set; }
+    public DateTime RentDate { get; set; }
+    public DateTime ReturnDate { get; set; }
+    public IVehicle Vehicle { get; set; }
+    public ICustomer Customer { get; set; }
+    public VehicleStatuses Status { get; set; }
 
-        public Booking(decimal odometerBeforeDriving, decimal? odometerAfterDriving, Vehicle vehicle, Customer customer)
-        {
-            OdometerBeforeDriving = odometerBeforeDriving;
-            OdometerAfterDriving = odometerAfterDriving;
-            StartDate = DateOnly.FromDateTime(DateTime.Now);
-            ReturnDate = DateOnly.FromDateTime(DateTime.Now);
-            Vehicle = vehicle;
-            Customer = customer;
-            Cost = 0;
-        }
+    public Booking(int? odometer, float? kmDriven, IVehicle vehicle, ICustomer customer, DateTime rentDate, DateTime returnDate)
+    {
+        Odometer = odometer;
+        KmDriven = kmDriven;
+        RentDate = rentDate;
+        ReturnDate = returnDate;
+        Vehicle = vehicle;
+        Customer = customer;
+        Status = VehicleStatuses.Booked;
     }
 }

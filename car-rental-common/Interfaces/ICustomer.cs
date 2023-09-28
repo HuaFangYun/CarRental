@@ -1,9 +1,8 @@
-﻿namespace car_rental_common.Interfaces
+﻿namespace car_rental_common.Interfaces;
+
+public interface ICustomer
 {
-    public interface ICustomer
-    {
-        string SSN { get; set; }
-        string FirstName { get; set; }
-        string LastName { get; set; }
-    }
+    string SSN { get; set; }
+    string FirstName { get; set; }
+    string LastName { get; set; }
 }
