@@ -52,12 +52,7 @@
 <div class="container-fluid p-5">
     <div class="row">
         <div class="col">
-            @if (!string.IsNullOrEmpty(errorMessage))
-            {
-                <div class="alert alert-warning fs-5" role="alert">
-                    @errorMessage
-                </div>
-            }
+            <AlertModal Message="@errorMessage" OnClose="CloseAlert" />
         </div>
     </div>
 </div>
@@ -317,6 +312,11 @@
         bookings = GetList<IBooking>();
         customers = GetList<IPerson>();
         vehicles = GetList<IVehicle>();
+    }
+
+    private void CloseAlert()
+    {
+        errorMessage = null;
     }
 
     private List<T> GetList<T>() where T : class => services.Get<T>(_ => true).ToList();

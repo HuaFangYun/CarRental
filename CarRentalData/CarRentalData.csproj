@@ -11,8 +11,4 @@
 	  <ProjectReference Include="..\CarRentalCommon\CarRentalCommon.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Classes\" />
-	</ItemGroup>
-
 </Project>
