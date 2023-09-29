@@ -5,11 +5,11 @@ using CarRentalData.Interfaces;
 
 namespace CarRentalBusinessLogic.Classes;
 
-public class BookingProcessor
+public class Services
 {
     private readonly IData _db;
 
-    public BookingProcessor(IData db) => _db = db;
+    public Services(IData db) => _db = db;
 
     public IEnumerable<IBooking> GetBookings() => _db.GetBookings();
     public IEnumerable<IPersons> GetCustomers() => _db.GetCustomers();

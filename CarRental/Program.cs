@@ -1,7 +1,7 @@
 using CarRental;
 using CarRentalBusinessLogic.Classes;
 using CarRentalData.Interfaces;
-using CarRentalData.CollectionData;
+using CarRentalData.Classes;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -10,7 +10,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddSingleton<IData, CollectionData>();
-builder.Services.AddSingleton<BookingProcessor>();
+builder.Services.AddSingleton<Services>();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 

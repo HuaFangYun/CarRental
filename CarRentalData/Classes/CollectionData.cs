@@ -3,7 +3,7 @@ using CarRentalCommon.Enums;
 using CarRentalCommon.Interfaces;
 using CarRentalData.Interfaces;
 
-namespace CarRentalData.CollectionData;
+namespace CarRentalData.Classes;
 
 public class CollectionData : IData
 {
