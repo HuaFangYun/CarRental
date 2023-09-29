@@ -3,7 +3,7 @@
 @using CarRentalCommon.Enums;
 @using CarRentalBusinessLogic.Classes;
 @using System.Linq;
-@inject Services BookingService
+@inject Services service
 
 <PageTitle>Booking Engine</PageTitle>
 
@@ -24,9 +24,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (IVehicle vehicle in BookingService.GetVehicles())
+                    @foreach (IVehicle vehicle in service.GetVehicles())
                     {
-                        var vehicleStatus = BookingService.IsVehicleBooked(vehicle.RegNo);
+                        var vehicleStatus = service.IsVehicleBooked(vehicle.RegNo);
 
                         <tr>
                             <td>@vehicle.RegNo</td>
@@ -64,7 +64,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (IBooking booking in BookingService.GetBookings())
+                    @foreach (IBooking booking in service.GetBookings())
                     {
                         <tr>
                             <td>@booking.Vehicle.RegNo</td>
@@ -73,10 +73,10 @@
                             <td><input @bind="booking.KmDriven" placeholder="Enter value (then press Enter)" /></td>
                             <td><input type="date" @bind="booking.RentDate" /></td>
                             <td><input type="date" @bind="booking.ReturnDate" placeholder="yyyy-MM-dd" /></td>
-                            <td class="@(BookingService.IsVehicleBooked(booking.Vehicle.RegNo) == VehicleStatuses.Booked ? "badge bg-warning" : "badge bg-success") mt-2 text-white">
-                                    @(BookingService.IsVehicleBooked(booking.Vehicle.RegNo) == VehicleStatuses.Booked ? "On-going" : "Returned")
+                            <td class="@(service.IsVehicleBooked(booking.Vehicle.RegNo) == VehicleStatuses.Booked ? "badge bg-warning" : "badge bg-success") mt-2 text-white">
+                                    @(service.IsVehicleBooked(booking.Vehicle.RegNo) == VehicleStatuses.Booked ? "On-going" : "Returned")
                             </td>
-                            <td>@BookingService.TotalCost(booking)</td>
+                            <td>@service.TotalCost(booking)</td>
                         </tr>
                     }
                 </tbody>
@@ -98,7 +98,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (IPerson customer in BookingService.GetCustomers())
+                    @foreach (IPerson customer in service.GetCustomers())
                     {
                         <tr>
                             <td>@customer.SSN</td>
