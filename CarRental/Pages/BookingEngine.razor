@@ -1,13 +1,68 @@
-﻿@page "/"
+﻿@page "/booking-engine"
+@using CarRentalLogic.Classes;
+@using CarRentalCommon.Classes
 @using CarRentalCommon.Interfaces;
 @using CarRentalCommon.Enums;
-@using CarRentalBusinessLogic.Classes;
 @using System.Linq;
-@inject Services service
+@using System.Text.RegularExpressions;
+@inject Services services
 
 <PageTitle>Booking Engine</PageTitle>
 
-<div class="container-fluid p-5 pb-1">
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col">
+            <h2 class="fs-1 text-uppercase">Booking Engine</h2>
+            <h4 class="pt-5">Instructions</h4>
+            <button @onclick="ToggleInstructions" class="btn btn-sm btn-secondary">
+                @(showInstructions ? "Hide" : "Show")
+            </button>
+            @if (showInstructions)
+            {
+                <div class="mt-3 p-3 border border-warning rounded">
+                    <h6>Adding a New Vehicle:</h6>
+                    <ul>
+                        <li>Fill in the required details in the respective fields.</li>
+                        <li>Select the "Vehicle Type" from the dropdown.</li>
+                        <li>Once all details are filled in, click the "Add" button to add a new vehicle. See error message if unsuccessful.</li>
+                    </ul>
+                    <h6>Adding a New Customer:</h6>
+                    <ul>
+                        <li>Fill in the required details in the respective fields.</li>
+                        <li>Once all details are filled in, click the "Add" button to add a new customer. See error message if unsuccessful.</li>
+                    </ul>
+                    <h6>Booking a Vehicle:</h6>
+                    <ul>
+                        <li>In the "Vehicles" section, locate the available vehicle you wish to rent.</li>
+                        <li>Select your name from the provided dropdown list if you are a registered customer. Go to the "Add Customer" section if you are not yet registered.</li>
+                        <li>After selecting, click the "Rent" button to finalize the booking for the chosen vehicle.</li>
+                    </ul>
+                    <h6>Setting Booking Dates and Closing a Booking:</h6>
+                    <ul>
+                        <li>Go to the "Bookings" section and locate your active booking.</li>
+                        <li>Input the "Driven (km)" distance, "Rented (date)" and the expected "Returned (date)" accordingly.</li>
+                        <li>To finalize a booking, click on the "Return" button next to your booking. This will close it and return the total cost associated with the rental.</li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col">
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-warning fs-5" role="alert">
+                    @errorMessage
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-5">
     <div class="row">
         <div class="col">
             <h3>Vehicles</h3>
@@ -15,29 +70,126 @@
                 <thead>
                     <tr>
                         <th style="width: 10%;">Reg. No.</th>
-                        <th style="width: 10%;">Vehicle type</th>
+                        <th style="width: 10%;">Vehicle Type</th>
                         <th style="width: 10%;">Make</th>
-                        <th style="width: 10%;">Odometer (km)</th>
-                        <th style="width: 10%;">Cost/km (€)</th>
-                        <th style="width: 10%;">Cost/Day (€)</th>
-                        <th style="width: 40%;">Status</th>
+                        <th style="width: 10%;">Odometer</th>
+                        <th style="width: 10%;">Features</th>
+                        <th style="width: 10%;">Cost/km</th>
+                        <th style="width: 10%;">Cost/Day</th>
+                        <th style="width: 3%;"></th>
+                        <th style="width: 27%;">Customer</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (IVehicle vehicle in service.GetVehicles())
+                    @foreach (IVehicle vehicle in vehicles)
                     {
-                        var vehicleStatus = service.IsVehicleBooked(vehicle.RegNo);
+                        var vehicleStatus = services.BookingStatus(vehicle.RegNo);
 
                         <tr>
                             <td>@vehicle.RegNo</td>
                             <td>@vehicle.VehicleType</td>
                             <td>@vehicle.Make</td>
-                            <td>@vehicle.Odometer</td>
-                            <td>@vehicle.CostKm</td>
-                            <td>@vehicle.CostDay</td>
-                            <td class="@(vehicleStatus == VehicleStatuses.Available ? "badge bg-success" : "badge bg-warning") text-white mt-2">
-                                @vehicleStatus
+                            <td>@vehicle.Odometer km</td>
+                            <td>
+                                @if (vehicle is ICar car)
+                                {
+                                    <span class="features">Doors: @car.Doors</span>
+                                }
+                                else if (vehicle is IMotorcycle mc)
+                                {
+                                    <span class="features">Seats: @mc.Seats</span>
+                                }
                             </td>
+                            <td>@vehicle.CostKm €</td>
+                            <td>@vehicle.CostDay €</td>
+                            <td class="@(vehicleStatus == VehicleStatuses.Available ? "text-success bi-circle-fill" : "text-danger bi-circle-fill")"></td>
+                            <td>
+                                @if (vehicleStatus == VehicleStatuses.Available)
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <select @bind="selectedCustomer" disabled="@isProcessing" class="drop-down">
+                                            <option value="@selectedCustomer"></option>
+                                            @foreach (var customer in customers)
+                                            {
+                                                <option value="@customer.SSN">@customer.FirstName @customer.LastName</option>
+                                            }
+                                        </select>
+                                        <button @onclick="() => RentVehicleAsync(vehicle)" class="ms-3 btn btn-sm btn-secondary" disabled="@(isProcessing || string.IsNullOrEmpty(selectedCustomer))">Rent</button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    var bookedCustomer = bookings.FirstOrDefault(b => b.Vehicle.RegNo == vehicle.RegNo)?.Customer;
+                                    if (bookedCustomer != null)
+                                    {
+                                        @bookedCustomer.FirstName @bookedCustomer.LastName
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td class="pt-3 fw-bold text-nowrap">Add Vehicle:</td>
+                        <td class="pt-3">
+                            <select class="drop-down w-100" @bind="selectedVehicleType" disabled="@isProcessing">
+                                <option value=""></option>
+                                <option value="Car">Car</option>
+                                <option value="Motorcycle">Motorcycle</option>
+                            </select>
+                        </td>
+                        <td class="pt-3" colspan="7">
+                            @if (isProcessing)
+                            {
+                                <span class="badge bg-warning text-uppercase w-75">Processing...</span>
+                            }
+                        </td>
+                    </tr>
+                    @if (selectedVehicleType == "Car")
+                    {
+                        <tr>
+                            <td><input @bind="newCar.RegNo" class="w-100" disabled="@isProcessing" placeholder="Reg. No." /></td>
+                            <td>
+                                <select @bind="newCar.VehicleType" class="drop-down w-100" disabled="@isProcessing">
+                                    <option value=""></option>
+                                    @foreach (var type in Enum.GetNames(typeof(VehicleTypes)))
+                                    {
+                                        if (type != nameof(VehicleTypes.Standard) && (type != nameof(VehicleTypes.TrailBike)))
+                                        {
+                                            <option value="@type">@type</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                            <td><input @bind="newCar.Make" class="w-100" disabled="@isProcessing" placeholder="Make" /></td>
+                            <td><input @bind="newCar.Odometer" class="w-100" disabled="@isProcessing" placeholder="Odometer" /></td>
+                            <td><input @bind="newCar.Doors" class="w-100" disabled="@isProcessing" placeholder="No. of doors" /></td>
+                            <td><input @bind="newCar.CostKm" class="w-100" disabled="@isProcessing" placeholder="Cost/km" /></td>
+                            <td><input @bind="newCar.CostDay" class="w-100 text-muted" readonly disabled="@isProcessing" placeholder="Cost/Day" /></td>
+                            <td><button @onclick="AddNewVehicle" class="btn btn-sm btn-secondary" disabled="@isProcessing">Add</button></td>
+                        </tr>
+                    }
+                    else if (selectedVehicleType == "Motorcycle")
+                    {
+                        <tr>
+                            <td><input @bind="newMotorcycle.RegNo" class="w-100" disabled="@isProcessing" placeholder="Reg. No." /></td>
+                            <td>
+                                <select @bind="newMotorcycle.VehicleType" class="drop-down w-100" disabled="@isProcessing">
+                                    <option value=""></option>
+                                    @foreach (var type in Enum.GetNames(typeof(VehicleTypes)))
+                                    {
+                                        if (type == nameof(VehicleTypes.Standard) || type == nameof(VehicleTypes.TrailBike) || type == nameof(VehicleTypes.Other))
+                                        {
+                                            <option value="@type">@type</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                            <td><input @bind="newMotorcycle.Make" class="w-100" disabled="@isProcessing" placeholder="Make" /></td>
+                            <td><input @bind="newMotorcycle.Odometer" class="w-100" disabled="@isProcessing" placeholder="Odometer" /></td>
+                            <td><input @bind="newMotorcycle.Seats" class="w-100" disabled="@isProcessing" placeholder="No. of seats" /></td>
+                            <td><input @bind="newMotorcycle.CostKm" class="w-100" disabled="@isProcessing" placeholder="Cost/km" /></td>
+                            <td><input @bind="newMotorcycle.CostDay" class="w-100 text-muted" readonly disabled="@isProcessing" placeholder="Cost/Day" /></td>
+                            <td><button @onclick="AddNewVehicle" class="btn btn-sm btn-secondary" disabled="@isProcessing">Add</button></td>
                         </tr>
                     }
                 </tbody>
@@ -46,7 +198,7 @@
     </div>
 </div>
 
-<div class="container-fluid p-5 py-1">
+<div class="container-fluid p-5">
     <div class="row">
         <div class="col">
             <h3>Bookings</h3>
@@ -55,28 +207,38 @@
                     <tr>
                         <th style="width: 10%;">Reg. No.</th>
                         <th style="width: 10%;">Customer</th>
-                        <th style="width: 10%;">Odometer (km)</th>
-                        <th style="width: 10%;">Odometer after renting (km)</th>
+                        <th style="width: 10%;">Odometer</th>
+                        <th style="width: 10%;">Driven (km)</th>
                         <th style="width: 10%;">Rented (date)</th>
                         <th style="width: 10%;">Returned (date)</th>
-                        <th style="width: 10%;">Status</th>
-                        <th style="width: 30%;">Cost</th>
+                        <th style="width: 5%;">Total</th>
+                        <th style="width: 35%;">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (IBooking booking in service.GetBookings())
+                    @foreach (IBooking booking in bookings)
                     {
                         <tr>
                             <td>@booking.Vehicle.RegNo</td>
                             <td>@booking.Customer.FirstName @booking.Customer.LastName</td>
-                            <td>@booking.Odometer</td>
-                            <td><input @bind="booking.KmDriven" placeholder="Enter value (then press Enter)" /></td>
-                            <td><input type="date" @bind="booking.RentDate" /></td>
-                            <td><input type="date" @bind="booking.ReturnDate" placeholder="yyyy-MM-dd" /></td>
-                            <td class="@(service.IsVehicleBooked(booking.Vehicle.RegNo) == VehicleStatuses.Booked ? "badge bg-warning" : "badge bg-success") mt-2 text-white">
-                                    @(service.IsVehicleBooked(booking.Vehicle.RegNo) == VehicleStatuses.Booked ? "On-going" : "Returned")
+                            <td>@booking.Vehicle.Odometer km</td>
+                            <td><input @bind-value="booking.KmDriven" @bind-value:event="oninput" placeholder="Enter upon return" class="w-100" disabled="@(booking.Status == VehicleStatuses.Available)" /></td>
+                            <td><input type="date" @bind="booking.RentDate" class="w-100" disabled="@(booking.Status == VehicleStatuses.Available)" /></td>
+                            <td><input type="date" @bind="booking.ReturnDate" placeholder="yyyy-MM-dd" class="w-100" disabled="@(booking.Status == VehicleStatuses.Available)" /></td>
+                            <td>@services.TotalCost(booking) €</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    @if (booking.Status == VehicleStatuses.Available)
+                                    {
+                                        <span class="badge bg-success fs-6">Returned</span>
+                                    }
+                                    else if (booking.Status == VehicleStatuses.Booked)
+                                    {
+                                        <span class="badge bg-warning fs-6">On-going</span>
+                                        <button @onclick="() => ReturnVehicle(booking)" class="ms-3 btn btn-sm btn-secondary">Return</button>
+                                    }
+                                </div>
                             </td>
-                            <td>@service.TotalCost(booking)</td>
                         </tr>
                     }
                 </tbody>
@@ -85,29 +247,219 @@
     </div>
 </div>
 
-<div class="container-fluid p-5 py-1">
+<div class="container-fluid p-5 d-flex">
     <div class="row">
-        <div class="col">
+        <div class="col-12 col-md-6 d-flex flex-column">
             <h3>Customers</h3>
             <table class="table table-borderless text-nowrap">
-                <thead>
-                    <tr>
-                        <th style="width: 15%;">Social Security No.</th>
-                        <th style="width: 15%;">First Name</th>
-                        <th style="width: 70%;">Last Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (IPerson customer in service.GetCustomers())
-                    {
+                    <thead>
                         <tr>
-                            <td>@customer.SSN</td>
-                            <td>@customer.FirstName</td>
-                            <td>@customer.LastName</td>
+                            <th>Social Security No.</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                         </tr>
-                    }
-                </tbody>
+                    </thead>
+                    <tbody>
+                        @foreach (IPerson customer in customers)
+                        {
+                            <tr>
+                                <td>@customer.SSN</td>
+                                <td>@customer.FirstName</td>
+                                <td>@customer.LastName</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td class="pt-3 fw-bold text-nowrap">Add Customer</td>
+                        </tr>
+                        <tr>
+                            <td><input @bind="newCustomer.SSN" class="w-100" placeholder="Soc. Security No." /></td>
+                            <td><input @bind="newCustomer.FirstName" class="w-100" placeholder="First Name" /></td>
+                            <td><input @bind="newCustomer.LastName" class="w-100" placeholder="Last Name" /></td>
+                            <td><button @onclick="AddNewCustomer" class="btn btn-sm btn-secondary">Add</button></td>
+                        </tr>
+                    </tbody>
             </table>
+        </div>
+        <div class="col-12 col-md-6 d-flex flex-column">
+            <div class="card text-white border border-warning border-2" style="height: 18rem;">
+                <img src="images/home-fleet.jpg" class="card-img h-100 " alt="Vintage Car Fleet">
+                <div class="card-img-overlay d-flex flex-column justify-content-end" style="background-color: rgba(0, 0, 0, 0.7)">
+                    <div class="mt-auto px-3 overflow-auto scrollbar">
+                        <h2 class="card-title text-uppercase fw-bold">Can't decide?</h2>
+                        <p class="card-text">Explore our collection to find the vehicle that suits your needs.</p>
+                    </div>
+                    <div class="card-footer p-3 pb-0 border-0">
+                        <NavLink class="btn btn-sm btn-light w-100" href="fleet">
+                            Explore
+                        </NavLink>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+@code {
+    private string errorMessage = string.Empty;
+    private bool showInstructions = false;
+    private bool isProcessing = false;
+    private List<IBooking> bookings = new();
+    private List<IPerson> customers = new();
+    private List<IVehicle> vehicles = new();
+    private IPerson newCustomer = new Customer();
+    private ICar newCar = new Car();
+    private IMotorcycle newMotorcycle = new Motorcycle();
+    private string selectedVehicleType = string.Empty;
+    private string selectedCustomer = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        bookings = GetList<IBooking>();
+        customers = GetList<IPerson>();
+        vehicles = GetList<IVehicle>();
+    }
+
+    private List<T> GetList<T>() where T : class => services.Get<T>(_ => true).ToList();
+
+    private void SetErrorMessage(string info) => errorMessage = $"Add Vehicle/Customer - Invalid or missing input: {info}";
+
+    private void ToggleInstructions() => showInstructions = !showInstructions;
+
+    private void AddNewVehicle()
+    {
+        try
+        {
+            if (selectedVehicleType == "Car" && !Regex.IsMatch(newCar.RegNo, @"^[A-Z]{3}\d{3}$"))
+            {
+                SetErrorMessage("Reg. No. Accepted format is 'ABC123' (uppercase).");
+                return;
+            }
+            if (selectedVehicleType == "Car" && string.IsNullOrEmpty(newCar.Make))
+            {
+                SetErrorMessage("Make.");
+                return;
+            }
+            if (selectedVehicleType == "Car" && (newCar.Odometer < 0 || newCar.Odometer == null))
+            {
+                SetErrorMessage("Odometer. Accepted format is zero or a positive whole number.");
+                return;
+            }
+            if (selectedVehicleType == "Car" && (newCar.Doors < 0 || newCar.Doors == null))
+            {
+                SetErrorMessage("No. of doors. Accepted format is zero or a positive whole number.");
+                return;
+            }
+            if (selectedVehicleType == "Car" && (newCar.CostKm < 0 || newCar.CostKm == null))
+            {
+                SetErrorMessage("Cost/km. Accepted format is zero or a positive number.");
+                return;
+            }
+            if (selectedVehicleType == "Motorcycle" && !Regex.IsMatch(newMotorcycle.RegNo, @"^[A-Z]{3}\d{3}$"))
+            {
+                SetErrorMessage("Reg. No. Accepted format is 'ABC123' (uppercase).");
+                return;
+            }
+            if (selectedVehicleType == "Motorcycle" && string.IsNullOrEmpty(newMotorcycle.Make))
+            {
+                SetErrorMessage("Make.");
+                return;
+            }
+            if (selectedVehicleType == "Motorcycle" && (newMotorcycle.Odometer < 0 || newMotorcycle.Odometer == null))
+            {
+                SetErrorMessage("Odometer. Accepted format is zero or a positive whole number.");
+                return;
+            }
+            if (selectedVehicleType == "Motorcycle" && (newMotorcycle.Seats < 0 || newMotorcycle.Seats == null))
+            {
+                SetErrorMessage("No. of seats. Accepted format is zero or a positive whole number.");
+                return;
+            }
+            if (selectedVehicleType == "Motorcycle" && (newMotorcycle.CostKm < 0 || newMotorcycle.CostKm == null))
+            {
+                SetErrorMessage("Cost/km. Accepted format is zero or a positive number.");
+                return;
+            }
+
+            if (selectedVehicleType == "Car")
+            {
+                services.Add(newCar);
+                vehicles.Add(newCar);
+                newCar = new Car();
+                errorMessage = string.Empty;
+            }
+            else if (selectedVehicleType == "Motorcycle")
+            {
+                services.Add(newMotorcycle);
+                vehicles.Add(newMotorcycle);
+                newMotorcycle = new Motorcycle();
+                errorMessage = string.Empty;
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+    }
+
+    private void AddNewCustomer()
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(newCustomer.SSN) || !Regex.IsMatch(newCustomer.SSN, @"^\d{6}-\d{4}$"))
+            {
+                SetErrorMessage("Social Security No. Accepted format is '012345-6789'");
+                return;
+            }
+            if (string.IsNullOrEmpty(newCustomer.FirstName) || !Regex.IsMatch(newCustomer.FirstName, @"^[a-zA-Z-' ]+$"))
+            {
+                SetErrorMessage("'First Name' can and must only contain letters, hyphens, spaces, or apostrophes.");
+                return;
+            }
+            if (string.IsNullOrEmpty(newCustomer.LastName) || !Regex.IsMatch(newCustomer.LastName, @"^[a-zA-Z-' ]+$"))
+            {
+                SetErrorMessage("'Last Name' can and must only contain letters, hyphens, spaces, or apostrophes.");
+                return;
+            }
+
+            services.Add(newCustomer);
+            customers.Add(newCustomer);
+            newCustomer = new Customer();
+            errorMessage = string.Empty;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+    }
+
+    private async Task RentVehicleAsync(IVehicle vehicle)
+    {
+        isProcessing = true;
+        try
+        {
+            await Task.Delay(5000);
+            services.RentVehicle(vehicle, selectedCustomer, customers, bookings);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            isProcessing = false;
+            selectedCustomer = string.Empty;
+        }
+    }
+
+    private void ReturnVehicle(IBooking booking)
+    {
+        try
+        {
+            services.ReturnVehicle(booking);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+    }
+}

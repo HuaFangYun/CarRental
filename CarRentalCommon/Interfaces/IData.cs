@@ -1,11 +1,8 @@
-﻿using CarRentalCommon.Enums;
-using CarRentalCommon.Interfaces;
-
-namespace CarRentalData.Interfaces;
+﻿namespace CarRentalCommon.Interfaces;
 
 public interface IData
 {
-    IEnumerable<IBooking> GetBookings();
-    IEnumerable<IPerson> GetCustomers();
-    IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default);
+    IEnumerable<T> Get<T>() where T : class;
+    T Single<T>(Func<T, bool> predicate) where T : class;
+    void Add<T>(T entity) where T : class;
 }

@@ -16,15 +16,23 @@
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link bi-gear-fill text-nowrap" href="" Match="NavLinkMatch.All">
+            <NavLink class="nav-link bi-house-fill text-nowrap" href="" Match="NavLinkMatch.All">
+                <span class="px-3" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link bi-gear-fill text-nowrap" href="booking-engine">
                 <span class="px-3" aria-hidden="true"></span> Booking Engine
             </NavLink>
         </div>
-    </nav>
-    <nav class="flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link bi-wrench text-nowrap" href="placeholder" Match="NavLinkMatch.All">
-                <span class="px-3" aria-hidden="true"></span> Work in Progress
+            <NavLink class="nav-link bi-grid-fill text-nowrap" href="fleet">
+                <span class="px-3" aria-hidden="true"></span> Fleet
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link bi-telephone-fill text-nowrap" href="contact">
+                <span class="px-3" aria-hidden="true"></span> Contact
             </NavLink>
         </div>
     </nav>

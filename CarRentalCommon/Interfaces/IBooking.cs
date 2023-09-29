@@ -4,11 +4,11 @@ namespace CarRentalCommon.Interfaces;
 
 public interface IBooking
 {
-    decimal Odometer { get; }
-    decimal? KmDriven { get; set; }
+    int ID { get; }
+    float? KmDriven { get; set; }
     DateTime RentDate { get; set; }
     DateTime ReturnDate { get; set; }
-    IVehicle Vehicle { get; }
-    IPerson Customer { get; }
-    VehicleStatuses Status { get; }
+    IPerson Customer { get; set; }
+    IVehicle Vehicle { get; set; }
+    VehicleStatuses Status { get; set; }
 }

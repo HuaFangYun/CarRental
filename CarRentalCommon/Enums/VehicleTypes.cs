@@ -2,10 +2,11 @@
 
 public enum VehicleTypes
 {
-    Other,
     Convertible,
     Touring,
     Luxury,
     Hardtop,
-    Motorcycle
+    Standard,
+    TrailBike,
+    Other
 }

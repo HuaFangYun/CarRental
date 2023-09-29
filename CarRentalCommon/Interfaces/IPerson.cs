@@ -2,7 +2,8 @@
 
 public interface IPerson
 {
-    string SSN { get; }
-    string FirstName { get; }
-    string LastName { get; }
+    int ID { get; }
+    string SSN { get; set; }
+    string FirstName { get; set; }
+    string LastName { get; set; }
 }

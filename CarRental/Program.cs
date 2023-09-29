@@ -1,6 +1,6 @@
 using CarRental;
-using CarRentalBusinessLogic.Classes;
-using CarRentalData.Interfaces;
+using CarRentalLogic.Classes;
+using CarRentalCommon.Interfaces;
 using CarRentalData.Classes;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
