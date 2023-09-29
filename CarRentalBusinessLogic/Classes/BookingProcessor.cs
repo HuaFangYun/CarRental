@@ -15,20 +15,17 @@ public class BookingProcessor
     public IEnumerable<IPersons> GetCustomers() => _db.GetCustomers();
     public IEnumerable<IVehicle> GetVehicles() => _db.GetVehicles();
 
-    public decimal TotalCost(IBooking booking)
+    public decimal TotalCost(IBooking b)
     {
-        return (decimal)(booking.KmDriven.HasValue ? ((booking.KmDriven - booking.Odometer) * booking.Vehicle.CostKm + booking.Vehicle.CostDay * booking.RentDate.Duration(booking.ReturnDate)) : 0m);
+        return (decimal)(b.KmDriven.HasValue
+            ? ((b.KmDriven - b.Odometer) * b.Vehicle.CostKm + b.Vehicle.CostDay * b.RentDate.Duration(b.ReturnDate))
+            : 0m);
     }
 
     public VehicleStatuses IsVehicleBooked(string regNo)
     {
-        var bookingsForVehicle = _db.GetBookings().Where(b => b.Vehicle.RegNo == regNo);
-
-        if (bookingsForVehicle.Any(b => b.KmDriven.HasValue))
-            return VehicleStatuses.Available;
-
-        return bookingsForVehicle.Any(b => b.Status == VehicleStatuses.Booked)
-            ? VehicleStatuses.Booked
-            : VehicleStatuses.Available;
+        return (_db.GetBookings().Where(b => b.Vehicle.RegNo == regNo).Any(b => b.KmDriven.HasValue))
+            ? VehicleStatuses.Available
+            : VehicleStatuses.Booked;
     }
 }
