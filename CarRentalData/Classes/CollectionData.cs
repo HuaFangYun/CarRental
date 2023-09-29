@@ -8,7 +8,7 @@ namespace CarRentalData.Classes;
 public class CollectionData : IData
 {
     readonly List<IBooking> _bookings = new();
-    readonly List<IPersons> _customers = new();
+    readonly List<IPerson> _customers = new();
     readonly List<IVehicle> _vehicles = new();
 
     public CollectionData() => SeedData();
@@ -32,6 +32,6 @@ public class CollectionData : IData
     }
 
     public IEnumerable<IBooking> GetBookings() => _bookings;
-    public IEnumerable<IPersons> GetCustomers() => _customers;
+    public IEnumerable<IPerson> GetCustomers() => _customers;
     public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default) => _vehicles;
 }

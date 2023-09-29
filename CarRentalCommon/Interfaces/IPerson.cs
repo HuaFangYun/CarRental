@@ -1,6 +1,6 @@
 ﻿namespace CarRentalCommon.Interfaces;
 
-public interface IPersons
+public interface IPerson
 {
     string SSN { get; }
     string FirstName { get; }

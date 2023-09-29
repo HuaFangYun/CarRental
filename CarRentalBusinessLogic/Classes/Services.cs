@@ -12,7 +12,7 @@ public class Services
     public Services(IData db) => _db = db;
 
     public IEnumerable<IBooking> GetBookings() => _db.GetBookings();
-    public IEnumerable<IPersons> GetCustomers() => _db.GetCustomers();
+    public IEnumerable<IPerson> GetCustomers() => _db.GetCustomers();
     public IEnumerable<IVehicle> GetVehicles() => _db.GetVehicles();
 
     public decimal TotalCost(IBooking b)
