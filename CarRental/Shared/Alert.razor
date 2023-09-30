@@ -5,22 +5,30 @@
 
 @if (!string.IsNullOrEmpty(Message))
 {
-    <div class="modal-overlay">
-        <div class="modal-content p-0 m-0">
-            <div class="alert alert-info p-0 m-0" role="alert">
-                <div class="container-fluid p-0 m-0">
-                    <div class="row p-0 m-0">
-                        <div class="col-1 align-items-middle p-0 m-0">
-                            <p class="bi-info-circle" style="font-size: 3rem;"></p>
+    <div class="modal-overlay d-flex align-items-center justify-content-center fw-bold">
+        <div class="modal-content shadow-lg">
+            <div class="alert alert-info m-0 p-0" role="alert">
+                <div class="container-fluid m-0 p-0">
+                    <div class="row m-0">
+                        <div class="col-12 bg-info text-light text-center rounded-top">
+                            <p class="text-uppercase fw-bold fs-5 m-2 ">Invalid or Missing Input</p>
                         </div>
-                        <div class="col-11 fw-bold align-items-middle">
-                            <p class="text-uppercase text-dark d-inline-flex p-0 m-0">Invalid or Missing Input:</p>
-                            <p class="d-inline-flex p-0 m-0">Add Vehicle / Customer</p>
-                            <p class="p-0 m-0">@Message</p>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-2 text-center p-3">
+                            <i class="bi-info-circle fs-1"></i>
+                        </div>
+                        <div class="col-10 p-3">
+                            <p class="fs-5 mb-1">Add Vehicle / Customer</p>
+                            <p class="m-0">@Message</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-end p-2">
+                            <button @onclick="OnClose" class="btn-close" aria-label="Close"></button>
                         </div>
                     </div>
                 </div>
-                <button @onclick="OnClose" class="btn-close" aria-label="Close"></button>
             </div>
         </div>
     </div>
