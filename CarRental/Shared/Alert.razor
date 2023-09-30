@@ -1,0 +1,27 @@
+﻿@code {
+    [Parameter] public string Message { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+}
+
+@if (!string.IsNullOrEmpty(Message))
+{
+    <div class="modal-overlay">
+        <div class="modal-content p-0 m-0">
+            <div class="alert alert-info p-0 m-0" role="alert">
+                <div class="container-fluid p-0 m-0">
+                    <div class="row p-0 m-0">
+                        <div class="col-1 align-items-middle p-0 m-0">
+                            <p class="bi-info-circle" style="font-size: 3rem;"></p>
+                        </div>
+                        <div class="col-11 fw-bold align-items-middle">
+                            <p class="text-uppercase text-dark d-inline-flex p-0 m-0">Invalid or Missing Input:</p>
+                            <p class="d-inline-flex p-0 m-0">Add Vehicle / Customer</p>
+                            <p class="p-0 m-0">@Message</p>
+                        </div>
+                    </div>
+                </div>
+                <button @onclick="OnClose" class="btn-close" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+}

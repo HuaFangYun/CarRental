@@ -14,9 +14,9 @@
 
 .modal-content {
     background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 50%;
+    padding: 5px;
+    border-radius: 10px;
+    width: 30%;
     box-shadow: 0px 0px 10px 0px #000000;
 }
 

@@ -49,13 +49,8 @@
     </div>
 </div>
 
-<div class="container-fluid p-5">
-    <div class="row">
-        <div class="col">
-            <AlertModal Message="@errorMessage" OnClose="CloseAlert" />
-        </div>
-    </div>
-</div>
+
+            <Alert Message="@errorMessage" OnClose="CloseAlert" />
 
 <div class="container-fluid p-5">
     <div class="row">
@@ -314,16 +309,13 @@
         vehicles = GetList<IVehicle>();
     }
 
-    private void CloseAlert()
-    {
-        errorMessage = null;
-    }
-
-    private List<T> GetList<T>() where T : class => services.Get<T>(_ => true).ToList();
-
-    private void SetErrorMessage(string info) => errorMessage = $"Add Vehicle/Customer - Invalid or missing input: {info}";
-
     private void ToggleInstructions() => showInstructions = !showInstructions;
+
+    private void SetErrorMessage(string info) => errorMessage = $"{info}";
+    
+    private void CloseAlert() => errorMessage = null;
+    
+    private List<T> GetList<T>() where T : class => services.Get<T>(_ => true).ToList();
 
     private void AddNewVehicle()
     {
@@ -331,7 +323,7 @@
         {
             if (selectedVehicleType == "Car" && !Regex.IsMatch(newCar.RegNo, @"^[A-Z]{3}\d{3}$"))
             {
-                SetErrorMessage("Reg. No. Accepted format is 'ABC123' (uppercase).");
+                SetErrorMessage("[Reg. No.] - Accepted format is 'ABC123' (uppercase).");
                 return;
             }
             if (selectedVehicleType == "Car" && string.IsNullOrEmpty(newCar.Make))
