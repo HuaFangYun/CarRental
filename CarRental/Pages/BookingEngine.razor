@@ -323,12 +323,12 @@
         {
             if (selectedVehicleType == "Car" && !Regex.IsMatch(newCar.RegNo, @"^[A-Z]{3}\d{3}$"))
             {
-                SetErrorMessage("[Reg. No.] - Accepted format is 'ABC123' (uppercase).");
+                SetErrorMessage("[Reg. No.] - Accepted format: 'ABC123'");
                 return;
             }
             if (selectedVehicleType == "Car" && string.IsNullOrEmpty(newCar.Make))
             {
-                SetErrorMessage("Make.");
+                SetErrorMessage("Make");
                 return;
             }
             if (selectedVehicleType == "Car" && (newCar.Odometer < 0 || newCar.Odometer == null))
