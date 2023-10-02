@@ -31,7 +31,7 @@ public class Services
             : VehicleStatus.Available;
     }
 
-    public IBooking RentVehicle(IVehicle v, string selectedCustomer, List<IPerson> c, List<IBooking> b)
+    public IBooking RentVehicle(IVehicle v, string selectedCustomer, List<IPerson> c)
     {
         IPerson? customerToBook = c.FirstOrDefault(c => c.SSN == selectedCustomer);
 
@@ -43,7 +43,6 @@ public class Services
             RentDate = DateTime.Today.Date
         };
         _db.Add(newBooking);
-        b.Add(newBooking);
         return newBooking;
     }
 
