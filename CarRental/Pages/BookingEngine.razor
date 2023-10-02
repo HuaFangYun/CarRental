@@ -313,7 +313,7 @@
 
     private void SetErrorMessage(string info) => errorMessage = $"{info}";
     
-    private void CloseAlert() => errorMessage = null;
+    private void CloseAlert() => errorMessage = string.Empty;
     
     private List<T> GetList<T>() where T : class => services.Get<T>(_ => true).ToList();
 
@@ -404,12 +404,12 @@
             }
             if (string.IsNullOrEmpty(newCustomer.FirstName) || !Regex.IsMatch(newCustomer.FirstName, @"^[a-zA-Z-' ]+$"))
             {
-                SetErrorMessage("'First Name' can only contain letters, hyphens, spaces, or apostrophes");
+                SetErrorMessage("[FIRST NAME] - Letters, hyphens, spaces, or apostrophes only");
                 return;
             }
             if (string.IsNullOrEmpty(newCustomer.LastName) || !Regex.IsMatch(newCustomer.LastName, @"^[a-zA-Z-' ]+$"))
             {
-                SetErrorMessage("'Last Name' can only contain letters, hyphens, spaces, or apostrophes");
+                SetErrorMessage("[LAST NAME] - Letters, hyphens, spaces, or apostrophes only");
                 return;
             }
 
