@@ -11,7 +11,7 @@ public class Booking : IBooking
     public DateTime ReturnDate { get; set; }
     public IPerson Customer { get; set; }
     public IVehicle Vehicle { get; set; }
-    public VehicleStatuses Status { get; set; }
+    public VehicleStatus Status { get; set; }
 
     public Booking(IVehicle vehicle, IPerson customer)
     {
@@ -20,7 +20,7 @@ public class Booking : IBooking
         ReturnDate = DateTime.Now.Date;
         Customer = customer;
         Vehicle = vehicle;
-        Status = VehicleStatuses.Booked;
+        Status = VehicleStatus.Booked;
     }
 }
 

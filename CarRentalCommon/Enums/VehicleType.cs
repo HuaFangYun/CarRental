@@ -1,6 +1,6 @@
 ﻿namespace CarRentalCommon.Enums;
 
-public enum VehicleTypes
+public enum VehicleType
 {
     Convertible,
     Touring,

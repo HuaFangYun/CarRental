@@ -24,11 +24,11 @@ public class Services
             : 0;
     }
 
-    public VehicleStatuses BookingStatus(string regNo)
+    public VehicleStatus BookingStatus(string regNo)
     {
-        return _db.Get<IBooking>().Where(b => b.Vehicle.RegNo == regNo).Any(b => b.Status == VehicleStatuses.Booked)
-            ? VehicleStatuses.Booked
-            : VehicleStatuses.Available;
+        return _db.Get<IBooking>().Where(b => b.Vehicle.RegNo == regNo).Any(b => b.Status == VehicleStatus.Booked)
+            ? VehicleStatus.Booked
+            : VehicleStatus.Available;
     }
 
     public IBooking RentVehicle(IVehicle v, string selectedCustomer, List<IPerson> c, List<IBooking> b)
@@ -47,14 +47,18 @@ public class Services
         return newBooking;
     }
 
-    public VehicleStatuses ReturnVehicle(IBooking b)
+    public VehicleStatus ReturnVehicle(IBooking b)
     {
         UpdateOdometer(b);
-        return b.Status = VehicleStatuses.Available;
+        return b.Status = VehicleStatus.Available;
     }
 
     public void UpdateOdometer(IBooking b)
     {
-        _db.Single<IVehicle>(v => v.RegNo == b.Vehicle.RegNo).Odometer += (int)(b.KmDriven ?? 0);
+        var vehicleToUpdate = _db.Get<IVehicle>().FirstOrDefault(v => v.RegNo == b.Vehicle.RegNo);
+        if (vehicleToUpdate != null)
+        {
+            vehicleToUpdate.Odometer += (int)(b.KmDriven ?? 0);
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CarRentalCommon.Enums;
 
-public enum VehicleStatuses
+public enum VehicleStatus
 {
     Available = 0,
     Booked = 1

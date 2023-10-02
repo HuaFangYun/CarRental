@@ -11,9 +11,9 @@ public class Vehicle : IVehicle
     public int? Odometer { get; set; }
     public float? CostKm { get; set; }
     public int CostDay { get; set; }
-    public VehicleStatuses Status { get; set; }
-    private VehicleTypes _vehicleType;
-    public VehicleTypes VehicleType
+    public VehicleStatus Status { get; set; }
+    private VehicleType _vehicleType;
+    public VehicleType VehicleType
     {
         get => _vehicleType;
         set
@@ -23,7 +23,7 @@ public class Vehicle : IVehicle
         }
     }
 
-    public Vehicle(string regNo = "", string make = "", int? odometer = null, float? costKm = null, VehicleTypes vehicleType = VehicleTypes.Other)
+    public Vehicle(string regNo = "", string make = "", int? odometer = null, float? costKm = null, VehicleType vehicleType = VehicleType.Other)
     {
         ID = IDGenerator.SetVehicleID();
         RegNo = regNo;
@@ -32,18 +32,18 @@ public class Vehicle : IVehicle
         CostKm = costKm;
         VehicleType = vehicleType;
         CalculateCostDay();
-        Status = VehicleStatuses.Available;
+        Status = VehicleStatus.Available;
     }
     private void CalculateCostDay()
     {
         CostDay = VehicleType switch
         {
-            VehicleTypes.Convertible => 150,
-            VehicleTypes.Touring => 120,
-            VehicleTypes.Luxury => 200,
-            VehicleTypes.Hardtop => 100,
-            VehicleTypes.Standard => 50,
-            VehicleTypes.TrailBike => 60,
+            VehicleType.Convertible => 150,
+            VehicleType.Touring => 120,
+            VehicleType.Luxury => 200,
+            VehicleType.Hardtop => 100,
+            VehicleType.Standard => 50,
+            VehicleType.TrailBike => 60,
             _ => 100
         };
     }

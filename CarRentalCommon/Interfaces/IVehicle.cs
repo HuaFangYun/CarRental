@@ -10,6 +10,6 @@ public interface IVehicle
     int? Odometer { get; set; }
     float? CostKm { get; set; }
     int CostDay { get; set; }
-    VehicleTypes VehicleType { get; set; }
-    VehicleStatuses Status { get; set; }
+    VehicleType VehicleType { get; set; }
+    VehicleStatus Status { get; set; }
 }
