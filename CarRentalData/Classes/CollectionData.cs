@@ -21,8 +21,6 @@ namespace CarRentalData.Classes
             RegisterType<IBooking>();
             RegisterType<IPerson>();
             RegisterType<IVehicle>();
-            RegisterType<ICar>();
-            RegisterType<IMotorcycle>();
         }
 
         void SeedData()
