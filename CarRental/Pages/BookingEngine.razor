@@ -8,6 +8,7 @@
 @inject Services services
 
 <PageTitle>Booking Engine</PageTitle>
+<Alert Message="@errorMessage" OnClose="CloseAlert" />
 
 <div class="container-fluid p-5">
     <div class="row">
@@ -49,9 +50,6 @@
     </div>
 </div>
 
-
-            <Alert Message="@errorMessage" OnClose="CloseAlert" />
-
 <div class="container-fluid p-5">
     <div class="row">
         <div class="col">
@@ -71,27 +69,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (IVehicle vehicle in vehicles)
+                    @foreach (IVehicle v in vehicles)
                     {
-                        var vehicleStatus = services.BookingStatus(vehicle.RegNo);
+                        var vehicleStatus = services.BookingStatus(v.RegNo);
 
                         <tr>
-                            <td>@vehicle.RegNo</td>
-                            <td>@vehicle.VehicleType</td>
-                            <td>@vehicle.Make</td>
-                            <td>@vehicle.Odometer km</td>
+                            <td>@v.RegNo</td>
+                            <td>@v.VehicleType</td>
+                            <td>@v.Make</td>
+                            <td>@v.Odometer km</td>
                             <td>
-                                @if (vehicle is ICar car)
+                                @if (v is ICar car)
                                 {
                                     <span class="features">Doors: @car.Doors</span>
                                 }
-                                else if (vehicle is IMotorcycle mc)
+                                else if (v is IMotorcycle mc)
                                 {
                                     <span class="features">Seats: @mc.Seats</span>
                                 }
                             </td>
-                            <td>@vehicle.CostKm €</td>
-                            <td>@vehicle.CostDay €</td>
+                            <td>@v.CostKm €</td>
+                            <td>@v.CostDay €</td>
                             <td class="@(vehicleStatus == VehicleStatuses.Available ? "text-success bi-circle-fill" : "text-danger bi-circle-fill")"></td>
                             <td>
                                 @if (vehicleStatus == VehicleStatuses.Available)
@@ -104,12 +102,12 @@
                                                 <option value="@customer.SSN">@customer.FirstName @customer.LastName</option>
                                             }
                                         </select>
-                                        <button @onclick="() => RentVehicleAsync(vehicle)" class="ms-3 btn btn-sm btn-secondary" disabled="@(isProcessing || string.IsNullOrEmpty(selectedCustomer))">Rent</button>
+                                        <button @onclick="() => RentVehicleAsync(v)" class="ms-3 btn btn-sm btn-secondary" disabled="@(isProcessing || string.IsNullOrEmpty(selectedCustomer))">Rent</button>
                                     </div>
                                 }
                                 else
                                 {
-                                    var bookedCustomer = bookings.FirstOrDefault(b => b.Vehicle.RegNo == vehicle.RegNo)?.Customer;
+                                    var bookedCustomer = bookings.FirstOrDefault(b => b.Vehicle.RegNo == v.RegNo)?.Customer;
                                     if (bookedCustomer != null)
                                     {
                                         @bookedCustomer.FirstName @bookedCustomer.LastName
@@ -130,7 +128,7 @@
                         <td class="pt-3" colspan="7">
                             @if (isProcessing)
                             {
-                                <span class="badge bg-warning text-uppercase w-75">Processing...</span>
+                                <span class="badge bg-info text-uppercase w-75">Processing...</span>
                             }
                         </td>
                     </tr>
@@ -206,26 +204,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (IBooking booking in bookings)
+                    @foreach (IBooking b in bookings)
                     {
                         <tr>
-                            <td>@booking.Vehicle.RegNo</td>
-                            <td>@booking.Customer.FirstName @booking.Customer.LastName</td>
-                            <td>@booking.Vehicle.Odometer km</td>
-                            <td><input @bind-value="booking.KmDriven" @bind-value:event="oninput" placeholder="Enter upon return" class="w-100" disabled="@(booking.Status == VehicleStatuses.Available)" /></td>
-                            <td><input type="date" @bind="booking.RentDate" class="w-100" disabled="@(booking.Status == VehicleStatuses.Available)" /></td>
-                            <td><input type="date" @bind="booking.ReturnDate" placeholder="yyyy-MM-dd" class="w-100" disabled="@(booking.Status == VehicleStatuses.Available)" /></td>
-                            <td>@services.TotalCost(booking) €</td>
+                            <td>@b.Vehicle.RegNo</td>
+                            <td>@b.Customer.FirstName @b.Customer.LastName</td>
+                            <td>@b.Vehicle.Odometer km</td>
+                            <td><input @bind-value="b.KmDriven" @bind-value:event="oninput" placeholder="Enter upon return" class="w-100" disabled="@(b.Status == VehicleStatuses.Available)" /></td>
+                            <td><input type="date" @bind="b.RentDate" class="w-100" disabled="@(b.Status == VehicleStatuses.Available)" /></td>
+                            <td><input type="date" @bind="b.ReturnDate" placeholder="yyyy-MM-dd" class="w-100" disabled="@(b.Status == VehicleStatuses.Available)" /></td>
+                            <td>@services.TotalCost(b) €</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    @if (booking.Status == VehicleStatuses.Available)
+                                    @if (b.Status == VehicleStatuses.Available)
                                     {
                                         <span class="badge bg-success fs-6 text-uppercase">Returned</span>
                                     }
-                                    else if (booking.Status == VehicleStatuses.Booked)
+                                    else if (b.Status == VehicleStatuses.Booked)
                                     {
                                         <span class="badge bg-warning fs-6 text-uppercase">On-going</span>
-                                        <button @onclick="() => ReturnVehicle(booking)" class="ms-3 btn btn-sm btn-secondary">Return</button>
+                                        <button @onclick="() => ReturnVehicle(b)" class="ms-3 btn btn-sm btn-secondary">Return</button>
                                     }
                                 </div>
                             </td>
@@ -242,32 +240,32 @@
         <div class="col-12 col-md-6 d-flex flex-column">
             <h3>Customers</h3>
             <table class="table table-borderless text-nowrap">
-                    <thead>
+                <thead>
+                    <tr>
+                        <th>Social Security No.</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (IPerson c in customers)
+                    {
                         <tr>
-                            <th>Social Security No.</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                            <td>@c.SSN</td>
+                            <td>@c.FirstName</td>
+                            <td>@c.LastName</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (IPerson customer in customers)
-                        {
-                            <tr>
-                                <td>@customer.SSN</td>
-                                <td>@customer.FirstName</td>
-                                <td>@customer.LastName</td>
-                            </tr>
-                        }
-                        <tr>
-                            <td class="pt-3 fw-bold text-nowrap">Add Customer</td>
-                        </tr>
-                        <tr>
-                            <td><input @bind="newCustomer.SSN" class="w-100" placeholder="Soc. Security No." /></td>
-                            <td><input @bind="newCustomer.FirstName" class="w-100" placeholder="First Name" /></td>
-                            <td><input @bind="newCustomer.LastName" class="w-100" placeholder="Last Name" /></td>
-                            <td><button @onclick="AddNewCustomer" class="btn btn-sm btn-secondary">Add</button></td>
-                        </tr>
-                    </tbody>
+                    }
+                    <tr>
+                        <td class="pt-3 fw-bold text-nowrap">Add Customer</td>
+                    </tr>
+                    <tr>
+                        <td><input @bind="newCustomer.SSN" class="w-100" placeholder="Soc. Security No." /></td>
+                        <td><input @bind="newCustomer.FirstName" class="w-100" placeholder="First Name" /></td>
+                        <td><input @bind="newCustomer.LastName" class="w-100" placeholder="Last Name" /></td>
+                        <td><button @onclick="AddNewCustomer" class="btn btn-sm btn-secondary">Add</button></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         <div class="col-12 col-md-6 d-flex flex-column">
@@ -312,9 +310,9 @@
     private void ToggleInstructions() => showInstructions = !showInstructions;
 
     private void SetErrorMessage(string info) => errorMessage = $"{info}";
-    
+
     private void CloseAlert() => errorMessage = string.Empty;
-    
+
     private List<T> GetList<T>() where T : class => services.Get<T>(_ => true).ToList();
 
     private void AddNewVehicle()
@@ -424,13 +422,13 @@
         }
     }
 
-    private async Task RentVehicleAsync(IVehicle vehicle)
+    private async Task RentVehicleAsync(IVehicle v)
     {
         isProcessing = true;
         try
         {
             await Task.Delay(5000);
-            services.RentVehicle(vehicle, selectedCustomer, customers, bookings);
+            services.RentVehicle(v, selectedCustomer, customers, bookings);
         }
         catch (Exception ex)
         {
@@ -443,11 +441,11 @@
         }
     }
 
-    private void ReturnVehicle(IBooking booking)
+    private void ReturnVehicle(IBooking b)
     {
         try
         {
-            services.ReturnVehicle(booking);
+            services.ReturnVehicle(b);
         }
         catch (Exception ex)
         {
