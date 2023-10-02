@@ -23,3 +23,4 @@ public class Booking : IBooking
         Status = VehicleStatuses.Booked;
     }
 }
+
