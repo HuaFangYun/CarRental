@@ -54,7 +54,7 @@ public class Services
 
     public void UpdateOdometer(IBooking b)
     {
-        var vehicleToUpdate = _db.Get<IVehicle>().FirstOrDefault(v => v.RegNo == b.Vehicle.RegNo);
+        var vehicleToUpdate = _db.Single<IVehicle>(v => v.RegNo == b.Vehicle.RegNo);
         if (vehicleToUpdate != null)
         {
             vehicleToUpdate.Odometer += (int)(b.KmDriven ?? 0);
