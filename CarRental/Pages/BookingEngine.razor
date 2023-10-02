@@ -19,7 +19,7 @@
             </button>
             @if (showInstructions)
             {
-                <div class="mt-3 p-3 border border-warning rounded">
+                <div class="mt-3 p-3 border rounded">
                     <h6>Adding a New Vehicle:</h6>
                     <ul>
                         <li>Fill in the required details in the respective fields.</li>
@@ -220,11 +220,11 @@
                                 <div class="d-flex align-items-center">
                                     @if (booking.Status == VehicleStatuses.Available)
                                     {
-                                        <span class="badge bg-success fs-6">Returned</span>
+                                        <span class="badge bg-success fs-6 text-uppercase">Returned</span>
                                     }
                                     else if (booking.Status == VehicleStatuses.Booked)
                                     {
-                                        <span class="badge bg-warning fs-6">On-going</span>
+                                        <span class="badge bg-warning fs-6 text-uppercase">On-going</span>
                                         <button @onclick="() => ReturnVehicle(booking)" class="ms-3 btn btn-sm btn-secondary">Return</button>
                                     }
                                 </div>
@@ -323,52 +323,52 @@
         {
             if (selectedVehicleType == "Car" && !Regex.IsMatch(newCar.RegNo, @"^[A-Z]{3}\d{3}$"))
             {
-                SetErrorMessage("[Reg. No.] - Accepted format: 'ABC123'");
+                SetErrorMessage("[REG. NO.] - Accepted format: 'ABC123'");
                 return;
             }
             if (selectedVehicleType == "Car" && string.IsNullOrEmpty(newCar.Make))
             {
-                SetErrorMessage("Make");
+                SetErrorMessage("[MAKE] - Missing input");
                 return;
             }
             if (selectedVehicleType == "Car" && (newCar.Odometer < 0 || newCar.Odometer == null))
             {
-                SetErrorMessage("Odometer. Accepted format is zero or a positive whole number.");
+                SetErrorMessage("[ODOMETER] - Accepted format: Integer");
                 return;
             }
             if (selectedVehicleType == "Car" && (newCar.Doors < 0 || newCar.Doors == null))
             {
-                SetErrorMessage("No. of doors. Accepted format is zero or a positive whole number.");
+                SetErrorMessage("[NO. OF DOORS] - Accepted format: Integer");
                 return;
             }
             if (selectedVehicleType == "Car" && (newCar.CostKm < 0 || newCar.CostKm == null))
             {
-                SetErrorMessage("Cost/km. Accepted format is zero or a positive number.");
+                SetErrorMessage("[COST/KM] - Accepted format: Decimal");
                 return;
             }
             if (selectedVehicleType == "Motorcycle" && !Regex.IsMatch(newMotorcycle.RegNo, @"^[A-Z]{3}\d{3}$"))
             {
-                SetErrorMessage("Reg. No. Accepted format is 'ABC123' (uppercase).");
+                SetErrorMessage("[REG. NO.] - Accepted format: 'ABC123'");
                 return;
             }
             if (selectedVehicleType == "Motorcycle" && string.IsNullOrEmpty(newMotorcycle.Make))
             {
-                SetErrorMessage("Make.");
+                SetErrorMessage("[MAKE] - Missing input");
                 return;
             }
             if (selectedVehicleType == "Motorcycle" && (newMotorcycle.Odometer < 0 || newMotorcycle.Odometer == null))
             {
-                SetErrorMessage("Odometer. Accepted format is zero or a positive whole number.");
+                SetErrorMessage("[ODOMETER] - Accepted format: Integer");
                 return;
             }
             if (selectedVehicleType == "Motorcycle" && (newMotorcycle.Seats < 0 || newMotorcycle.Seats == null))
             {
-                SetErrorMessage("No. of seats. Accepted format is zero or a positive whole number.");
+                SetErrorMessage("[NO. OF SEATS] - Accepted format: Integer");
                 return;
             }
             if (selectedVehicleType == "Motorcycle" && (newMotorcycle.CostKm < 0 || newMotorcycle.CostKm == null))
             {
-                SetErrorMessage("Cost/km. Accepted format is zero or a positive number.");
+                SetErrorMessage("[COST/KM] - Accepted format: Decimal");
                 return;
             }
 
@@ -399,17 +399,17 @@
         {
             if (string.IsNullOrEmpty(newCustomer.SSN) || !Regex.IsMatch(newCustomer.SSN, @"^\d{6}-\d{4}$"))
             {
-                SetErrorMessage("Social Security No. Accepted format is '012345-6789'");
+                SetErrorMessage("[SOCIAL SEC. NO.] Accepted format: '012345-6789'");
                 return;
             }
             if (string.IsNullOrEmpty(newCustomer.FirstName) || !Regex.IsMatch(newCustomer.FirstName, @"^[a-zA-Z-' ]+$"))
             {
-                SetErrorMessage("'First Name' can and must only contain letters, hyphens, spaces, or apostrophes.");
+                SetErrorMessage("'First Name' can only contain letters, hyphens, spaces, or apostrophes");
                 return;
             }
             if (string.IsNullOrEmpty(newCustomer.LastName) || !Regex.IsMatch(newCustomer.LastName, @"^[a-zA-Z-' ]+$"))
             {
-                SetErrorMessage("'Last Name' can and must only contain letters, hyphens, spaces, or apostrophes.");
+                SetErrorMessage("'Last Name' can only contain letters, hyphens, spaces, or apostrophes");
                 return;
             }
 
