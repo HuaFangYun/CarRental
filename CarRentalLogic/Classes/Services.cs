@@ -31,9 +31,9 @@ public class Services
             : VehicleStatus.Available;
     }
 
-    public IBooking RentVehicle(IVehicle v, string selectedCustomer, List<IPerson> c)
+    public IBooking RentVehicle(IVehicle v, string selectedCustomer, List<IPerson> customers)
     {
-        IPerson? customerToBook = c.FirstOrDefault(c => c.SSN == selectedCustomer);
+        IPerson? customerToBook = customers.FirstOrDefault(c => c.SSN == selectedCustomer);
 
         if (customerToBook == null)
             throw new ArgumentException("Customer not found.");
@@ -52,12 +52,10 @@ public class Services
         return b.Status = VehicleStatus.Available;
     }
 
-    public void UpdateOdometer(IBooking b)
+    private void UpdateOdometer(IBooking b)
     {
         var vehicleToUpdate = _db.Single<IVehicle>(v => v.RegNo == b.Vehicle.RegNo);
         if (vehicleToUpdate != null)
-        {
             vehicleToUpdate.Odometer += (int)(b.KmDriven ?? 0);
-        }
     }
 }
