@@ -53,9 +53,10 @@ namespace CarRentalData.Classes
             if (entity is IVehicle vehicle && !_checkForDuplicates.Add(vehicle.RegNo))
                 throw new ArgumentException($"Vehicle with RegNo {vehicle.RegNo} already exists.");
 
-            if (entity is IPerson person && !_checkForDuplicates.Add(person.SSN))
-                throw new ArgumentException($"Customer with SSN {person.SSN} already exists.");
+            if (entity is IPerson customer && !_checkForDuplicates.Add(customer.SSN))
+                throw new ArgumentException($"Customer with SSN {customer.SSN} already exists.");
         }
+       
         private List<T> GetOrCreateList<T>() where T : class
         {
             if (!_data.TryGetValue(typeof(T), out var list))
@@ -67,33 +68,14 @@ namespace CarRentalData.Classes
             return (List<T>)list;
         }
 
-        private List<T> GetListForType<T>() where T : class
-        {
-            if (_data.TryGetValue(typeof(T), out var list))
-            {
-                return (List<T>)list;
-            }
-            else
-            {
-                throw new ArgumentException($"The type {typeof(T)} is not supported.");
-            }
-        }
+        public IEnumerable<T> Get<T>() where T : class => GetOrCreateList<T>();
 
-        public IEnumerable<T> Get<T>() where T : class
-        {
-            return GetListForType<T>();
-        }
-
-        public T Single<T>(Func<T, bool> predicate) where T : class
-        {
-            return GetListForType<T>().SingleOrDefault(predicate);
-        }
+        public T Single<T>(Func<T, bool> predicate) where T : class => GetOrCreateList<T>().SingleOrDefault(predicate);
 
         public void Add<T>(T entity) where T : class
         {
             ValidateUniqueness(entity);
-            GetListForType<T>().Add(entity);
+            GetOrCreateList<T>().Add(entity);
         }
-
     }
 }
