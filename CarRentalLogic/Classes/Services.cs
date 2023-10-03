@@ -17,7 +17,7 @@ public class Services
 
     public void Add<T>(T entity) where T : class => _db.Add(entity);
 
-    public float? TotalCost(IBooking b)
+    public static float? TotalCost(IBooking b)
     {
         return b.KmDriven.HasValue
             ? b.KmDriven.Value * b.Vehicle.CostKm + b.Vehicle.CostDay * b.RentDate.Duration(b.ReturnDate)
@@ -33,11 +33,7 @@ public class Services
 
     public IBooking RentVehicle(IVehicle v, string selectedCustomer, List<IPerson> customers)
     {
-        IPerson? customerToBook = customers.FirstOrDefault(c => c.SSN == selectedCustomer);
-
-        if (customerToBook == null)
-            throw new ArgumentException("Customer not found.");
-
+        IPerson? customerToBook = customers.FirstOrDefault(c => c.SSN == selectedCustomer) ?? throw new ArgumentException("Customer not found.");
         IBooking newBooking = new Booking(v, customerToBook)
         {
             RentDate = DateTime.Today.Date

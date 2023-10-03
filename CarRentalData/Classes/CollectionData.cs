@@ -6,7 +6,7 @@ namespace CarRentalData.Classes
 {
     public class CollectionData : IData
     {
-        private readonly Dictionary<Type, object> _data = new Dictionary<Type, object>();
+        private readonly Dictionary<Type, object> _data = new();
 
         public CollectionData()
         {
@@ -29,9 +29,9 @@ namespace CarRentalData.Classes
             var vehicles = GetOrCreateList<IVehicle>();
             var bookings = GetOrCreateList<IBooking>();
 
-            customers.Add(new Customer("891010-0168", "Charlie ", "Sharp"));
-            customers.Add(new Customer("690830-8572", "Visilia ", "Studiya"));
-            customers.Add(new Customer("821003-6612", "Blaine ", "Bootstrap"));
+            customers.Add(new Customer("891010-0168", "Charlie", "Sharp"));
+            customers.Add(new Customer("690830-8572", "Visilia", "Studiya"));
+            customers.Add(new Customer("821003-6612", "Blaine", "Bootstrap"));
 
             vehicles.Add(new Car("AND243", "Porche", 5500, 1f, VehicleType.Touring, 2));
             vehicles.Add(new Car("AWL853", "Ford", 6000, 1f, VehicleType.Touring, 0));
