@@ -64,7 +64,6 @@ namespace CarRentalData.Classes
                 list = new List<T>();
                 _data[typeof(T)] = list;
             }
-
             return (List<T>)list;
         }
 
