@@ -67,29 +67,33 @@ namespace CarRentalData.Classes
             return (List<T>)list;
         }
 
-        public IEnumerable<T> Get<T>() where T : class
+        private List<T> GetListForType<T>() where T : class
         {
             if (_data.TryGetValue(typeof(T), out var list))
-                return (IEnumerable<T>)list;
+            {
+                return (List<T>)list;
+            }
+            else
+            {
+                throw new ArgumentException($"The type {typeof(T)} is not supported.");
+            }
+        }
 
-            throw new ArgumentException($"The type {typeof(T)} is not supported.");
+        public IEnumerable<T> Get<T>() where T : class
+        {
+            return GetListForType<T>();
         }
 
         public T Single<T>(Func<T, bool> predicate) where T : class
         {
-            if (_data.TryGetValue(typeof(T), out var list))
-                return ((IEnumerable<T>)list).SingleOrDefault(predicate);
-
-            throw new ArgumentException($"The type {typeof(T)} is not supported.");
+            return GetListForType<T>().SingleOrDefault(predicate);
         }
 
         public void Add<T>(T entity) where T : class
         {
             ValidateUniqueness(entity);
-            if (_data.TryGetValue(typeof(T), out var list))
-                ((List<T>)list).Add(entity);
-            else
-                throw new ArgumentException($"The type {typeof(T)} is not supported.");
+            GetListForType<T>().Add(entity);
         }
+
     }
 }
