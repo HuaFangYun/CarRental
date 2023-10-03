@@ -47,6 +47,16 @@ namespace CarRentalData.Classes
             bookings.Add(new Booking(vehicles[7], customers[2]));
         }
 
+        private readonly HashSet<string> _checkForDuplicates = new HashSet<string>();
+
+        private void ValidateUniqueness<T>(T entity) where T : class
+        {
+            if (entity is IVehicle vehicle && !_checkForDuplicates.Add(vehicle.RegNo))
+                throw new ArgumentException($"Vehicle with RegNo {vehicle.RegNo} already exists.");
+
+            if (entity is IPerson person && !_checkForDuplicates.Add(person.SSN))
+                throw new ArgumentException($"Customer with SSN {person.SSN} already exists.");
+        }
         private List<T> GetOrCreateList<T>() where T : class
         {
             if (!_data.TryGetValue(typeof(T), out var list))
@@ -76,6 +86,7 @@ namespace CarRentalData.Classes
 
         public void Add<T>(T entity) where T : class
         {
+            ValidateUniqueness(entity);
             if (_data.TryGetValue(typeof(T), out var list))
                 ((List<T>)list).Add(entity);
             else
