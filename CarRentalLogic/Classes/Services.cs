@@ -17,7 +17,7 @@ public class Services
 
     public void Add<T>(T entity) where T : class => _db.Add(entity);
 
-    public static float? TotalCost(IBooking b)
+    public float? TotalCost(IBooking b)
     {
         return b.KmDriven.HasValue
             ? b.KmDriven.Value * b.Vehicle.CostKm + b.Vehicle.CostDay * b.RentDate.Duration(b.ReturnDate)
