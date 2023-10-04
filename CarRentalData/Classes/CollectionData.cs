@@ -13,7 +13,7 @@ namespace CarRentalData.Classes
 
         public IEnumerable<T> Get<T>() where T : class => GetOrCreateList<T>();
 
-        public T Single<T>(Func<T, bool> predicate) where T : class => GetOrCreateList<T>().SingleOrDefault(predicate);
+        public T Single<T>(Func<T, bool> predicate) where T : class => GetOrCreateList<T>().Single(predicate);
 
         public void Add<T>(T entity) where T : class
         {
