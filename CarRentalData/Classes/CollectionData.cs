@@ -7,8 +7,18 @@ namespace CarRentalData.Classes
     public class CollectionData : IData
     {
         private readonly Dictionary<Type, object> _data = new();
+        private readonly HashSet<string> _checkForDuplicates = new HashSet<string>();
 
         public CollectionData() => SeedData();
+        public IEnumerable<T> Get<T>() where T : class => GetOrCreateList<T>();
+
+        public T Single<T>(Func<T, bool> predicate) where T : class => GetOrCreateList<T>().SingleOrDefault(predicate);
+
+        public void Add<T>(T entity) where T : class
+        {
+            ValidateUniqueness(entity);
+            GetOrCreateList<T>().Add(entity);
+        }
 
         void SeedData()
         {
@@ -33,8 +43,6 @@ namespace CarRentalData.Classes
             Add<IBooking>(new Booking(vehicles[7], customers[2]));
         }
 
-        private readonly HashSet<string> _checkForDuplicates = new HashSet<string>();
-
         private void ValidateUniqueness<T>(T entity) where T : class
         {
             if (entity is IVehicle vehicle && !_checkForDuplicates.Add(vehicle.RegNo))
@@ -53,16 +61,6 @@ namespace CarRentalData.Classes
                 _data[actualType] = list;
             }
             return (List<T>)list;
-        }
-
-        public IEnumerable<T> Get<T>() where T : class => GetOrCreateList<T>();
-
-        public T Single<T>(Func<T, bool> predicate) where T : class => GetOrCreateList<T>().SingleOrDefault(predicate);
-
-        public void Add<T>(T entity) where T : class
-        {
-            ValidateUniqueness(entity);
-            GetOrCreateList<T>().Add(entity);
         }
     }
 }
