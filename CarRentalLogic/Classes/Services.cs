@@ -11,7 +11,7 @@ public class Services
 
     public Services(IData db) => _db = db;
 
-    public IEnumerable<T> Get<T>(Func<T, bool> predicate) where T : class => _db.Get<T>().Where(predicate).ToList();
+    public IEnumerable<T> Get<T>() where T : class => _db.Get<T>().ToList();
 
     public T Single<T>(Func<T, bool> predicate) where T : class => _db.Single(predicate);
 
