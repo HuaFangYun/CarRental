@@ -17,7 +17,7 @@ namespace CarRentalData.Classes
 
         public void Add<T>(T entity) where T : class
         {
-            ValidateUniqueness(entity);
+            CheckForDuplicates(entity);
             GetOrCreateList<T>().Add(entity);
         }
 
@@ -44,7 +44,7 @@ namespace CarRentalData.Classes
             Add<IBooking>(new Booking(vehicles[7], customers[2]));
         }
 
-        private void ValidateUniqueness<T>(T entity) where T : class
+        private void CheckForDuplicates<T>(T entity) where T : class
         {
             if (entity is IVehicle v && !_checkForDuplicates.Add(v.RegNo))
                 throw new ArgumentException($"Vehicle with RegNo {v.RegNo} already exists.");
