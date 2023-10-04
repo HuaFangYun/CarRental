@@ -7,9 +7,10 @@ namespace CarRentalData.Classes
     public class CollectionData : IData
     {
         private readonly Dictionary<Type, object> _data = new();
-        private readonly HashSet<string> _checkForDuplicates = new HashSet<string>();
+        private readonly HashSet<string> _checkForDuplicates = new();
 
         public CollectionData() => SeedData();
+
         public IEnumerable<T> Get<T>() where T : class => GetOrCreateList<T>();
 
         public T Single<T>(Func<T, bool> predicate) where T : class => GetOrCreateList<T>().SingleOrDefault(predicate);
@@ -45,11 +46,11 @@ namespace CarRentalData.Classes
 
         private void ValidateUniqueness<T>(T entity) where T : class
         {
-            if (entity is IVehicle vehicle && !_checkForDuplicates.Add(vehicle.RegNo))
-                throw new ArgumentException($"Vehicle with RegNo {vehicle.RegNo} already exists.");
+            if (entity is IVehicle v && !_checkForDuplicates.Add(v.RegNo))
+                throw new ArgumentException($"Vehicle with RegNo {v.RegNo} already exists.");
 
-            if (entity is IPerson customer && !_checkForDuplicates.Add(customer.SSN))
-                throw new ArgumentException($"Customer with SSN {customer.SSN} already exists.");
+            if (entity is IPerson c && !_checkForDuplicates.Add(c.SSN))
+                throw new ArgumentException($"Customer with SSN {c.SSN} already exists.");
         }
 
         private List<T> GetOrCreateList<T>() where T : class
