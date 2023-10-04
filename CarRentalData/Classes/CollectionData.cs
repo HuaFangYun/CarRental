@@ -8,20 +8,7 @@ namespace CarRentalData.Classes
     {
         private readonly Dictionary<Type, object> _data = new();
 
-        public CollectionData()
-        {
-            RegisterTypes();
-            SeedData();
-        }
-
-        public void RegisterType<T>() where T : class => _data[typeof(T)] = new List<T>();
-
-        private void RegisterTypes()
-        {
-            RegisterType<IBooking>();
-            RegisterType<IPerson>();
-            RegisterType<IVehicle>();
-        }
+        public CollectionData() => SeedData();
 
         void SeedData()
         {
@@ -56,13 +43,14 @@ namespace CarRentalData.Classes
             if (entity is IPerson customer && !_checkForDuplicates.Add(customer.SSN))
                 throw new ArgumentException($"Customer with SSN {customer.SSN} already exists.");
         }
-       
+
         private List<T> GetOrCreateList<T>() where T : class
         {
-            if (!_data.TryGetValue(typeof(T), out var list))
+            Type actualType = typeof(T);
+            if (!_data.TryGetValue(actualType, out var list))
             {
                 list = new List<T>();
-                _data[typeof(T)] = list;
+                _data[actualType] = list;
             }
             return (List<T>)list;
         }
