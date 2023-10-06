@@ -1,4 +1,4 @@
-# Simple Vehicle Rental Website
+# Vehicle Rental Website
 
 A simple vehicle rental app developed using Blazor WebAssembly, incorporating a three-layered architecture.
 
