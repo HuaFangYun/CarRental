@@ -6,7 +6,7 @@ A simple vehicle rental app developed using Blazor WebAssembly, incorporating a 
 The application follows a basic three-layered architecture:
 
 - **Presentation Layer**: Provides an interface for adding vehicles and customers, viewing current bookings, and renting or returning vehicles.
-- **Business Logic Layer (Service Layer)**: Responsible for tasks like adding a new vehicle, validating customer data, and processing rentals and returns.
+- **Business Logic Layer**: Responsible for tasks like adding a new vehicle, validating customer data, and processing rentals and returns.
 - **Data Access Layer**: Seed data is used a placeholder for an actual database or other storage solution.
 
 ## Features
