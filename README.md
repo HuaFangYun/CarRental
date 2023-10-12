@@ -1,6 +1,6 @@
 # Vehicle Rental Website
 
-A simple vehicle rental app developed using Blazor WebAssembly, incorporating a three-layered architecture.
+A vehicle rental app developed using Blazor WebAssembly, incorporating a three-layered architecture.
 
 ## Note
 This is a foundational project aimed at understanding the basics of Blazor WebAssembly and the principles of a three-layered architecture. Future enhancements would include more advanced features, refinements, and a more comprehensive external data layer.
