@@ -37,7 +37,8 @@ main {
 
 .bottom-row {
     background-color: #333;
-    height: 3rem;
+    border-top: 1px solid #111;
+    height: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
