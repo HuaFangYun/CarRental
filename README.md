@@ -1,26 +1,32 @@
 # Vehicle Rental Website
 
-A vehicle rental app developed using Blazor WebAssembly, incorporating a three-layered architecture.
+A meticulously crafted web application built using HTML, CSS, Bootstrap 5.3, and Blazor WebAssembly. This project serves as a practical illustration of a three-layered architecture.
 
-## Note
-This is a foundational project aimed at understanding the basics of Blazor WebAssembly and the principles of a three-layered architecture. Future enhancements would include more advanced features, refinements, and a more comprehensive external data layer.
+## Screenshot
+### Screenshots (click to enlarge)
+| **Home-1** | **Home-2** | **Fleet** |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+| <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/wwwroot/images/screenshots/Screenshot0.png" width="330" height="240"/> | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/wwwroot/images/screenshots/Screenshot1.png" width="330" height="240"/>  | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/wwwroot/images/screenshots/Screenshot2.png" width="330" height="240"/>  | 
 
 ## Architecture
-The application follows a basic three-layered architecture:
+The application embodies a three-layered architecture:
 
-- **Presentation Layer**: Provides an interface for adding vehicles and customers, viewing current bookings, and renting or returning vehicles.
-- **Business Logic Layer**: Responsible for tasks like adding a new vehicle, validating customer data, and processing rentals and returns.
-- **Data Access Layer**: Seed data is used a placeholder for an actual database or other storage solution.
+- **Presentation Layer**: The user interface, thoughtfully designed with HTML, CSS, Bootstrap 5.3, and Blazor WebAssembly, facilitates seamless interactions for adding vehicles and customers, viewing current bookings, and managing vehicle rentals.
+- **Business Logic Layer**: Addresses tasks such as adding a new vehicle, validating customer data, and overseeing the processes of vehicle rentals and returns.
+- **Data Access Layer**: Currently, the application employs SeedData as a placeholder, anticipating future integration with a more comprehensive storage solution.
 
 ## Features
-- **List Management**: View current bookings, available vehicles, and registered customers.
-- **Add Vehicles and Customers**: Simple forms allow users to add cars, motorcycles, or new customers.
-- **Rent & Return**: Basic functionality to simulate renting and returning vehicles.
-- **Simple Validation**: Checks on customer details to ensure they match expected formats.
-- **Toggle Instructions**: Helpful guide for users unfamiliar with the system.
+- **List Management**: Enables users to view current bookings, available vehicles, and registered customers.
+- **Add Vehicles and Customers**: Intuitive forms support users in adding cars, motorcycles, and customers.
+- **Rent & Return**: Streamlines the process for renting and returning vehicles.
+- **Simple Validation**: Implements checks on customer details to ensure alignment with expected formats.
+- **Toggle Instructions**: An inclusive guide caters to users who may be new to the system.
 
 ## How to Use
-1. **Start the App**: Initial load will show available vehicles, current bookings, and customers.
-2. **Adding**: Use the provided forms to input a new car, motorcycle, or customer details.
-3. **Renting**: Choose a vehicle and a customer to simulate a rental transaction.
-4. **Returning**: Once a vehicle is rented, there's an option to mark it as returned.
+1. **Start the App**: The initial view displays available vehicles, current bookings, and registered customers.
+2. **Adding**: Users can populate the provided forms with details of a new car, motorcycle, or customer.
+3. **Renting**: The application allows users to select a vehicle and a customer to initiate a rental transaction.
+4. **Returning**: Post rental, the system offers an option to register the vehicle as returned.
+
+### Note:
+The application presently utilizes SeedData as a data placeholder, with plans for future enhancement to encompass a broader data storage solution.
