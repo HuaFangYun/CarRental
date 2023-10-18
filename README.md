@@ -4,13 +4,9 @@ This project serves as a practical illustration of a three-layered architecture,
 
 ## Preview
 ### Screenshots (click to enlarge)
-| **Home 1** | **Home 2** | **Fleet** |
+| **Main** | **Fleet** | **Booking Engine** |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-| <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot0.png" width="330" height="200"/> | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot1.png" width="330" height="200"/>  | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot2.png" width="330" height="200"/> |
-
-| **Booking Engine 1** | **Booking Engine 2** | **Contact** |
-|:-------------------------:|:-------------------------:|:-------------------------:|
-| <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot3.png" width="330" height="200"/> | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot4.png" width="330" height="200"/>  | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot5.png" width="330" height="200"/>  |
+| <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot0.png" width="300" height="180"/> | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot1.png" width="300" height="180"/> | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot2.png" width="300" height="180"/> |
 
 ## Architecture
 The application embodies a three-layered architecture:
