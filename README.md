@@ -6,7 +6,7 @@ This project serves as a practical illustration of a three-layered architecture,
 ### Screenshots (click to enlarge)
 | **Main** | **Fleet** | **Booking Engine** |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-| <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot0.png" width="300" height="180"/> | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot1.png" width="300" height="180"/> | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot2.png" width="300" height="180"/> |
+| <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot0.png" width="300" height="160"/> | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot1.png" width="300" height="160"/> | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot2.png" width="300" height="160"/> |
 
 ## Architecture
 The application embodies a three-layered architecture:
