@@ -2,8 +2,7 @@
 
 This project serves as a practical illustration of a three-layered architecture, built in Blazor WebAssembly using HTML, CSS, Bootstrap and C#. 
 
-## Preview
-### Screenshots (click to enlarge)
+## Preview (click to enlarge)
 | **Main** | **Fleet** | **Booking Engine** |
 |:-------------------------:|:-------------------------:|:-------------------------:|
 | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot0.png" width="300" height="160"/> | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot1.png" width="300" height="160"/> | <a target="_blank" rel="noreferrer"> <img src="https://github.com/G-C-Code/car-rental/blob/main/CarRental/wwwroot/images/Screenshots/Screenshot2.png" width="300" height="160"/> |
