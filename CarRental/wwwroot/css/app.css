@@ -111,6 +111,13 @@ h1:focus {
     text-transform: uppercase;
 }
 
+.btn-sm-custom {
+    font-size: 1rem;
+    line-height: 1rem;
+    text-transform: uppercase;
+    background-color: #6a5447;
+}
+
 .drop-down {
     font-size: 0.9rem;
     border: 1px solid #767676;
