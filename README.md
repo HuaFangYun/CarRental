@@ -1,4 +1,4 @@
-# Vehicle Rental Website
+# Car Rental
 
 This project serves as a practical illustration of a three-layered architecture, built in Blazor WebAssembly using HTML, CSS, Bootstrap and C#. 
 
