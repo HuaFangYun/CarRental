@@ -1,6 +1,9 @@
 ﻿using CarRentalCommon.Classes;
 using CarRentalCommon.Enums;
 using CarRentalCommon.Interfaces;
+using Newtonsoft.Json;
+using System.Reflection;
+using System.IO;
 
 namespace CarRentalData.Classes
 {
@@ -21,28 +24,84 @@ namespace CarRentalData.Classes
             GetOrCreateList<T>().Add(entity);
         }
 
+
         void SeedData()
         {
-            var customers = GetOrCreateList<IPerson>();
-            var vehicles = GetOrCreateList<IVehicle>();
+            // Load JSON from the embedded resource
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "CarRentalData.SeedData.seedData.json";
 
-            Add<IPerson>(new Customer("891010-0168", "Charlie", "Sharp"));
-            Add<IPerson>(new Customer("690830-8572", "Visilia", "Studiya"));
-            Add<IPerson>(new Customer("821003-6612", "Blaine", "Bootstrap"));
+            string jsonData;
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                jsonData = reader.ReadToEnd();
+            }
 
-            Add<IVehicle>(new Car("AND243", "Porche", 5500, 1f, VehicleType.Touring, 2));
-            Add<IVehicle>(new Car("AWL853", "Ford", 6000, 1f, VehicleType.Touring, 0));
-            Add<IVehicle>(new Car("PQZ552", "Duesenberg", 1000, 1.5f, VehicleType.Luxury, 2));
-            Add<IVehicle>(new Car("VUQ516", "Buick", 5600, 1f, VehicleType.Convertible, 2));
-            Add<IVehicle>(new Car("IEN716", "Chevrolet", 2950, 1f, VehicleType.Hardtop, 2));
-            Add<IVehicle>(new Car("ENN712", "Chevrolet", 9700, 1f, VehicleType.Convertible, 2));
-            Add<IVehicle>(new Motorcycle("MBU852", "Yamaha", 8780, 0.5f, VehicleType.Standard, 1));
-            Add<IVehicle>(new Motorcycle("WCK661", "Benelli", 7370, 0.5f, VehicleType.Standard, 2));
+            // Deserialize the data
+            var seed = JsonConvert.DeserializeObject<SeedDataStructure>(jsonData);
 
-            Add<IBooking>(new Booking(vehicles[5], customers[0]));
-            Add<IBooking>(new Booking(vehicles[6], customers[1]));
-            Add<IBooking>(new Booking(vehicles[7], customers[2]));
+            // Populate data from deserialized JSON
+            foreach (var customer in seed.customers)
+            {
+                Add<IPerson>(new Customer(customer.ssn, customer.firstName, customer.lastName));
+            }
+
+            foreach (var vehicle in seed.vehicles)
+            {
+                if (Enum.TryParse(vehicle.vehicleType, out VehicleType vehicleType))
+                {
+                    if (vehicleType == VehicleType.Touring || vehicleType == VehicleType.Luxury || vehicleType == VehicleType.Convertible || vehicleType == VehicleType.Hardtop || vehicleType == VehicleType.Other)
+                    {
+                        Add<IVehicle>(new Car(vehicle.regNo, vehicle.make, vehicle.odometer, vehicle.costKm, vehicleType, vehicle.doors));
+                    }
+                    else if (vehicleType == VehicleType.Standard || vehicleType == VehicleType.TrailBike || vehicleType == VehicleType.Other)
+                    {
+                        Add<IVehicle>(new Motorcycle(vehicle.regNo, vehicle.make, vehicle.odometer, vehicle.costKm, vehicleType, vehicle.seats));
+                    }
+                }
+            }
+
+            foreach (var booking in seed.bookings)
+            {
+                var bookedVehicle = Single<IVehicle>(v => v.RegNo == booking.vehicleRegNo);
+                var bookingCustomer = Single<IPerson>(c => c.SSN == booking.customerSSN);
+                Add<IBooking>(new Booking(bookedVehicle, bookingCustomer));
+            }
         }
+
+        // This structure represents your seedData.json
+        private class SeedDataStructure
+        {
+            public List<CustomerSeed> customers { get; set; }
+            public List<VehicleSeed> vehicles { get; set; }
+            public List<BookingSeed> bookings { get; set; }
+        }
+
+        private class CustomerSeed
+        {
+            public string ssn { get; set; }
+            public string firstName { get; set; }
+            public string lastName { get; set; }
+        }
+
+        private class VehicleSeed
+        {
+            public string regNo { get; set; }
+            public string make { get; set; }
+            public int odometer { get; set; }
+            public float costKm { get; set; }
+            public string vehicleType { get; set; }
+            public int? doors { get; set; }
+            public int? seats { get; set; }
+        }
+
+        private class BookingSeed
+        {
+            public string? vehicleRegNo { get; set; }
+            public string? customerSSN { get; set; }
+        }
+
 
         private void CheckForDuplicates<T>(T entity) where T : class
         {
