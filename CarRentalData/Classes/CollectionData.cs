@@ -24,7 +24,6 @@ namespace CarRentalData.Classes
             GetOrCreateList<T>().Add(entity);
         }
 
-
         void SeedData()
         {
             // Load JSON from the embedded resource

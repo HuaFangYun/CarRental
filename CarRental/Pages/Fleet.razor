@@ -1,150 +1,564 @@
 ﻿@page "/fleet"
+@using CarRentalLogic.Classes;
+@using CarRentalCommon.Classes
+@using CarRentalCommon.Interfaces;
+@using CarRentalCommon.Enums;
+@using System.Linq;
+@using System.Text.RegularExpressions;
+@inject Services services
 
-<PageTitle>Colletion</PageTitle>
-
-<div class="container-fluid p-5">
-    <div class="row">
-        <div class="col">
-            <h2 class="fs-1 text-uppercase">Browse our collection</h2>
-            <h4 class="pt-5">See anything you like?</h4>
-            <h6>Use the contact form below and specify what model you are intersted in renting.</h6>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid p-5">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
-        <div class="col">
-            <div class="card h-100 border-dark">
-                <img src="images/car0.png" class="card-img-top border-bottom border-dark" alt="Porche 911 T">
-                <div class="card-body">
-                    <h6 class="card-title">Porche 911 S</h6>
-                    <p class="card-text">Introduced in September 1964 by Porsche AG of Stuttgart, this rear-engined sports car boasts a rear-mounted flat-six engine and a torsion bar suspension.</p>
-                </div>
-                <div class="card-footer d-flex justify-content-between align-items-center">
-                    <small class="small-card-text">Prod. in 1989</small><small class="small-card-text"># Reg No. AND243</small>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100 border-dark">
-                <img src="images/car1.png" class="card-img-top border-bottom border-dark" alt="Ford Model T Touring">
-                <div class="card-body">
-                    <h6 class="card-title">Ford Model T Touring</h6>
-                    <p class="card-text">The Ford Model T, manufactured by the Ford Motor Company from 1908 to 1927, is widely recognized as the pioneering mass-affordable automobile.</p>
-                </div>
-                <div class="card-footer d-flex justify-content-between align-items-center">
-                    <small class="small-card-text">Prod. in 1925</small><small class="small-card-text"># Reg No. AWL853</small>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100 border-dark">
-                <img src="images/car2.png" class="card-img-top border-bottom border-dark" alt="Duesenberg Model J">
-                <div class="card-body">
-                    <h6 class="card-title">Duesenberg Model J</h6>
-                    <p class="card-text">Launched in 1928 and created to challenge luxury car titans. Available with a supercharger after 1932 and was sold until Duesenberg Motors Cp's 1937 bankruptcy.</p>
-                </div>
-                <div class="card-footer d-flex justify-content-between align-items-center">
-                    <small class="small-card-text">Prod. in 1933</small><small class="small-card-text"># Reg No. PQZ552</small>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100 border-dark">
-                <img src="images/car3.png" class="card-img-top border-bottom border-dark" alt="Buick Series 90 Convertible">
-                <div class="card-body">
-                    <h6 class="card-title">Buick Series 90 Convertible</h6>
-                    <p class="card-text">Built on Buick's largest chassis and powered by Buick's largest straight-eight, convertible coupes were the only 1931 open-bodied Buicks that received Fisher bodies.</p>
-                </div>
-                <div class="card-footer d-flex justify-content-between align-items-center">
-                    <small class="small-card-text">Prod. in 1931</small><small class="small-card-text"># Reg No. VUQ516</small>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100 border-dark">
-                <img src="images/car4.png" class="card-img-top border-bottom border-dark" alt="Chevrolet Bel Air">
-                <div class="card-body">
-                    <h6 class="card-title">Chevrolet Bel Air</h6>
-                    <p class="card-text">Produced from 1950 to 1981 as a two-door hardtop designation and evolved into a premium trim level in 1953. U.S. production ended in 1975, continuing in Canada until 1981.</p>
-                </div>
-                <div class="card-footer d-flex justify-content-between align-items-center">
-                    <small class="small-card-text">Prod. in 1954</small><small class="small-card-text"># Reg No. IEN716</small>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100 border-dark">
-                <img src="images/car5.png" class="card-img-top border-bottom border-dark" alt="Chevrolet Impala">
-                <div class="card-body">
-                    <h6 class="card-title">Chevrolet Impala</h6>
-                    <p class="card-text">Produced from 1958 to 1985, and from 2000 to 2020. Known as Chevrolet's flagship full-size car. It enjoyed significant popularity, ranking among the top-selling U.S. automobiles.</p>
-                </div>
-                <div class="card-footer d-flex justify-content-between align-items-center">
-                    <small class="small-card-text">Prod. in 1970</small><small class="small-card-text"># Reg No. ENN712</small>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100 border-dark">
-                <img src="images/mc0.png" class="card-img-top border-bottom border-dark" alt="Porsche 930">
-                <div class="card-body">
-                    <h6 class="card-title">Lossa Yamaha SR 500</h6>
-                    <p class="card-text">Developed to be "easy to use," its design was revised for easier starting after an ankle injury of Yamaha's Technical Director, leading to a decompression lever system.</p>
-                </div>
-                <div class="card-footer d-flex justify-content-between align-items-center">
-                    <small class="small-card-text">Prod. in 1978</small><small class="small-card-text"># Reg No. MBU852</small>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100 border-dark">
-                <img src="images/mc1.png" class="card-img-top border-bottom border-dark" alt="1969 Benelli 350cc Grand Prix Racing Motorcycle">
-                <div class="card-body">
-                    <h6 class="card-title">Benelli 350cc</h6>
-                    <p class="card-text">350cc was sold through Montgomery Ward. The advent of competition led to Benelli products use of single cylinder pushrod design.</p>
-                </div>
-                <div class="card-footer d-flex justify-content-between align-items-center">
-                    <small class="small-card-text">Prod. in 1969</small><small class="small-card-text"># Reg No. WCK661</small>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<PageTitle>Fleet</PageTitle>
+<Alert Message="@errorMessage" OnClose="CloseAlert" />
 
 <div class="container-fluid p-5">
     <div class="row">
         <div class="col">
-            <h4 class="pt-5 text">Fill in the form below</h4>
-            <h6>Please provide the registration number of the vehicle you are interested in, along with your contact information, and we will promptly respond to your inquiry.</h6>
+            <h2 class="fs-1 text-uppercase">Fleet</h2>
+            <h4 class="pt-5">Welcome to Mr C's Classic Cars Collection</h4>
+            <ul>
+                <li>Add custom cars and motorcycles.</li>
+                <li>Register new customers with ease.</li>
+                <li>Enter driven kilometers and press "return" to calculate the total cost and to return the vehicle to the list of available vehicles.</li>
+                <li>Odometer and records are promptly updated after successful returns.</li>
+            </ul>
+            <p class="fst-italic">Note: Our system automatically blocks any duplicate entries for vehicles [reg. no.] and customers [social sec. no.]</p>
+            <button @onclick="ToggleInstructions" class="btn btn-sm btn-secondary">
+                @(showInstructions ? "Hide Instructions" : "Instructions")
+            </button>
+            @if (showInstructions)
+            {
+                <div class="mt-3 p-3 border border-dark rounded">
+                    <h6>Adding a New Vehicle:</h6>
+                    <ul>
+                        <li>Fill in the required details in the respective fields.</li>
+                        <li>Select the "Vehicle Type" from the dropdown.</li>
+                        <li>Once all details are filled in, click the "Add" button to add a new vehicle. See error message if unsuccessful.</li>
+                    </ul>
+                    <h6>Adding a New Customer:</h6>
+                    <ul>
+                        <li>Fill in the required details in the respective fields.</li>
+                        <li>Once all details are filled in, click the "Add" button to add a new customer. See error message if unsuccessful.</li>
+                    </ul>
+                    <h6>Booking a Vehicle:</h6>
+                    <ul>
+                        <li>In the "Vehicles" section, locate the available vehicle you wish to rent.</li>
+                        <li>Select your name from the provided dropdown list if you are a registered customer. Go to the "Add Customer" section if you are not yet registered.</li>
+                        <li>After selecting, click the "Rent" button to finalize the booking for the chosen vehicle.</li>
+                    </ul>
+                    <h6>Setting Booking Dates and Closing a Booking:</h6>
+                    <ul>
+                        <li>Go to the "Bookings" section and locate your active booking.</li>
+                        <li>Input the "Driven (km)" distance, "Rented (date)" and the expected "Returned (date)" accordingly.</li>
+                        <li>To finalize a booking, click on the "Return" button next to your booking. This will close it and return the total cost associated with the rental.</li>
+                    </ul>
+                </div>
+            }
         </div>
     </div>
 </div>
 
-<div class="container-fluid p-5">
+<div class="container-fluid p-5 pt-3">
+    <div class="row">
+        <h5>A Glimpse into Our Vintage Collection</h5>
+
+        <div class="col-4">
+            <div id="carouselExampleDark1" class="carousel carousel-dark slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                </div>
+                <div class="carousel-inner rounded border border-dark">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="images/car0.png" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6><span class="text-muted">AND243</span> - Porche 911 S - <span class="text-muted">1989</span></h6>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="images/car1.png" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6><span class="text-muted">AWL853</span> - Ford Model T Touring - <span class="text-muted">1925</span></h6>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/car2.png" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6><span class="text-muted">PQZ552</span> - Duesenberg Model J - <span class="text-muted">1933</span></h6>
+                        </div>
+                    </div>
+                     <div class="carousel-item">
+                        <img src="images/car3.png" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6><span class="text-muted">VUQ516</span> - Buick S90 Convertible - <span class="text-muted">1931</span></h6>
+                        </div>
+                    </div>
+                     <div class="carousel-item">
+                        <img src="images/car4.png" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6><span class="text-muted">IEN716</span> - Chevrolet Bel Air - <span class="text-muted">1954</span></h6>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/car5.png" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6><span class="text-muted">ENN712</span> - Chevrolet Impala - <span class="text-muted">1970</span></h6>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark1" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark1" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div id="carouselExampleDark2" class="carousel carousel-dark slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                </div>
+                <div class="carousel-inner rounded border border-dark">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="images/mc0.png" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6><span class="text-muted">MBU852</span> - L. Yamaha SR500 - <span class="text-muted">1978</span></h6>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/mc1.png" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h6><span class="text-muted">WCK661</span> - Benelli 350cc - <span class="text-muted">1969</span></h6>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card border border-dark">
+                <img src="images/contact-card-bg.png" class="card-img" alt="Vintage Car Fleet">
+                <div class="card-img-overlay d-flex flex-column">
+                    <div class="px-3 scrollbar">
+                        <h2 class="card-title text-uppercase fw-bold">Still can't decide?</h2>
+                        <p class="card-text">Contact us, and we will help you out.</p>
+                    </div>
+                    <div class="card-footer d-flex flex-column justify-content-end mt-auto border-0 m-0 p-0">
+                        <NavLink class="btn btn-sm btn-dark w-100" href="fleet">
+                            Explore
+                        </NavLink>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid p-5 pt-3">
     <div class="row">
         <div class="col">
-            <form>
-                <div>
-                    <label for="regNumber" class="form-label">Registration Number:</label>
-                    <input type="text" id="regNumber" name="regNumber" class="form-control placeholder-form-text" placeholder="ABC123">
-                </div>
-                <div class="mt-3">
-                    <label for="phoneNumber" class="form-label">Phone Number:</label>
-                    <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control placeholder-form-text" placeholder="+0">
-                </div>
-                <div class="mt-3">
-                    <label for="email" class="form-label">E-mail:</label>
-                    <input type="email" id="email" name="email" class="form-control placeholder-form-text" placeholder="email@email.com" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We will never share your email with anyone else.</div>
-                </div>
-                <div class="my-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="termsCheckbox" name="terms">
-                    <label class="form-check-label" for="termsCheckbox">I agree to the <a href="placeholder">terms</a> of service.</label>
-                </div>
-                <button type="submit" class="btn btn-secondary">Submit</button>
-            </form>
+            <h3>Vehicles</h3>
+            <table class="table table-borderless text-nowrap">
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">Reg. No.</th>
+                        <th style="width: 10%;">Vehicle Type</th>
+                        <th style="width: 10%;">Make</th>
+                        <th style="width: 10%;">Odometer</th>
+                        <th style="width: 10%;">Features</th>
+                        <th style="width: 10%;">Cost/km</th>
+                        <th style="width: 10%;">Cost/Day</th>
+                        <th style="width: 3%;"></th>
+                        <th style="width: 27%;">Customer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (IVehicle v in vehicles)
+                    {
+                        <tr>
+                            <td>@v.RegNo</td>
+                            <td>@v.VehicleType</td>
+                            <td>@v.Make</td>
+                            <td>@v.Odometer km</td>
+                            <td>
+                                @if (v is ICar car)
+                                {
+                                    <span class="features">Doors: @car.Doors</span>
+                                }
+                                else if (v is IMotorcycle mc)
+                                {
+                                    <span class="features">Seats: @mc.Seats</span>
+                                }
+                            </td>
+                            <td>@v.CostKm €</td>
+                            <td>@v.CostDay €</td>
+                            <td class="@(services.BookingStatus(v.RegNo) == VehicleStatus.Available ? "text-success bi-circle-fill" : "text-danger bi-circle-fill")"></td>
+                            <td>
+                                @if (services.BookingStatus(v.RegNo) == VehicleStatus.Available)
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <select @bind="selectedCustomer" disabled="@isProcessing" class="drop-down">
+                                            <option value="@selectedCustomer"></option>
+                                            @foreach (var customer in customers)
+                                            {
+                                                <option value="@customer.SSN">@($"{customer.FirstName} {customer.LastName}")</option>
+                                            }
+                                        </select>
+                                        <button @onclick="() => RentVehicleAsync(v)" class="ms-3 btn btn-sm btn-secondary" disabled="@(isProcessing || string.IsNullOrEmpty(selectedCustomer))">Rent</button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    var bookedCustomer = bookings.FirstOrDefault(b => b.Vehicle.RegNo == v.RegNo && b.Status == VehicleStatus.Booked)?.Customer;
+                                    if (bookedCustomer != null)
+                                    {
+                                        @($"{bookedCustomer.FirstName} {bookedCustomer.LastName}")
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td class="pt-3 fw-bold text-nowrap">Add Vehicle:</td>
+                        <td class="pt-3">
+                            <select class="drop-down w-100" @bind="typeOfVehicle" disabled="@isProcessing">
+                                <option value=""></option>
+                                <option value="Car">Car</option>
+                                <option value="Motorcycle">Motorcycle</option>
+                            </select>
+                        </td>
+                        <td class="pt-3" colspan="7">
+                            @if (isProcessing)
+                            {
+                                <span class="badge bg-info text-uppercase w-75">Processing...</span>
+                            }
+                        </td>
+                    </tr>
+                    @if (typeOfVehicle == "Car")
+                    {
+                        <tr>
+                            <td><input @bind="newCar.RegNo" class="w-100" disabled="@isProcessing" placeholder="Reg. No." /></td>
+                            <td>
+                                <select @bind="newCar.VehicleType" class="drop-down w-100" disabled="@isProcessing">
+                                    <option value=""></option>
+                                    @foreach (var type in Enum.GetNames(typeof(VehicleType)))
+                                    {
+                                        if (type != nameof(VehicleType.Standard) && (type != nameof(VehicleType.TrailBike)))
+                                        {
+                                            <option value="@type">@type</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                            <td><input @bind="newCar.Make" class="w-100" disabled="@isProcessing" placeholder="Make" /></td>
+                            <td><input @bind="newCar.Odometer" class="w-100" disabled="@isProcessing" placeholder="Odometer" /></td>
+                            <td> @if (newCar is ICar car)
+                                {
+                                    <input @bind="car.Doors" class="w-100" disabled="@isProcessing" placeholder="No. of doors" />
+                                } </td>
+                            <td><input @bind="newCar.CostKm" class="w-100" disabled="@isProcessing" placeholder="Cost/km" /></td>
+                            <td><input @bind="newCar.CostDay" class="w-100 text-muted" readonly disabled="@isProcessing" placeholder="Cost/Day" /></td>
+                            <td><button @onclick="AddNewVehicle" class="btn btn-sm btn-secondary" disabled="@isProcessing">Add</button></td>
+                        </tr>
+                    }
+                    else if (typeOfVehicle == "Motorcycle")
+                    {
+                        <tr>
+                            <td><input @bind="newMC.RegNo" class="w-100" disabled="@isProcessing" placeholder="Reg. No." /></td>
+                            <td>
+                                <select @bind="newMC.VehicleType" class="drop-down w-100" disabled="@isProcessing">
+                                    <option value=""></option>
+                                    @foreach (var type in Enum.GetNames(typeof(VehicleType)))
+                                    {
+                                        if (type == nameof(VehicleType.Standard) || type == nameof(VehicleType.TrailBike) || type == nameof(VehicleType.Other))
+                                        {
+                                            <option value="@type">@type</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                            <td><input @bind="newMC.Make" class="w-100" disabled="@isProcessing" placeholder="Make" /></td>
+                            <td><input @bind="newMC.Odometer" class="w-100" disabled="@isProcessing" placeholder="Odometer" /></td>
+                            <td> @if (newMC is IMotorcycle mc)
+                                {
+                                    <input @bind="mc.Seats" class="w-100" disabled="@isProcessing" placeholder="No. of seats" />
+                                } </td>
+                            <td><input @bind="newMC.CostKm" class="w-100" disabled="@isProcessing" placeholder="Cost/km" /></td>
+                            <td><input @bind="newMC.CostDay" class="w-100 text-muted" readonly disabled="@isProcessing" placeholder="Cost/Day" /></td>
+                            <td><button @onclick="AddNewVehicle" class="btn btn-sm btn-secondary" disabled="@isProcessing">Add</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
+<div class="container-fluid p-5 pt-3">
+    <div class="row">
+        <div class="col">
+            <h3>Bookings</h3>
+            <table class="table table-borderless text-nowrap">
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">Reg. No.</th>
+                        <th style="width: 10%;">Customer</th>
+                        <th style="width: 10%;">Odometer</th>
+                        <th style="width: 10%;">Driven (km)</th>
+                        <th style="width: 10%;">Rented (date)</th>
+                        <th style="width: 10%;">Returned (date)</th>
+                        <th style="width: 5%;">Total</th>
+                        <th style="width: 35%;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (IBooking b in bookings)
+                    {
+                        <tr>
+                            <td>@b.Vehicle.RegNo</td>
+                            <td>@b.Customer.FirstName @b.Customer.LastName</td>
+                            <td>@b.Vehicle.Odometer km</td>
+                            <td><input @bind-value="b.KmDriven" @bind-value:event="oninput" placeholder="Enter value upon return" disabled="@(b.Status == VehicleStatus.Available)" /></td>
+                            <td><input type="date" @bind="b.RentDate" class="w-100" disabled="@(b.Status == VehicleStatus.Available)" /></td>
+                            <td><input type="date" @bind="b.ReturnDate" placeholder="yyyy-MM-dd" class="w-100" disabled="@(b.Status == VehicleStatus.Available)" /></td>
+                            <td>@services.TotalCost(b) €</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    @if (b.Status == VehicleStatus.Available)
+                                    {
+                                        <span class="badge bg-success fs-6 text-uppercase">Returned</span>
+                                    }
+                                    else if (b.Status == VehicleStatus.Booked)
+                                    {
+                                        <span class="badge bg-warning fs-6 text-uppercase">On-going</span>
+                                        <button @onclick="() => ReturnVehicle(b)" class="ms-3 btn btn-sm btn-secondary">Return</button>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-5 pt-3">
+    <div class="row">
+        <div class="col-6">
+            <h3>Customers</h3>
+            <table class="table table-borderless text-nowrap">
+                <thead>
+                    <tr>
+                        <th>Social Security No.</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (IPerson c in customers)
+                    {
+                        <tr>
+                            <td>@c.SSN</td>
+                            <td>@c.FirstName</td>
+                            <td>@c.LastName</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td class="pt-3 fw-bold text-nowrap">Add Customer</td>
+                    </tr>
+                    <tr>
+                        <td><input @bind="newCustomer.SSN" class="w-100" placeholder="Soc. Security No." /></td>
+                        <td><input @bind="newCustomer.FirstName" class="w-100" placeholder="First Name" /></td>
+                        <td><input @bind="newCustomer.LastName" class="w-100" placeholder="Last Name" /></td>
+                        <td><button @onclick="AddNewCustomer" class="btn btn-sm btn-secondary">Add</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string errorMessage = string.Empty;
+    private bool showInstructions = false;
+    private bool isProcessing = false;
+    private List<IBooking> bookings = new();
+    private List<IPerson> customers = new();
+    private List<IVehicle> vehicles = new();
+    private IPerson newCustomer = new Customer();
+    private IVehicle newCar = new Car();
+    private IVehicle newMC = new Motorcycle();
+    private string typeOfVehicle = string.Empty;
+    private string selectedCustomer = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        bookings = services.Get<IBooking>().ToList();
+        customers = services.Get<IPerson>().ToList();
+        vehicles = services.Get<IVehicle>().ToList();
+    }
+
+    private void ToggleInstructions() => showInstructions = !showInstructions;
+
+    private void ErrorMessage(string info) => errorMessage = $"{info}";
+
+    private void CloseAlert() => errorMessage = string.Empty;
+
+    private void AddNewVehicle()
+    {
+        try
+        {
+            if (typeOfVehicle == "Car" && !Regex.IsMatch(newCar.RegNo, @"^[A-Z]{3}\d{3}$"))
+            {
+                ErrorMessage("[REG. NO.] - Accepted format: 'ABC123'");
+                return;
+            }
+            if (typeOfVehicle == "Car" && string.IsNullOrEmpty(newCar.Make))
+            {
+                ErrorMessage("[MAKE] - Missing input");
+                return;
+            }
+            if (typeOfVehicle == "Car" && (newCar.Odometer < 0 || newCar.Odometer == null))
+            {
+                ErrorMessage("[ODOMETER] - Accepted format: Integer");
+                return;
+            }
+            if (typeOfVehicle == "Car" && newCar is ICar car && (car.Doors < 0 || car.Doors == null))
+            {
+                ErrorMessage("[NO. OF DOORS] - Accepted format: Integer");
+                return;
+            }
+            if (typeOfVehicle == "Car" && (newCar.CostKm < 0 || newCar.CostKm == null))
+            {
+                ErrorMessage("[COST/KM] - Accepted format: Decimal");
+                return;
+            }
+            if (typeOfVehicle == "Motorcycle" && !Regex.IsMatch(newMC.RegNo, @"^[A-Z]{3}\d{3}$"))
+            {
+                ErrorMessage("[REG. NO.] - Accepted format: 'ABC123'");
+                return;
+            }
+            if (typeOfVehicle == "Motorcycle" && string.IsNullOrEmpty(newMC.Make))
+            {
+                ErrorMessage("[MAKE] - Missing input");
+                return;
+            }
+            if (typeOfVehicle == "Motorcycle" && (newMC.Odometer < 0 || newMC.Odometer == null))
+            {
+                ErrorMessage("[ODOMETER] - Accepted format: Integer");
+                return;
+            }
+            if (typeOfVehicle == "Motorcycle" && newMC is IMotorcycle mc && (mc.Seats < 0 || mc.Seats == null))
+            {
+                ErrorMessage("[NO. OF SEATS] - Accepted format: Integer");
+                return;
+            }
+            if (typeOfVehicle == "Motorcycle" && (newMC.CostKm < 0 || newMC.CostKm == null))
+            {
+                ErrorMessage("[COST/KM] - Accepted format: Decimal");
+                return;
+            }
+
+            if (typeOfVehicle == "Car")
+            {
+                services.Add(newCar);
+                newCar = new Car();
+            }
+            else if (typeOfVehicle == "Motorcycle")
+            {
+                services.Add(newMC);
+                newMC = new Motorcycle();
+            }
+
+            vehicles = services.Get<IVehicle>().ToList();
+            errorMessage = string.Empty;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+    }
+
+    private void AddNewCustomer()
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(newCustomer.SSN) || !Regex.IsMatch(newCustomer.SSN, @"^\d{6}-\d{4}$"))
+            {
+                ErrorMessage("[SOCIAL SEC. NO.] Accepted format: '012345-6789'");
+                return;
+            }
+            if (string.IsNullOrEmpty(newCustomer.FirstName) || !Regex.IsMatch(newCustomer.FirstName, @"^[a-zA-Z-' ]+$"))
+            {
+                ErrorMessage("[FIRST NAME] - Letters, hyphens, spaces, or apostrophes only");
+                return;
+            }
+            if (string.IsNullOrEmpty(newCustomer.LastName) || !Regex.IsMatch(newCustomer.LastName, @"^[a-zA-Z-' ]+$"))
+            {
+                ErrorMessage("[LAST NAME] - Letters, hyphens, spaces, or apostrophes only");
+                return;
+            }
+
+            services.Add(newCustomer);
+            newCustomer = new Customer();
+
+            customers = services.Get<IPerson>().ToList();
+            errorMessage = string.Empty;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+    }
+
+    private async Task RentVehicleAsync(IVehicle v)
+    {
+        isProcessing = true;
+        try
+        {
+            await Task.Delay(5000);
+            services.RentVehicle(v, selectedCustomer, customers);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            isProcessing = false;
+            bookings = services.Get<IBooking>().ToList();
+            vehicles = services.Get<IVehicle>().ToList();
+            selectedCustomer = string.Empty;
+        }
+    }
+
+    private void ReturnVehicle(IBooking b)
+    {
+        try
+        {
+            services.ReturnVehicle(b);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error: {ex.Message}";
+        }
+    }
+}
