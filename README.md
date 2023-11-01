@@ -1,6 +1,6 @@
 # Car Rental
 
-This project serves as a practical illustration of a three-layered architecture, built in Blazor WebAssembly using HTML, CSS, Bootstrap and C#. 
+This project serves as a practical illustration of a three-layered architecture, built in Blazor WebAssembly using HTML, CSS, Bootstrap, and C#. 
 
 ## Preview (click to enlarge)
 | **Main** | **Booking Engine** | **Fleet** | **Contact** |
@@ -12,9 +12,10 @@ The application embodies a three-layered architecture:
 
 - **Presentation Layer**: The user interface, thoughtfully designed with HTML, CSS, Bootstrap 5.3, and Blazor WebAssembly, facilitates seamless interactions for adding vehicles and customers, viewing current bookings, and managing vehicle rentals.
 - **Business Logic Layer**: Addresses tasks such as adding a new vehicle, validating customer data, and overseeing the processes of vehicle rentals and returns.
-- **Data Access Layer**: Currently, the application employs SeedData as a placeholder, anticipating future integration with a more comprehensive storage solution.
+- **Data Access Layer**: Initially bootstrapped with in-memory collections, the application now harnesses a `.json` file for seeding data, thus simulating a more realistic data storage environment, yet maintaining its lightweight nature. Future versions aim to integrate a more comprehensive storage solution.
 
 ## Features
+- **Data Seeding**: With a transition from in-memory seed data, the application now uses a `.json` file to seed its initial data, making it more extensible and manageable.
 - **List Management**: Enables users to view current bookings, available vehicles, and registered customers.
 - **Add Vehicles and Customers**: Intuitive forms support users in adding cars, motorcycles, and customers.
 - **Rent & Return**: Streamlines the process for renting and returning vehicles.
@@ -28,4 +29,4 @@ The application embodies a three-layered architecture:
 4. **Returning**: Post rental, the system offers an option to register the vehicle as returned.
 
 ### Note:
-The application presently utilizes SeedData as a data placeholder, with plans for future enhancement to encompass a broader data storage solution.
+The application has evolved from using in-memory SeedData to employing a `.json` file as its data placeholder. Future versions have aspirations to integrate with a more robust data storage solution.
