@@ -11,6 +11,7 @@ public interface IVehicle
     float? CostKm { get; set; }
     int CostDay { get; set; }
     string Year { get; set; }
+    string Info { get; set; }
 
     VehicleType VehicleType { get; set; }
     VehicleStatus Status { get; set; }

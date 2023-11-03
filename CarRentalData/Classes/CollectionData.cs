@@ -52,11 +52,11 @@ namespace CarRentalData.Classes
                 {
                     if (vehicleType == VehicleType.Touring || vehicleType == VehicleType.Luxury || vehicleType == VehicleType.Convertible || vehicleType == VehicleType.Hardtop || vehicleType == VehicleType.Other)
                     {
-                        Add<IVehicle>(new Car(vehicle.regNo, vehicle.make, vehicle.odometer, vehicle.costKm, vehicleType, vehicle.doors, vehicle.year));
+                        Add<IVehicle>(new Car(vehicle.regNo, vehicle.make, vehicle.odometer, vehicle.costKm, vehicleType, vehicle.doors, vehicle.year, vehicle.info));
                     }
                     else if (vehicleType == VehicleType.Standard || vehicleType == VehicleType.TrailBike || vehicleType == VehicleType.Other)
                     {
-                        Add<IVehicle>(new Motorcycle(vehicle.regNo, vehicle.make, vehicle.odometer, vehicle.costKm, vehicleType, vehicle.seats, vehicle.year));
+                        Add<IVehicle>(new Motorcycle(vehicle.regNo, vehicle.make, vehicle.odometer, vehicle.costKm, vehicleType, vehicle.seats, vehicle.year, vehicle.info));
                     }
                 }
             }
@@ -94,6 +94,7 @@ namespace CarRentalData.Classes
             public int? doors { get; set; }
             public int? seats { get; set; }
             public string year { get; set; }
+            public string info { get; set; }
 
         }
 

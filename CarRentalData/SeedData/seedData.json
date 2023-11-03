@@ -25,7 +25,8 @@
       "costKm": 1,
       "vehicleType": "Touring",
       "doors": 2,
-      "year": "Prod. in 1989"
+      "year": "Prod. in 1989",
+      "info": "Introduced in September 1964 by Porsche AG of Stuttgart, this rear-engined sports car boasts a rear-mounted flat-six engine and a torsion bar suspension."
     },
     {
       "regNo": "AWL853",
@@ -34,7 +35,8 @@
       "costKm": 1,
       "vehicleType": "Touring",
       "doors": 0,
-      "year": "Prod. in 1925"
+      "year": "Prod. in 1923",
+      "info": "The Ford Model T, manufactured by the Ford Motor Company from 1908 to 1927, is widely recognized as the pioneering mass-affordable automobile."
     },
     {
       "regNo": "PQZ552",
@@ -43,7 +45,8 @@
       "costKm": 1.5,
       "vehicleType": "Luxury",
       "doors": 2,
-      "year": "Prod. in 1933"
+      "year": "Prod. in 1933",
+      "info": "Launched in 1928 and created to challenge luxury car titans. Available with a supercharger after 1932 and was sold until Duesenberg Motors Cp's 1937 bankruptcy."
     },
     {
       "regNo": "VUQ516",
@@ -52,7 +55,8 @@
       "costKm": 1,
       "vehicleType": "Convertible",
       "doors": 2,
-      "year": "Prod. in 1931"
+      "year": "Prod. in 1931",
+      "info": "Built on Buick's largest chassis and powered by Buick's largest straight-eight, convertible coupes were the only 1931 open-bodied Buicks that received Fisher bodies."
     },
     {
       "regNo": "IEN716",
@@ -61,7 +65,8 @@
       "costKm": 1,
       "vehicleType": "Hardtop",
       "doors": 2,
-      "year": "Prod. in 1954"
+      "year": "Prod. in 1954",
+      "info": "Produced from 1950 to 1981 as a two-door hardtop designation and evolved into a premium trim level in 1953. U.S. production ended in 1975, continuing in Canada until 1981."
     },
     {
       "regNo": "ENN712",
@@ -70,7 +75,8 @@
       "costKm": 1,
       "vehicleType": "Convertible",
       "doors": 2,
-      "year": "Prod. in 1970"
+      "year": "Prod. in 1970",
+      "info": "Produced from 1958 to 1985, and from 2000 to 2020. Known as Chevrolet's flagship full-size car. It enjoyed significant popularity, ranking among the top-selling U.S. automobiles."
     },
     {
       "regNo": "MBU852",
@@ -79,7 +85,8 @@
       "costKm": 0.5,
       "vehicleType": "Standard",
       "seats": 1,
-      "year": "Prod. in 1978"
+      "year": "Prod. in 1978",
+      "info": "Developed to be easy to use its design was revised for easier starting after an ankle injury of Yamaha's Technical Director, leading to a decompression lever system."
     },
     {
       "regNo": "WCK661",
@@ -88,7 +95,8 @@
       "costKm": 0.5,
       "vehicleType": "Standard",
       "seats": 2,
-      "year": "Prod. in 1969"
+      "year": "Prod. in 1969",
+      "info": "350cc was sold through Montgomery Ward. The advent of competition led to Benelli products use of single cylinder pushrod design."
     }
   ],
 
