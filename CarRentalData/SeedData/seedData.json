@@ -24,7 +24,8 @@
       "odometer": 5500,
       "costKm": 1,
       "vehicleType": "Touring",
-      "doors": 2
+      "doors": 2,
+      "year": "Prod. in 1989"
     },
     {
       "regNo": "AWL853",
@@ -32,7 +33,8 @@
       "odometer": 6000,
       "costKm": 1,
       "vehicleType": "Touring",
-      "doors": 0
+      "doors": 0,
+      "year": "Prod. in 1925"
     },
     {
       "regNo": "PQZ552",
@@ -40,7 +42,8 @@
       "odometer": 1000,
       "costKm": 1.5,
       "vehicleType": "Luxury",
-      "doors": 2
+      "doors": 2,
+      "year": "Prod. in 1933"
     },
     {
       "regNo": "VUQ516",
@@ -48,7 +51,8 @@
       "odometer": 5600,
       "costKm": 1,
       "vehicleType": "Convertible",
-      "doors": 2
+      "doors": 2,
+      "year": "Prod. in 1931"
     },
     {
       "regNo": "IEN716",
@@ -56,7 +60,8 @@
       "odometer": 2950,
       "costKm": 1,
       "vehicleType": "Hardtop",
-      "doors": 2
+      "doors": 2,
+      "year": "Prod. in 1954"
     },
     {
       "regNo": "ENN712",
@@ -64,7 +69,8 @@
       "odometer": 9700,
       "costKm": 1,
       "vehicleType": "Convertible",
-      "doors": 2
+      "doors": 2,
+      "year": "Prod. in 1970"
     },
     {
       "regNo": "MBU852",
@@ -72,7 +78,8 @@
       "odometer": 8780,
       "costKm": 0.5,
       "vehicleType": "Standard",
-      "seats": 1
+      "seats": 1,
+      "year": "Prod. in 1978"
     },
     {
       "regNo": "WCK661",
@@ -80,7 +87,8 @@
       "odometer": 7370,
       "costKm": 0.5,
       "vehicleType": "Standard",
-      "seats": 2
+      "seats": 2,
+      "year": "Prod. in 1969"
     }
   ],
 

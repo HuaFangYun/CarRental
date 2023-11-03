@@ -22,14 +22,15 @@
 <div class="container-fluid p-5">
     <div class="row">
         <h3 class="text-center"><img src="images/logo-white.png" class="w-25" /></h3>
-        <h5 class="text-center">A Glimpse Into our Collection of Classics</h5>
+        <h3 class="text-center">A Glimpse Into our Collection of Classics</h3>
         <div class="col-3">
-            <h3 class="">Details</h3>
-            <p><strong>Reg. No:</strong> @currentVehicle.RegNo</p>
-            <p><strong>Type:</strong> @currentVehicle.VehicleType</p>
-            <p><strong>Make:</strong> @currentVehicle.Make</p>
-            <p><strong>Odometer:</strong> @currentVehicle.Odometer km</p>
-            <p>
+            <h5 class="fw-bold mt-5">Vehicle Details</h5>
+            <p class="my-1"><strong>Reg. No:</strong> @currentVehicle.RegNo</p>
+            <p class="my-1"><strong>Type:</strong> @currentVehicle.VehicleType</p>
+            <p class="my-1"><strong>Make:</strong> @currentVehicle.Make</p>
+            <h5 class="fw-bold mt-5">Rental Information</h5>
+            <p class="my-1"><strong>Odometer:</strong> @currentVehicle.Odometer km</p>
+            <p class="my-1">
                 @if (currentVehicle is ICar car)
                 {
                     <span><strong>Doors:</strong> @car.Doors</span>
@@ -39,9 +40,9 @@
                     <span><strong>Seats:</strong> @mc.Seats</span>
                 }
             </p>
-            <p><strong>Cost per km:</strong> @currentVehicle.CostKm €</p>
-            <p><strong>Cost per day:</strong> @currentVehicle.CostDay €</p>
-            <p>
+            <p class="my-1"><strong>Cost per km:</strong> @currentVehicle.CostKm €</p>
+            <p class="my-1"><strong>Cost per day:</strong> @currentVehicle.CostDay €</p>
+            <p class="my-1">
                 <strong>Status:</strong>
                 <span class="@((services.BookingStatus(currentVehicle.RegNo) == VehicleStatus.Available) ? "text-success" : "text-danger")">
                     @(services.BookingStatus(currentVehicle.RegNo) == VehicleStatus.Available ? "Available" : "Booked")
@@ -74,16 +75,19 @@
         <div class="col-6 text-center">
             <img src="@($"/images/vehicles/{currentVehicle.RegNo}.png")" alt="Image of @currentVehicle.RegNo" class="img-fluid w-100" />
             <h3 class="fw-bold">@currentVehicle.RegNo</h3>
-            <h6 class="text-muted"> Prod. Year</h6>
-
+            <h6 class="text-muted">@currentVehicle.Year</h6>
         </div>
 
         <!-- Vehicle Model Selection Column -->
         <div class="col-3">
-            <h3 class="ps-2">Select a Model</h3>
+            <h5 class="fw-bold mt-5">Select Model</h5>
             @foreach (var vehicle in vehicles)
             {
-                <button type="button" class="btn btn-outline-dark text-start border-0 d-block w-100 my-2" @onclick="() => SetCurrentVehicle(vehicle)">
+                <button type="button"
+                        class="btn @(vehicle.RegNo == currentVehicle.RegNo ? "btn-dark" : "btn-outline-secondary border-0") d-flex align-items-center  w-100 my-2"
+                @onclick="() => SetCurrentVehicle(vehicle)">
+                    <span class="@((services.BookingStatus(vehicle.RegNo) == VehicleStatus.Available) ? "bi-circle-fill text-success" : "bi-circle-fill text-danger") me-2">
+                    </span>
                     @vehicle.Make
                 </button>
             }

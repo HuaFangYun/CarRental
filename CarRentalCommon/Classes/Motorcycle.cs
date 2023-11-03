@@ -7,8 +7,8 @@ public class Motorcycle : Vehicle, IMotorcycle
 {
     public int? Seats { get; set; }
 
-    public Motorcycle(string regNo = "", string make = "", int? odometer = null, float? costKm = null, VehicleType vehicleType = VehicleType.Standard, int? seats = null)
-        : base(regNo, make, odometer, costKm, vehicleType)
+    public Motorcycle(string regNo = "", string make = "", int? odometer = null, float? costKm = null, VehicleType vehicleType = VehicleType.Standard, int? seats = null, string year = "")
+        : base(regNo, make, odometer, costKm, vehicleType, year)
     {
         Seats = seats;
     }
