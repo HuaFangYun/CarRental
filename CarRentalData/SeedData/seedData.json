@@ -20,7 +20,7 @@
   "vehicles": [
     {
       "regNo": "AND243",
-      "make": "Porche",
+      "make": "Porche 911 S",
       "odometer": 5500,
       "costKm": 1,
       "vehicleType": "Touring",
@@ -28,7 +28,7 @@
     },
     {
       "regNo": "AWL853",
-      "make": "Ford",
+      "make": "Ford Model T Touring",
       "odometer": 6000,
       "costKm": 1,
       "vehicleType": "Touring",
@@ -36,7 +36,7 @@
     },
     {
       "regNo": "PQZ552",
-      "make": "Duesenberg",
+      "make": "Duesenberg Model J",
       "odometer": 1000,
       "costKm": 1.5,
       "vehicleType": "Luxury",
@@ -44,7 +44,7 @@
     },
     {
       "regNo": "VUQ516",
-      "make": "Buick",
+      "make": "Buick Series 90 Convertible",
       "odometer": 5600,
       "costKm": 1,
       "vehicleType": "Convertible",
@@ -52,7 +52,7 @@
     },
     {
       "regNo": "IEN716",
-      "make": "Chevrolet",
+      "make": "Chevrolet Bel Air",
       "odometer": 2950,
       "costKm": 1,
       "vehicleType": "Hardtop",
@@ -60,7 +60,7 @@
     },
     {
       "regNo": "ENN712",
-      "make": "Chevrolet",
+      "make": "Chevrolet Impala",
       "odometer": 9700,
       "costKm": 1,
       "vehicleType": "Convertible",
@@ -68,7 +68,7 @@
     },
     {
       "regNo": "MBU852",
-      "make": "Yamaha",
+      "make": "Lossa Yamaha SR 500",
       "odometer": 8780,
       "costKm": 0.5,
       "vehicleType": "Standard",
@@ -76,7 +76,7 @@
     },
     {
       "regNo": "WCK661",
-      "make": "Benelli",
+      "make": "Benelli 350cc",
       "odometer": 7370,
       "costKm": 0.5,
       "vehicleType": "Standard",

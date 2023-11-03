@@ -10,14 +10,22 @@
 <PageTitle>Fleet</PageTitle>
 <Alert Message="@errorMessage" OnClose="CloseAlert" />
 
-
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col">
+            <h2 class="fs-1 text-uppercase">Fleet</h2>
+            <h4 class="py-5">Welcome to Mr C's Classic Cars Collection</h4>
+        </div>
+    </div>
+</div>
 
 <div class="container-fluid p-5">
     <div class="row">
-        <!-- Vehicle Information Column -->
-        <div class="col-md-4">
-            <h3>@currentVehicle.RegNo Details</h3>
-            <p><strong>Registration Number:</strong> @currentVehicle.RegNo</p>
+        <h3 class="text-center"><img src="images/logo-white.png" class="w-25" /></h3>
+        <h5 class="text-center">A Glimpse Into our Collection of Classics</h5>
+        <div class="col-3">
+            <h3 class="">Details</h3>
+            <p><strong>Reg. No:</strong> @currentVehicle.RegNo</p>
             <p><strong>Type:</strong> @currentVehicle.VehicleType</p>
             <p><strong>Make:</strong> @currentVehicle.Make</p>
             <p><strong>Odometer:</strong> @currentVehicle.Odometer km</p>
@@ -63,396 +71,22 @@
         </div>
 
         <!-- Vehicle Image Column -->
-        <div class="col-md-4">
-            <img src="@($"/images/vehicles/{currentVehicle.RegNo}.png")" alt="Image of @currentVehicle.RegNo" class="img-fluid" />
+        <div class="col-6 text-center">
+            <img src="@($"/images/vehicles/{currentVehicle.RegNo}.png")" alt="Image of @currentVehicle.RegNo" class="img-fluid w-100" />
+            <h3 class="fw-bold">@currentVehicle.RegNo</h3>
+            <h6 class="text-muted"> Prod. Year</h6>
+
         </div>
 
         <!-- Vehicle Model Selection Column -->
-        <div class="col-md-4">
-            <h3>Select a Model</h3>
+        <div class="col-3">
+            <h3 class="ps-2">Select a Model</h3>
             @foreach (var vehicle in vehicles)
             {
-                <button type="button" class="btn btn-outline-primary w-100 mb-2" @onclick="() => SetCurrentVehicle(vehicle)">
-                    @vehicle.RegNo
+                <button type="button" class="btn btn-outline-dark text-start border-0 d-block w-100 my-2" @onclick="() => SetCurrentVehicle(vehicle)">
+                    @vehicle.Make
                 </button>
             }
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container-fluid p-5">
-    <div class="row">
-        <div class="col">
-            <h2 class="fs-1 text-uppercase">Fleet</h2>
-            <h4 class="pt-5">Welcome to Mr C's Classic Cars Collection</h4>
-            <ul>
-                <li>Add custom cars and motorcycles.</li>
-                <li>Register new customers with ease.</li>
-                <li>Enter driven kilometers and press "return" to calculate the total cost and to return the vehicle to the list of available vehicles.</li>
-                <li>Odometer and records are promptly updated after successful returns.</li>
-            </ul>
-            <p class="fst-italic">Note: Our system automatically blocks any duplicate entries for vehicles [reg. no.] and customers [social sec. no.]</p>
-            <button @onclick="ToggleInstructions" class="btn btn-sm btn-secondary">
-                @(showInstructions ? "Hide Instructions" : "Instructions")
-            </button>
-            @if (showInstructions)
-            {
-                <div class="mt-3 p-3 border border-dark rounded">
-                    <h6>Adding a New Vehicle:</h6>
-                    <ul>
-                        <li>Fill in the required details in the respective fields.</li>
-                        <li>Select the "Vehicle Type" from the dropdown.</li>
-                        <li>Once all details are filled in, click the "Add" button to add a new vehicle. See error message if unsuccessful.</li>
-                    </ul>
-                    <h6>Adding a New Customer:</h6>
-                    <ul>
-                        <li>Fill in the required details in the respective fields.</li>
-                        <li>Once all details are filled in, click the "Add" button to add a new customer. See error message if unsuccessful.</li>
-                    </ul>
-                    <h6>Booking a Vehicle:</h6>
-                    <ul>
-                        <li>In the "Vehicles" section, locate the available vehicle you wish to rent.</li>
-                        <li>Select your name from the provided dropdown list if you are a registered customer. Go to the "Add Customer" section if you are not yet registered.</li>
-                        <li>After selecting, click the "Rent" button to finalize the booking for the chosen vehicle.</li>
-                    </ul>
-                    <h6>Setting Booking Dates and Closing a Booking:</h6>
-                    <ul>
-                        <li>Go to the "Bookings" section and locate your active booking.</li>
-                        <li>Input the "Driven (km)" distance, "Rented (date)" and the expected "Returned (date)" accordingly.</li>
-                        <li>To finalize a booking, click on the "Return" button next to your booking. This will close it and return the total cost associated with the rental.</li>
-                    </ul>
-                </div>
-            }
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid p-5 pt-3">
-    <div class="row">
-        <h5>A Glimpse into Our Vintage Collection</h5>
-        <div class="col-10">
-            <div class="row">
-                <div class="col-6">
-
-                </div>
-                <div class="col-6">
-                    <div id="carouselExampleDark1" class="carousel carousel-dark slide">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="5" aria-label="Slide 6"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="6" aria-label="Slide 7"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark1" data-bs-slide-to="7" aria-label="Slide 8"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="10000">
-                                <img src="images/car0.png" class="d-block" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6><span class="text-muted">AND243</span> - Porche 911 S - <span class="text-muted">1989</span></h6>
-                                </div>
-                            </div>
-                            <div class="carousel-item" data-bs-interval="2000">
-                                <img src="images/car1.png" class="d-block" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6><span class="text-muted">AWL853</span> - Ford Model T Touring - <span class="text-muted">1925</span></h6>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="images/car2.png" class="d-block" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6><span class="text-muted">PQZ552</span> - Duesenberg Model J - <span class="text-muted">1933</span></h6>
-                                </div>
-                            </div>
-                             <div class="carousel-item">
-                                <img src="images/car3.png" class="d-block" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6><span class="text-muted">VUQ516</span> - Buick S90 Convertible - <span class="text-muted">1931</span></h6>
-                                </div>
-                            </div>
-                             <div class="carousel-item">
-                                <img src="images/car4.png" class="d-block" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6><span class="text-muted">IEN716</span> - Chevrolet Bel Air - <span class="text-muted">1954</span></h6>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="images/car5.png" class="d-block" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6><span class="text-muted">ENN712</span> - Chevrolet Impala - <span class="text-muted">1970</span></h6>
-                                </div>
-                            </div>
-                            <div class="carousel-item active" data-bs-interval="10000">
-                                <img src="images/mc0.png" class="d-block" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6><span class="text-muted">MBU852</span> - L. Yamaha SR500 - <span class="text-muted">1978</span></h6>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="images/mc1.png" class="d-block" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h6><span class="text-muted">WCK661</span> - Benelli 350cc - <span class="text-muted">1969</span></h6>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark1" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark1" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-2">
-            Buttons
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid p-5 pt-3">
-    <div class="row">
-        <div class="col">
-            <h3>Vehicles</h3>
-            <table class="table table-borderless text-nowrap">
-                <thead>
-                    <tr>
-                        <th style="width: 10%;">Reg. No.</th>
-                        <th style="width: 10%;">Vehicle Type</th>
-                        <th style="width: 10%;">Make</th>
-                        <th style="width: 10%;">Odometer</th>
-                        <th style="width: 10%;">Features</th>
-                        <th style="width: 10%;">Cost/km</th>
-                        <th style="width: 10%;">Cost/Day</th>
-                        <th style="width: 3%;"></th>
-                        <th style="width: 27%;">Customer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (IVehicle v in vehicles)
-                    {
-                        <tr>
-                            <td>@v.RegNo</td>
-                            <td>@v.VehicleType</td>
-                            <td>@v.Make</td>
-                            <td>@v.Odometer km</td>
-                            <td>
-                                @if (v is ICar cars)
-                                {
-                                    <span class="features">Doors: @cars.Doors</span>
-                                }
-                                else if (v is IMotorcycle mc)
-                                {
-                                    <span class="features">Seats: @mc.Seats</span>
-                                }
-                            </td>
-                            <td>@v.CostKm €</td>
-                            <td>@v.CostDay €</td>
-                            <td class="@(services.BookingStatus(v.RegNo) == VehicleStatus.Available ? "text-success bi-circle-fill" : "text-danger bi-circle-fill")"></td>
-                            <td>
-                                @if (services.BookingStatus(v.RegNo) == VehicleStatus.Available)
-                                {
-                                    <div class="d-flex align-items-center">
-                                        <select @bind="selectedCustomer" disabled="@isProcessing" class="drop-down">
-                                            <option value="@selectedCustomer"></option>
-                                            @foreach (var customer in customers)
-                                            {
-                                                <option value="@customer.SSN">@($"{customer.FirstName} {customer.LastName}")</option>
-                                            }
-                                        </select>
-                                        <button @onclick="() => RentVehicleAsync(v)" class="ms-3 btn btn-sm btn-secondary" disabled="@(isProcessing || string.IsNullOrEmpty(selectedCustomer))">Rent</button>
-                                    </div>
-                                }
-                                else
-                                {
-                                    var bookedCustomer = bookings.FirstOrDefault(b => b.Vehicle.RegNo == v.RegNo && b.Status == VehicleStatus.Booked)?.Customer;
-                                    if (bookedCustomer != null)
-                                    {
-                                        @($"{bookedCustomer.FirstName} {bookedCustomer.LastName}")
-                                    }
-                                }
-                            </td>
-                        </tr>
-                    }
-                    <tr>
-                        <td class="pt-3 fw-bold text-nowrap">Add Vehicle:</td>
-                        <td class="pt-3">
-                            <select class="drop-down w-100" @bind="typeOfVehicle" disabled="@isProcessing">
-                                <option value=""></option>
-                                <option value="Car">Car</option>
-                                <option value="Motorcycle">Motorcycle</option>
-                            </select>
-                        </td>
-                        <td class="pt-3" colspan="7">
-                            @if (isProcessing)
-                            {
-                                <span class="badge bg-info text-uppercase w-75">Processing...</span>
-                            }
-                        </td>
-                    </tr>
-                    @if (typeOfVehicle == "Car")
-                    {
-                        <tr>
-                            <td><input @bind="newCar.RegNo" class="w-100" disabled="@isProcessing" placeholder="Reg. No." /></td>
-                            <td>
-                                <select @bind="newCar.VehicleType" class="drop-down w-100" disabled="@isProcessing">
-                                    <option value=""></option>
-                                    @foreach (var type in Enum.GetNames(typeof(VehicleType)))
-                                    {
-                                        if (type != nameof(VehicleType.Standard) && (type != nameof(VehicleType.TrailBike)))
-                                        {
-                                            <option value="@type">@type</option>
-                                        }
-                                    }
-                                </select>
-                            </td>
-                            <td><input @bind="newCar.Make" class="w-100" disabled="@isProcessing" placeholder="Make" /></td>
-                            <td><input @bind="newCar.Odometer" class="w-100" disabled="@isProcessing" placeholder="Odometer" /></td>
-                            <td> @if (newCar is ICar cars)
-                                {
-                                    <input @bind="cars.Doors" class="w-100" disabled="@isProcessing" placeholder="No. of doors" />
-                                } </td>
-                            <td><input @bind="newCar.CostKm" class="w-100" disabled="@isProcessing" placeholder="Cost/km" /></td>
-                            <td><input @bind="newCar.CostDay" class="w-100 text-muted" readonly disabled="@isProcessing" placeholder="Cost/Day" /></td>
-                            <td><button @onclick="AddNewVehicle" class="btn btn-sm btn-secondary" disabled="@isProcessing">Add</button></td>
-                        </tr>
-                    }
-                    else if (typeOfVehicle == "Motorcycle")
-                    {
-                        <tr>
-                            <td><input @bind="newMC.RegNo" class="w-100" disabled="@isProcessing" placeholder="Reg. No." /></td>
-                            <td>
-                                <select @bind="newMC.VehicleType" class="drop-down w-100" disabled="@isProcessing">
-                                    <option value=""></option>
-                                    @foreach (var type in Enum.GetNames(typeof(VehicleType)))
-                                    {
-                                        if (type == nameof(VehicleType.Standard) || type == nameof(VehicleType.TrailBike) || type == nameof(VehicleType.Other))
-                                        {
-                                            <option value="@type">@type</option>
-                                        }
-                                    }
-                                </select>
-                            </td>
-                            <td><input @bind="newMC.Make" class="w-100" disabled="@isProcessing" placeholder="Make" /></td>
-                            <td><input @bind="newMC.Odometer" class="w-100" disabled="@isProcessing" placeholder="Odometer" /></td>
-                            <td> @if (newMC is IMotorcycle mc)
-                                {
-                                    <input @bind="mc.Seats" class="w-100" disabled="@isProcessing" placeholder="No. of seats" />
-                                } </td>
-                            <td><input @bind="newMC.CostKm" class="w-100" disabled="@isProcessing" placeholder="Cost/km" /></td>
-                            <td><input @bind="newMC.CostDay" class="w-100 text-muted" readonly disabled="@isProcessing" placeholder="Cost/Day" /></td>
-                            <td><button @onclick="AddNewVehicle" class="btn btn-sm btn-secondary" disabled="@isProcessing">Add</button></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid p-5 pt-3">
-    <div class="row">
-        <div class="col">
-            <h3>Bookings</h3>
-            <table class="table table-borderless text-nowrap">
-                <thead>
-                    <tr>
-                        <th style="width: 10%;">Reg. No.</th>
-                        <th style="width: 10%;">Customer</th>
-                        <th style="width: 10%;">Odometer</th>
-                        <th style="width: 10%;">Driven (km)</th>
-                        <th style="width: 10%;">Rented (date)</th>
-                        <th style="width: 10%;">Returned (date)</th>
-                        <th style="width: 5%;">Total</th>
-                        <th style="width: 35%;">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (IBooking b in bookings)
-                    {
-                        <tr>
-                            <td>@b.Vehicle.RegNo</td>
-                            <td>@b.Customer.FirstName @b.Customer.LastName</td>
-                            <td>@b.Vehicle.Odometer km</td>
-                            <td><input @bind-value="b.KmDriven" @bind-value:event="oninput" placeholder="Enter value upon return" disabled="@(b.Status == VehicleStatus.Available)" /></td>
-                            <td><input type="date" @bind="b.RentDate" class="w-100" disabled="@(b.Status == VehicleStatus.Available)" /></td>
-                            <td><input type="date" @bind="b.ReturnDate" placeholder="yyyy-MM-dd" class="w-100" disabled="@(b.Status == VehicleStatus.Available)" /></td>
-                            <td>@services.TotalCost(b) €</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    @if (b.Status == VehicleStatus.Available)
-                                    {
-                                        <span class="badge bg-success fs-6 text-uppercase">Returned</span>
-                                    }
-                                    else if (b.Status == VehicleStatus.Booked)
-                                    {
-                                        <span class="badge bg-warning fs-6 text-uppercase">On-going</span>
-                                        <button @onclick="() => ReturnVehicle(b)" class="ms-3 btn btn-sm btn-secondary">Return</button>
-                                    }
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid p-5 pt-3">
-    <div class="row">
-        <div class="col-6">
-            <h3>Customers</h3>
-            <table class="table table-borderless text-nowrap">
-                <thead>
-                    <tr>
-                        <th>Social Security No.</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (IPerson c in customers)
-                    {
-                        <tr>
-                            <td>@c.SSN</td>
-                            <td>@c.FirstName</td>
-                            <td>@c.LastName</td>
-                        </tr>
-                    }
-                    <tr>
-                        <td class="pt-3 fw-bold text-nowrap">Add Customer</td>
-                    </tr>
-                    <tr>
-                        <td><input @bind="newCustomer.SSN" class="w-100" placeholder="Soc. Security No." /></td>
-                        <td><input @bind="newCustomer.FirstName" class="w-100" placeholder="First Name" /></td>
-                        <td><input @bind="newCustomer.LastName" class="w-100" placeholder="Last Name" /></td>
-                        <td><button @onclick="AddNewCustomer" class="btn btn-sm btn-secondary">Add</button></td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
