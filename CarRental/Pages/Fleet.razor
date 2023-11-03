@@ -11,53 +11,92 @@
 <Alert Message="@errorMessage" OnClose="CloseAlert" />
 
 <div class="container-fluid p-5">
-    <div class="row">
-        <div class="col">
-            <h2 class="fs-1 text-uppercase">Fleet</h2>
-            <h4 class="py-5">Welcome to Mr C's Classic Cars Collection</h4>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid p-5">
-    <div class="row">
+    <div class="row mb-5">
         <h3 class="text-center mb-0"><img src="images/logo-white.png" class="w-25" /></h3>
-        <h3 class="text-center text-muted fst-italic fw-light">A Collection of Classics</h3>
+        <h2 class="text-center text-muted fst-italic fw-light">A Collection of Classics</h2>
     </div>
-    <div class="row border-bottom">
+    <div class="row">
         <!-- Vehicle Information Column -->
-        <div class="col-3 text-end">
-            <h4 class="fw-bold border-bottom mt-5">Vehicle Details</h4>
-            <p class="my-2"><strong>Registration Number:</strong> @currentVehicle.RegNo</p>
-            <p class="my-2"><strong>Type:</strong> @currentVehicle.VehicleType</p>
-            <p class="my-2"><strong>Make:</strong> @currentVehicle.Make</p>
-            <h4 class="fw-bold border-bottom mt-5">Rental Information</h4>
-            <p class="my-2"><strong>Odometer:</strong> @currentVehicle.Odometer km</p>
-            <p class="my-2">
-                @if (currentVehicle is ICar car)
-                {
-                    <span><strong>Doors:</strong> @car.Doors</span>
-                }
-                else if (currentVehicle is IMotorcycle mc)
-                {
-                    <span><strong>Seats:</strong> @mc.Seats</span>
-                }
-            </p>
-            <p class="my-2"><strong>Cost per km:</strong> @currentVehicle.CostKm €</p>
-            <p class="my-2"><strong>Cost per day:</strong> @currentVehicle.CostDay €</p>
-            <p class="my-2">
-                <strong>Status:</strong>
-                <span class="@((services.BookingStatus(currentVehicle.RegNo) == VehicleStatus.Available) ? "text-success" : "text-danger")">
-                    @(services.BookingStatus(currentVehicle.RegNo) == VehicleStatus.Available ? "Available" : "Booked")
-                </span>
-            </p>
+        <div class="col-3">
+            <table class="table table-borderless mt-5">
+                <tbody>
+                    <tr>
+                        <td colspan="2" class="fw-bold border-bottom h4">Vehicle Details</td>
+                    </tr>
+                    <tr>
+                        <td class="col-3 fw-bold">Reg. No:</td>
+                        <td class="col-9">@currentVehicle.RegNo</td>
+                    </tr>
+                    <tr>
+                        <td class="col-3 fw-bold">Type:</td>
+                        <td class="col-9">@currentVehicle.VehicleType</td>
+                    </tr>
+                    <tr>
+                        <td class="col-3 fw-bold">Make:</td>
+                        <td class="col-9">@currentVehicle.Make</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="fw-bold border-bottom h4">Rental Information</td>
+                    </tr>
+                    <tr>
+                        <td class="col-3 fw-bold">Odometer:</td>
+                        <td class="col-9">@currentVehicle.Odometer km</td>
+                    </tr>
+                    <tr>
+                        <td class="col-3 fw-bold">
+                                @if (currentVehicle is ICar car)
+                                {
+                                <span>Doors</span>
+                                }
+                                else if (currentVehicle is IMotorcycle mc)
+                                {
+                                <span>Seats</span>
+                                }
+                        </td>
+                        <td class="col-9">
+                                @if (currentVehicle is ICar cars)
+                                {
+                                    @cars.Doors.ToString()
+                                }
+                                else if (currentVehicle is IMotorcycle mcs)
+                                {
+                                    @mcs.Seats.ToString()
+                                }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-3 fw-bold">Cost/km:</td>
+                        <td class="col-9">@currentVehicle.CostKm €</td>
+                    </tr>
+                    <tr>
+                        <td class="col-3 fw-bold">Cost/day:</td>
+                        <td class="col-9">@currentVehicle.CostDay €</td>
+                    </tr>
+                    <tr>
+                        <td class="col-3 fw-bold">Status:</td>
+                        <td class="col-9">
+                            <span class="@((services.BookingStatus(currentVehicle.RegNo) == VehicleStatus.Available) ? "bi-circle-fill text-success" : "bi-circle-fill text-danger")">
+                            </span>
+                            <span class="font-monospace text-uppercase"> @(services.BookingStatus(currentVehicle.RegNo) == VehicleStatus.Available ? " Available" : " Booked")
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
         </div>
+
 
         <!-- Vehicle Image Column -->
         <div class="col-6 text-center">
-            <img src="@($"/images/vehicles/{currentVehicle.RegNo}.png")" alt="Image of @currentVehicle.RegNo" class="img-fluid w-100" />
+            <img src="@($"/images/vehicles/{currentVehicle.RegNo}.png")" alt="Image of @currentVehicle.RegNo" class="img-fluid w-100 mt-5" />
             <h3 class="fw-bold">@currentVehicle.Make</h3>
-            <h6 class="text-muted">@currentVehicle.Year</h6>
+            <h6 class="text-muted font-monospace">@currentVehicle.Year</h6>
         </div>
 
         <!-- Vehicle Selection Column -->
@@ -67,7 +106,7 @@
                 @foreach (var vehicle in vehicles)
                 {
                     <button type="button"
-                            class="btn btn-sm @(vehicle.RegNo == currentVehicle.RegNo ? "btn-dark" : "btn-outline-secondary border-0") d-flex align-items-center  w-100 my-3"
+                            class="btn btn-sm @(vehicle.RegNo == currentVehicle.RegNo ? "btn-dark" : "btn-outline-secondary border-0") d-flex align-items-center w-100 p-2 my-1"
                     @onclick="() => SetCurrentVehicle(vehicle)">
                         <span class="@((services.BookingStatus(vehicle.RegNo) == VehicleStatus.Available) ? "bi-circle-fill text-success" : "bi-circle-fill text-danger") me-2">
                         </span>
@@ -75,6 +114,79 @@
                     </button>
                 }
             </div>
+            <h4 class="fw-bold mt-3 border-bottom">Book Now</h4>
+            <div class="font-monospace">
+                <div class="">
+                    @if (services.BookingStatus(currentVehicle.RegNo) == VehicleStatus.Available)
+                    {
+                        <select @bind="selectedCustomer" disabled="@isProcessing" class="drop-down">
+                            <option value="">Choose Customer</option>
+                            @foreach (var customer in customers)
+                            {
+                                <option value="@customer.SSN">@($"{customer.FirstName} {customer.LastName}")</option>
+                            }
+                        </select>
+                        <button @onclick="() => RentVehicleAsync(currentVehicle)" class="ms-3 btn btn-sm btn-secondary" disabled="@(isProcessing || string.IsNullOrEmpty(selectedCustomer))">Rent</button>
+                    }
+                    else
+                    {
+                        var bookedCustomer = bookings.FirstOrDefault(b => b.Vehicle.RegNo == currentVehicle.RegNo && b.Status == VehicleStatus.Booked)?.Customer;
+                        if (bookedCustomer != null)
+                        {
+                            <p><strong>Booked by:</strong> @($"{bookedCustomer.FirstName} {bookedCustomer.LastName}")</p>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-5 pt-3">
+    <div class="row">
+        <div class="col">
+            <h3>Bookings</h3>
+            <table class="table table-borderless text-nowrap">
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">Reg. No.</th>
+                        <th style="width: 10%;">Customer</th>
+                        <th style="width: 10%;">Odometer</th>
+                        <th style="width: 10%;">Driven (km)</th>
+                        <th style="width: 10%;">Rented (date)</th>
+                        <th style="width: 10%;">Returned (date)</th>
+                        <th style="width: 5%;">Total</th>
+                        <th style="width: 35%;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (IBooking b in bookings)
+                    {
+                        <tr>
+                            <td>@b.Vehicle.RegNo</td>
+                            <td>@b.Customer.FirstName @b.Customer.LastName</td>
+                            <td>@b.Vehicle.Odometer km</td>
+                            <td><input @bind-value="b.KmDriven" @bind-value:event="oninput" placeholder="Enter value upon return" disabled="@(b.Status == VehicleStatus.Available)" /></td>
+                            <td><input type="date" @bind="b.RentDate" class="w-100" disabled="@(b.Status == VehicleStatus.Available)" /></td>
+                            <td><input type="date" @bind="b.ReturnDate" placeholder="yyyy-MM-dd" class="w-100" disabled="@(b.Status == VehicleStatus.Available)" /></td>
+                            <td>@services.TotalCost(b) €</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    @if (b.Status == VehicleStatus.Available)
+                                    {
+                                        <span class="badge bg-success fs-6 text-uppercase">Returned</span>
+                                    }
+                                    else if (b.Status == VehicleStatus.Booked)
+                                    {
+                                        <span class="badge bg-warning fs-6 text-uppercase">On-going</span>
+                                        <button @onclick="() => ReturnVehicle(b)" class="ms-3 btn btn-sm btn-secondary">Return</button>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
