@@ -14,31 +14,50 @@
 </div>
 
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link bi-house-fill text-nowrap" href="" Match="NavLinkMatch.All">
-                <span class="px-3" aria-hidden="true"></span> Home
-            </NavLink>
+    <nav class="flex-column d-flex flex-column justify-content-between h-100">
+
+        <!-- Top Links -->
+        <div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link bi-house-fill text-nowrap" href="" Match="NavLinkMatch.All">
+                    <span class="px-3" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link bi-car-front-fill text-nowrap" href="fleet">
+                    <span class="px-3" aria-hidden="true"></span> Fleet
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link bi-award-fill text-nowrap" href="testimonials">
+                    <span class="px-3" aria-hidden="true"></span> Testimonials
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link bi-info-circle-fill text-nowrap" href="about">
+                    <span class="px-3" aria-hidden="true"></span> About
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link bi-telephone-fill text-nowrap" href="contact">
+                    <span class="px-3" aria-hidden="true"></span> Contact
+                </NavLink>
+            </div>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link bi-car-front-fill text-nowrap" href="fleet">
-                <span class="px-3" aria-hidden="true"></span> Fleet
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link bi-gear-fill text-nowrap" href="booking-overview">
-                <span class="px-3" aria-hidden="true"></span> Booking Overview
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link bi-telephone-fill text-nowrap" href="contact">
-                <span class="px-3" aria-hidden="true"></span> Contact
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link bi-link text-nowrap" href="placeholder">
-                <span class="px-3" aria-hidden="true"></span> Links
-            </NavLink>
+
+        <!-- Bottom Links -->
+        <div>
+            <h4 class="text-uppercase font-monospace pt-5 px-3">[Admins Only]</h4>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link bi-gear-fill text-nowrap" href="booking-system">
+                    <span class="px-3" aria-hidden="true"></span> Booking System
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link bi-link text-nowrap" href="links">
+                    <span class="px-3" aria-hidden="true"></span> Links
+                </NavLink>
+            </div>
         </div>
     </nav>
 </div>
