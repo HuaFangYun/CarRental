@@ -9,7 +9,7 @@
             <h2 class="fs-1 text-uppercase text-dark mb-3">Testimonials</h2>
             <h4 class="fw-bold">Real Stories, Real Satisfaction</h4>
             <img src="images/banner.png" class="img-fluid d-block my-4" alt="Emblem">
-            <h6 class="text-muted">Discover the experiences of our valued clients and understand why our service is cherished for its unmatched quality and memorable journeys.</h6>
+            <h6 class="text-muted">Discover the values of our valued clients and understand why our service is cherished for its unmatched quality and memorable journeys.</h6>
         </div>
     </div>
 </div>
@@ -19,14 +19,14 @@
         <div class="col">
             <div class="container py-5">
                 <div class="text-center mb-5">
-                    <h1>Customer Experiences</h1>
+                    <h1>Customer values</h1>
                     <small>
                         <span class="fw-bold">62 reviews. </span>Total rating: 
                         <i class="bi-star-fill text-warning"></i>  4.92/5
                     </small>
                 </div>
                
-                <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="row row-cols-1 row-cols-lg-3 g-4">
 
                     <!-- Testimonial 1 -->
                     <div class="col">
@@ -104,7 +104,7 @@
                                 </div>
                                 <p class="card-text">
                                     <i class="bi-quote"></i>
-                                    The vintage car collection is top-notch. I found the perfect Mustang for my road trip along the coast, and it was an unforgettable experience.
+                                    The vintage car collection is top-notch. I found the perfect Mustang for my road trip along the coast, and it was an unforgettable value.
                                     <i class="bi-quote"></i>
                                 </p>
                             </div>
@@ -213,7 +213,7 @@
                                 </div>
                                 <p class="card-text">
                                     <i class="bi-quote"></i>
-                                    Renting a vintage car for a weekend getaway was a breeze. It was a joy to drive and turned our trip into a luxury experience.
+                                    Renting a vintage car for a weekend getaway was a breeze. It was a joy to drive and turned our trip into a luxury value.
                                     <i class="bi-quote"></i>
                                 </p>
                             </div>
@@ -250,7 +250,6 @@
         </div>
     </div>
 </div>
-
 <div class="container-fluid p-5">
     <div class="row">
         <div class="col">
@@ -275,46 +274,80 @@
                     <label for="attributes" class="form-label">About you:</label>
                     <input type="text" id="attributes" name="attributes" class="form-control" placeholder="Describe yourself in a few words (e.g., Vintage Enthusiast, Art Director etc)">
                 </div>
-                <!-- Service Rating -->
-                <div class="mb-3">
-                    <label for="serviceRating" class="form-label">Service:</label>
-                    <select id="serviceRating" name="serviceRating" class="form-select">
-                        <option value="1">★☆☆☆☆</option>
-                        <option value="2">★★☆☆☆</option>
-                        <option value="3">★★★☆☆</option>
-                        <option value="4">★★★★☆</option>
-                        <option value="5">★★★★★</option>
-                    </select>
-                </div>
-                <!-- Efficiency Rating -->
-                <div class="mb-3">
-                    <label for="efficiencyRating" class="form-label">Efficiency:</label>
-                    <select id="efficiencyRating" name="efficiencyRating" class="form-select">
-                        <option value="1">★☆☆☆☆</option>
-                        <option value="2">★★☆☆☆</option>
-                        <option value="3">★★★☆☆</option>
-                        <option value="4">★★★★☆</option>
-                        <option value="5">★★★★★</option>
-                    </select>
-                </div>
-                <!-- Renting Experience Rating -->
-                <div class="mb-3">
-                    <label for="experienceRating" class="form-label">Renting Experience:</label>
-                    <select id="experienceRating" name="experienceRating" class="form-select">
-                        <option value="1">★☆☆☆☆</option>
-                        <option value="2">★★☆☆☆</option>
-                        <option value="3">★★★☆☆</option>
-                        <option value="4">★★★★☆</option>
-                        <option value="5">★★★★★</option>
-                    </select>
+                <div class="container text-start p-0 m-0">
+                    <!-- Service Rating with clickable stars -->
+                    <div class="row mb-3">
+                        <div class="col-2 col-xl-1 pe-4">
+                            <label for="serviceRating" class="form-label">Service:</label>
+                        </div>
+                        <div class="col-10 col-xl-11">
+                            <div id="serviceRating" class="star-rating">
+                                <!-- Star Inputs and Labels for Service Rating -->
+                                <input id="star5" name="serviceRating" type="radio" value="5" class="star-input" />
+                                <label for="star5" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="star4" name="serviceRating" type="radio" value="4" class="star-input" />
+                                <label for="star4" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="star3" name="serviceRating" type="radio" value="3" class="star-input" />
+                                <label for="star3" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="star2" name="serviceRating" type="radio" value="2" class="star-input" />
+                                <label for="star2" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="star1" name="serviceRating" type="radio" value="1" class="star-input" />
+                                <label for="star1" class="star-label"><i class="bi bi-star-fill"></i></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Efficiency Rating with clickable stars -->
+                    <div class="row mb-3">
+                        <div class="col-2 col-xl-1 pe-4">
+                            <label for="efficiencyRating" class="form-label">Efficiency:</label>
+                        </div>
+                        <div class="col-10 col-xl-11">
+                            <div id="efficiencyRating" class="star-rating">
+                                <!-- Star Inputs and Labels for Efficiency Rating -->
+                                <input id="effStar5" name="efficiencyRating" type="radio" value="5" class="star-input" />
+                                <label for="effStar5" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="effStar4" name="efficiencyRating" type="radio" value="4" class="star-input" />
+                                <label for="effStar4" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="effStar3" name="efficiencyRating" type="radio" value="3" class="star-input" />
+                                <label for="effStar3" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="effStar2" name="efficiencyRating" type="radio" value="2" class="star-input" />
+                                <label for="effStar2" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="effStar1" name="efficiencyRating" type="radio" value="1" class="star-input" />
+                                <label for="effStar1" class="star-label"><i class="bi bi-star-fill"></i></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Value Rating with clickable stars -->
+                    <div class="row mb-3">
+                        <div class="col-2 col-xl-1 pe-4">
+                            <label for="valueRating" class="form-label">Value:</label>
+                        </div>
+                        <div class="col-10 col-xl-11">
+                            <div id="valueRating" class="star-rating">
+                                <!-- Star Inputs and Labels for Value Rating -->
+                                <input id="expStar5" name="valueRating" type="radio" value="5" class="star-input" />
+                                <label for="expStar5" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="expStar4" name="valueRating" type="radio" value="4" class="star-input" />
+                                <label for="expStar4" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="expStar3" name="valueRating" type="radio" value="3" class="star-input" />
+                                <label for="expStar3" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="expStar2" name="valueRating" type="radio" value="2" class="star-input" />
+                                <label for="expStar2" class="star-label"><i class="bi bi-star-fill"></i></label>
+                                <input id="expStar1" name="valueRating" type="radio" value="1" class="star-input" />
+                                <label for="expStar1" class="star-label"><i class="bi bi-star-fill"></i></label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Additional Comments -->
                 <div class="mb-3">
                     <label for="additionalComments" class="form-label">Additional Comments:</label>
-                    <textarea id="additionalComments" name="additionalComments" class="form-control" rows="4" placeholder="Share more about your experience..."></textarea>
+                    <textarea id="additionalComments" name="additionalComments" class="form-control" rows="4" placeholder="Share more about your value..."></textarea>
                 </div>
                 <!-- Submit Button -->
-                <a href="/links" class="btn btn-dark" role="button">Submit Review</a>
+                <button type="submit" class="btn btn-dark">Submit Review</button>
             </form>
         </div>
     </div>

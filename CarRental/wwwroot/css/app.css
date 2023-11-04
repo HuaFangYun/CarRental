@@ -141,3 +141,22 @@ h1:focus {
 .carousel-caption {
     top: 0;
 }
+
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+}
+
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+
+    .star-rating .star-label {
+        color: lightgray;
+        padding: 0 5px;
+        cursor: pointer;
+    }
+
+    .star-rating .star-input:checked ~ .star-label {
+        color: orange;
+    }
