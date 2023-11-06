@@ -85,6 +85,10 @@ h1:focus {
     color: #233448;
 }
 
+.sig-bg {
+    background-color: #233448;
+}
+
 .sig-border {
     border: 1px solid #233448;
 }
