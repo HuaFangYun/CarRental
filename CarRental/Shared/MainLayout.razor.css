@@ -13,39 +13,40 @@ main {
     background-color: #fff;
 }
 
-.top-row {
-    background-color: #fff;
-    justify-content: flex-end;
-    height: 4rem;
+.top-row, .bottom-row {
     display: flex;
     align-items: center;
+    height: 4rem;
+    background-color: #fff;
     border-bottom: 1px solid #233448;
 }
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        white-space: nowrap;
-        margin-left: 1.5rem;
-        text-decoration: none;
-    }
-
-        .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
-            text-decoration: underline;
-        }
-
-        .top-row ::deep a:first-child {
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-.bottom-row {
-    background-color: #233448;
-    border-top: 1px solid #111;
-    height: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.top-row {
+    justify-content: flex-end;
 }
 
+.bottom-row {
+    justify-content: space-between;
+    height: 1rem;
+    background-color: #233448;
+    border-top: 1px solid #111;
+    border-bottom: none;
+}
+
+.top-row ::deep a, .top-row ::deep .btn-link {
+    white-space: nowrap;
+    margin-left: 1.5rem;
+    text-decoration: none;
+}
+
+    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
+        text-decoration: underline;
+    }
+
+    .top-row ::deep a:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
 @media (max-width: 767.99px) {
     .top-row:not(.auth) {
@@ -77,15 +78,17 @@ main {
     .top-row {
         top: 0;
         z-index: 1;
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
     }
-     
+
         .top-row.auth ::deep a:first-child {
             flex: 1;
             text-align: right;
             width: 0;
         }
 
-    .top-row, article {
+    article {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
