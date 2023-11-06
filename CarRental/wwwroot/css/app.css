@@ -1,5 +1,6 @@
 html, body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #233448;
 }
 
 h1:focus {
@@ -80,8 +81,16 @@ h1:focus {
         content: var(--blazor-load-percentage-text, "Loading");
     }
 
-.small-card-text {
-    font-size: 0.8rem;
+.sig-color {
+    color: #233448;
+}
+
+.sig-border {
+    border: 1px solid #233448;
+}
+
+.sig-badge {
+    background-color: #482a22;
 }
 
 /* Smaller screens */
@@ -126,14 +135,6 @@ h1:focus {
     background: #fff;
 }
 
-.text-outline {
-    color: white;
-    text-shadow: -1px -1px 0 #000, 
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
-}
-
 .carousel-item img {
     width: 100%;
 }
@@ -172,7 +173,7 @@ h1:focus {
     height: auto;
     min-height: 100%;
     width: 3px;
-    background: #343a40;
+    background: #233448;
     position: absolute;
     left: 50%;
     top: 0;

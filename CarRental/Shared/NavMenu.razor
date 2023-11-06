@@ -1,4 +1,4 @@
-﻿<div class="top-row navbar p-0 border-bottom border-dark">
+﻿<div class="top-row navbar p-0">
     <div class="container-fluid">
         <div class="row">
             <div class="col">
@@ -46,19 +46,23 @@
         </div>
 
         <!-- Bottom Links -->
-        <div>
-            <h4 class="text-uppercase font-monospace pt-5 px-4">[Admins Only]</h4>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link bi-gear-fill text-nowrap" href="booking-system">
-                    <span class="px-3" aria-hidden="true"></span> Booking System
-                </NavLink>
-            </div>
-            <div class="nav-item px-3">
-                <NavLink class="nav-link bi-link text-nowrap" href="links">
-                    <span class="px-3" aria-hidden="true"></span> Links
-                </NavLink>
+        <div class="card border-0 rounded-0 mb-2">
+            <div class="card-body">
+                <h5 class="card-title border-top border-bottom text-uppercase font-monospace sig-color p-2">[Administration Only]</h5>
+                <div class="nav-item">
+                    <NavLink class="nav-link card-link bi-gear-fill text-nowrap" href="booking-system">
+                        <span class="px-3" aria-hidden="true"></span> Booking System
+                    </NavLink>
+                </div>
+                <div class="nav-item">
+                    <NavLink class="nav-link card-link bi-link text-nowrap" href="links">
+                        <span class="px-3" aria-hidden="true"></span> Management Links
+                    </NavLink>
+                </div>
             </div>
         </div>
+
+           
     </nav>
 </div>
 

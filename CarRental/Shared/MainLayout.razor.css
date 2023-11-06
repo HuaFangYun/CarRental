@@ -6,6 +6,7 @@
 
 main {
     flex: 1;
+    border-left: 1px solid #233448;
 }
 
 .sidebar {
@@ -18,6 +19,7 @@ main {
     height: 4rem;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid #233448;
 }
 
     .top-row ::deep a, .top-row ::deep .btn-link {

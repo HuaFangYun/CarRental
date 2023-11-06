@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    border-bottom: 1px solid #233448;
 }
 
 .navbar-brand {
@@ -20,6 +21,7 @@
     font-size: 1.2rem;
     padding-bottom: 1.2rem;
     margin-left: 1rem;
+    color: #233448;
 }
 
     .nav-item:first-of-type {
@@ -31,7 +33,7 @@
     }
 
     .nav-item ::deep a {
-        color: #808080;
+        color: #233448;
         border-radius: 4px;
         height: 3rem;
         display: flex;
@@ -41,12 +43,13 @@
 
         .nav-item ::deep a.active {
             background-color: rgba(255,255,255,0.25);
-            color: #333;
+            color: #482a22;
+            font-weight: bold;
         }
 
         .nav-item ::deep a:hover {
             background-color: rgba(255,255,255,0.1);
-            color: #000;
+            color: #777;
         }
 
 @media (min-width: 768px) {
