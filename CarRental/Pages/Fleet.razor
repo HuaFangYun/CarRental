@@ -7,9 +7,6 @@
 @using System.Text.RegularExpressions;
 @inject Services services
 
-<PageTitle>Fleet</PageTitle>
-<Alert Message="@errorMessage" OnClose="CloseAlert" />
-
 <div class="container">
     <div class="row">
         <div class="col text-center mt-4">
@@ -20,7 +17,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="container-fluid my-5 p-5">
     <div class="row h-100 pb-5">
@@ -198,28 +194,9 @@
     <div class="container my-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <input @bind="searchTerm" @bind:event="oninput" class="form-control" id="faqSearchInput" type="text" placeholder="Search FAQs..." aria-label="Search">
+                <input class="form-control" id="faqSearchInput" type="text" placeholder="Search FAQs..." aria-label="Search">
             </div>
         </div>
-    </div>
-
-    <!-- The FAQ section where the items are filtered based on the search term -->
-    <div class="accordion" id="bookingFAQ">
-        @foreach (var faq in FilteredFAQs)
-        {
-            <div class="accordion-item ">
-                <h2 class="accordion-header" id="heading@faq.Id">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@faq.Id" aria-expanded="true" aria-controls="collapse@faq.Id">
-                        @faq.Question
-                    </button>
-                </h2>
-                <div id="collapse@faq.Id" class="accordion-collapse collapse show" aria-labelledby="heading@faq.Id">
-                    <div class="accordion-body">
-                        @faq.Answer
-                    </div>
-                </div>
-            </div>
-        }
     </div>
 
     <div class="row">
@@ -320,192 +297,16 @@
 @code {
 
     private IVehicle currentVehicle;
-
-    private string errorMessage = string.Empty;
-    private bool showInstructions = false;
-    private bool isProcessing = false;
-    private List<IBooking> bookings = new();
-    private List<IPerson> customers = new();
     private List<IVehicle> vehicles = new();
-    private IPerson newCustomer = new Customer();
-    private IVehicle newCar = new Car();
-    private IVehicle newMC = new Motorcycle();
-    private string typeOfVehicle = string.Empty;
-    private string selectedCustomer = string.Empty;
 
     protected override void OnInitialized()
     {
-        bookings = services.Get<IBooking>().ToList();
-        customers = services.Get<IPerson>().ToList();
         vehicles = services.Get<IVehicle>().ToList();
         currentVehicle = vehicles.FirstOrDefault();
-
     }
 
     private void SetCurrentVehicle(IVehicle vehicle)
     {
         currentVehicle = vehicle;
-    }
-
-    private void ToggleInstructions() => showInstructions = !showInstructions;
-
-    private void ErrorMessage(string info) => errorMessage = $"{info}";
-
-    private void CloseAlert() => errorMessage = string.Empty;
-
-    private void AddNewVehicle()
-    {
-        try
-        {
-            if (typeOfVehicle == "Car" && !Regex.IsMatch(newCar.RegNo, @"^[A-Z]{3}\d{3}$"))
-            {
-                ErrorMessage("[REG. NO.] - Accepted format: 'ABC123'");
-                return;
-            }
-            if (typeOfVehicle == "Car" && string.IsNullOrEmpty(newCar.Make))
-            {
-                ErrorMessage("[MAKE] - Missing input");
-                return;
-            }
-            if (typeOfVehicle == "Car" && (newCar.Odometer < 0 || newCar.Odometer == null))
-            {
-                ErrorMessage("[ODOMETER] - Accepted format: Integer");
-                return;
-            }
-            if (typeOfVehicle == "Car" && newCar is ICar car && (car.Doors < 0 || car.Doors == null))
-            {
-                ErrorMessage("[NO. OF DOORS] - Accepted format: Integer");
-                return;
-            }
-            if (typeOfVehicle == "Car" && (newCar.CostKm < 0 || newCar.CostKm == null))
-            {
-                ErrorMessage("[COST/KM] - Accepted format: Decimal");
-                return;
-            }
-            if (typeOfVehicle == "Motorcycle" && !Regex.IsMatch(newMC.RegNo, @"^[A-Z]{3}\d{3}$"))
-            {
-                ErrorMessage("[REG. NO.] - Accepted format: 'ABC123'");
-                return;
-            }
-            if (typeOfVehicle == "Motorcycle" && string.IsNullOrEmpty(newMC.Make))
-            {
-                ErrorMessage("[MAKE] - Missing input");
-                return;
-            }
-            if (typeOfVehicle == "Motorcycle" && (newMC.Odometer < 0 || newMC.Odometer == null))
-            {
-                ErrorMessage("[ODOMETER] - Accepted format: Integer");
-                return;
-            }
-            if (typeOfVehicle == "Motorcycle" && newMC is IMotorcycle mc && (mc.Seats < 0 || mc.Seats == null))
-            {
-                ErrorMessage("[NO. OF SEATS] - Accepted format: Integer");
-                return;
-            }
-            if (typeOfVehicle == "Motorcycle" && (newMC.CostKm < 0 || newMC.CostKm == null))
-            {
-                ErrorMessage("[COST/KM] - Accepted format: Decimal");
-                return;
-            }
-
-            if (typeOfVehicle == "Car")
-            {
-                services.Add(newCar);
-                newCar = new Car();
-            }
-            else if (typeOfVehicle == "Motorcycle")
-            {
-                services.Add(newMC);
-                newMC = new Motorcycle();
-            }
-
-            vehicles = services.Get<IVehicle>().ToList();
-            errorMessage = string.Empty;
-        }
-        catch (Exception ex)
-        {
-            errorMessage = $"Error: {ex.Message}";
-        }
-    }
-
-    private void AddNewCustomer()
-    {
-        try
-        {
-            if (string.IsNullOrEmpty(newCustomer.SSN) || !Regex.IsMatch(newCustomer.SSN, @"^\d{6}-\d{4}$"))
-            {
-                ErrorMessage("[SOCIAL SEC. NO.] Accepted format: '012345-6789'");
-                return;
-            }
-            if (string.IsNullOrEmpty(newCustomer.FirstName) || !Regex.IsMatch(newCustomer.FirstName, @"^[a-zA-Z-' ]+$"))
-            {
-                ErrorMessage("[FIRST NAME] - Letters, hyphens, spaces, or apostrophes only");
-                return;
-            }
-            if (string.IsNullOrEmpty(newCustomer.LastName) || !Regex.IsMatch(newCustomer.LastName, @"^[a-zA-Z-' ]+$"))
-            {
-                ErrorMessage("[LAST NAME] - Letters, hyphens, spaces, or apostrophes only");
-                return;
-            }
-
-            services.Add(newCustomer);
-            newCustomer = new Customer();
-
-            customers = services.Get<IPerson>().ToList();
-            errorMessage = string.Empty;
-        }
-        catch (Exception ex)
-        {
-            errorMessage = $"Error: {ex.Message}";
-        }
-    }
-
-    private async Task RentVehicleAsync(IVehicle v)
-    {
-        isProcessing = true;
-        try
-        {
-            await Task.Delay(5000);
-            services.RentVehicle(v, selectedCustomer, customers);
-        }
-        catch (Exception ex)
-        {
-            errorMessage = $"Error: {ex.Message}";
-        }
-        finally
-        {
-            isProcessing = false;
-            bookings = services.Get<IBooking>().ToList();
-            vehicles = services.Get<IVehicle>().ToList();
-            selectedCustomer = string.Empty;
-        }
-    }
-
-    private void ReturnVehicle(IBooking b)
-    {
-        try
-        {
-            services.ReturnVehicle(b);
-        }
-        catch (Exception ex)
-        {
-            errorMessage = $"Error: {ex.Message}";
-        }
-    }
-
-    private string searchTerm = "";
-
-    private IEnumerable<FAQ> FAQs = new List<FAQ>();
-
-    private IEnumerable<FAQ> FilteredFAQs =>
-    string.IsNullOrWhiteSpace(searchTerm)
-    ? FAQs
-    : FAQs.Where(f => f.Question.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || f.Answer.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
-
-    private class FAQ
-    {
-        public int Id { get; set; }
-        public string Question { get; set; }
-        public string Answer { get; set; }
     }
 }

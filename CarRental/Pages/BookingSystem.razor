@@ -22,7 +22,7 @@
                 <li>Odometer and records are promptly updated after successful returns.</li>
             </ul>
             <p class="fst-italic">Note: Our system automatically blocks any duplicate entries for vehicles [reg. no.] and customers [social sec. no.]</p>
-            <button @onclick="ToggleInstructions" class="btn btn-sm btn-dark">
+            <button @onclick="ToggleInstructions" class="btn btn-sm btn-secondary sig-bg">
                 @(showInstructions ? "Hide Instructions" : "Instructions")
             </button>
             @if (showInstructions)
@@ -107,7 +107,7 @@
                                                 <option value="@customer.SSN">@($"{customer.FirstName} {customer.LastName}")</option>
                                             }
                                         </select>
-                                        <button @onclick="() => RentVehicleAsync(v)" class="ms-3 btn btn-sm btn-secondary" disabled="@(isProcessing || string.IsNullOrEmpty(selectedCustomer))">Rent</button>
+                                        <button @onclick="() => RentVehicleAsync(v)" class="ms-3 btn btn-sm btn-secondary sig-bg" disabled="@(isProcessing || string.IsNullOrEmpty(selectedCustomer))">Rent</button>
                                     </div>
                                 }
                                 else
@@ -133,7 +133,7 @@
                         <td class="pt-3" colspan="7">
                             @if (isProcessing)
                             {
-                                <span class="badge bg-info text-uppercase w-75">Processing...</span>
+                                <span class="badge sig-bg text-uppercase w-75">Processing...</span>
                             }
                         </td>
                     </tr>
@@ -161,7 +161,7 @@
                                 } </td>
                             <td><input @bind="newCar.CostKm" class="w-100" disabled="@isProcessing" placeholder="Cost/km" /></td>
                             <td><input @bind="newCar.CostDay" class="w-100 text-muted" readonly disabled="@isProcessing" placeholder="Cost/Day" /></td>
-                            <td><button @onclick="AddNewVehicle" class="btn btn-sm btn-secondary" disabled="@isProcessing">Add</button></td>
+                            <td><button @onclick="AddNewVehicle" class="btn btn-sm btn-secondary sig-bg" disabled="@isProcessing">Add</button></td>
                         </tr>
                     }
                     else if (typeOfVehicle == "Motorcycle")
@@ -233,8 +233,8 @@
                                     }
                                     else if (b.Status == VehicleStatus.Booked)
                                     {
-                                        <span class="badge bg-warning fs-6 text-uppercase">On-going</span>
-                                        <button @onclick="() => ReturnVehicle(b)" class="ms-3 btn btn-sm btn-secondary">Return</button>
+                                        <span class="badge sig-badge fs-6 text-uppercase">On-going</span>
+                                        <button @onclick="() => ReturnVehicle(b)" class="ms-3 btn btn-sm btn-secondary sig-bg">Return</button>
                                     }
                                 </div>
                             </td>
@@ -274,7 +274,7 @@
                         <td><input @bind="newCustomer.SSN" class="w-100" placeholder="Soc. Security No." /></td>
                         <td><input @bind="newCustomer.FirstName" class="w-100" placeholder="First Name" /></td>
                         <td><input @bind="newCustomer.LastName" class="w-100" placeholder="Last Name" /></td>
-                        <td><button @onclick="AddNewCustomer" class="btn btn-sm btn-secondary">Add</button></td>
+                        <td><button @onclick="AddNewCustomer" class="btn btn-sm btn-secondary sig-bg">Add</button></td>
                     </tr>
                 </tbody>
             </table>
