@@ -26,7 +26,6 @@ namespace CarRentalData.Classes
 
         void SeedData()
         {
-            // Load JSON from the embedded resource
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = "CarRentalData.SeedData.seedData.json";
 
@@ -37,10 +36,8 @@ namespace CarRentalData.Classes
                 jsonData = reader.ReadToEnd();
             }
 
-            // Deserialize the data
             var seed = JsonConvert.DeserializeObject<SeedDataStructure>(jsonData);
 
-            // Populate data from deserialized JSON
             foreach (var customer in seed.customers)
             {
                 Add<IPerson>(new Customer(customer.ssn, customer.firstName, customer.lastName));
@@ -69,7 +66,6 @@ namespace CarRentalData.Classes
             }
         }
 
-        // This structure represents your seedData.json
         private class SeedDataStructure
         {
             public List<CustomerSeed> customers { get; set; }
