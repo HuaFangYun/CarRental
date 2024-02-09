@@ -134,23 +134,7 @@ h1:focus {
     background-color: #482a22;
 }
 
-.timeline {
-    position: relative;
-    padding: 0;
-    width: 100%;
-}
 
-    .timeline .line {
-        height: auto;
-        min-height: 100%;
-        width: 3px;
-        background: #233448;
-        position: absolute;
-        left: 50%;
-        top: 0;
-        margin-left: -2px;
-        z-index: 1;
-    }
 
 @media (max-width: 767.99px) {
     * {
@@ -162,10 +146,46 @@ h1:focus {
     * {
         font-size: 12px;
     }
+
+    .timeline {
+        position: relative;
+        padding: 0;
+        width: 100%;
+    }
+
+        .timeline .line {
+            height: auto;
+            min-height: 100%;
+            width: 3px;
+            background: #233448;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            margin-left: -2px;
+            z-index: 1;
+        }
 }
 
 @media (min-width: 993px) {
     * {
         font-size: 14px;
     }
+
+    .timeline {
+        position: relative;
+        padding: 0;
+        width: 100%;
+    }
+
+        .timeline .line {
+            height: auto;
+            min-height: 100%;
+            width: 3px;
+            background: #233448;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            margin-left: -2px;
+            z-index: 1;
+        }
 }

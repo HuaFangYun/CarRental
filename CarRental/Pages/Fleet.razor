@@ -1,8 +1,7 @@
 ﻿@page "/fleet"
-@using CarRentalLogic.Classes;
-@using CarRentalCommon.Classes
-@using CarRentalCommon.Interfaces;
-@using CarRentalCommon.Enums;
+@using CarRental.Classes;
+@using CarRental.Interfaces;
+@using CarRental.Enums;
 @using System.Linq;
 @using System.Text.RegularExpressions;
 @inject Services services
@@ -22,7 +21,7 @@
     <div class="row h-100 pb-5">
 
         <!-- Vehicle Information Column -->
-        <div class="col-3 d-flex flex-column mt-auto h-100">
+        <div class="col-lg-3 col-12 d-flex flex-column mt-auto h-100 pt-5">
             <table class="table table-borderless m-0">
                 <tbody>
                     <tr>
@@ -92,7 +91,7 @@
         </div>
 
         <!-- Vehicle Image Column -->
-        <div class="col-6 h-100 text-center">
+        <div class="col-lg-6 col-12 h-100 text-center pt-5">
             <h3 class="fw-bold">@currentVehicle.Make</h3>
             <h6 class="font-monospace">@currentVehicle.Year</h6>
             <img src="@($"/images/fleet/{currentVehicle.RegNo}.png")" alt="Image of @currentVehicle.RegNo" class="img-fluid w-100" />
@@ -101,7 +100,7 @@
         </div>
 
         <!-- Vehicle Selection Column -->
-        <div class="col-3 mt-auto h-100">
+        <div class="col-lg-3 col-12 mt-auto h-100 pt-5">
             <h4 class="fw-bold border-bottom mt-5 pb-2">Select a Model</h4>
             <div class="font-monospace">
                 @foreach (var vehicle in vehicles)
