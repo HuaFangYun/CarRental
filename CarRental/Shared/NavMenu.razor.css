@@ -52,9 +52,30 @@
             color: #777;
         }
 
+.logo-sm {
+    display: none;
+}
+
+@media (max-width: 767.99px) {
+    .logo-sm {
+        display: inline-block;
+        height: 3.5rem;
+        margin-right: auto;
+        object-fit: contain;
+    }
+
+    .top-row {
+        justify-content: space-between; 
+    }
+
+    .navbar-toggler {
+        margin-left: auto;
+    }
+}
+
 @media (min-width: 768px) {
     .top-row {
-        background-image: url(images/logo.png);
+        background-image: url(images/Assets/logo.png);
         background-size: cover;
     }
 
