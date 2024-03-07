@@ -21,7 +21,7 @@
     <div class="row h-100 pb-5">
 
         <!-- Vehicle Information Column -->
-        <div class="col-lg-3 col-12 d-flex flex-column mt-auto h-100 pt-5">
+        <div class="col-12 col-lg-3 d-flex flex-column mt-5 pt-5">
             <table class="table table-borderless m-0">
                 <tbody>
                     <tr>
@@ -91,7 +91,7 @@
         </div>
 
         <!-- Vehicle Image Column -->
-        <div class="col-lg-6 col-12 h-100 text-center pt-5">
+        <div class="col-12 col-lg-6 text-center pt-5">
             <h3 class="fw-bold">@currentVehicle.Make</h3>
             <h6 class="font-monospace">@currentVehicle.Year</h6>
             <img src="@($"/images/Fleet/{currentVehicle.RegNo}.png")" alt="Image of @currentVehicle.RegNo" class="img-fluid w-100" />
@@ -100,14 +100,14 @@
         </div>
 
         <!-- Vehicle Selection Column -->
-        <div class="col-lg-3 col-12 mt-auto h-100 pt-5">
+        <div class="col-12 col-lg-3 pt-5">
             <h4 class="fw-bold border-bottom mt-5 pb-2">Select a Model</h4>
             <div class="font-monospace">
                 @foreach (var vehicle in vehicles)
                 {
                     <button type="button"
                             class="btn btn-sm @(vehicle.RegNo == currentVehicle.RegNo ? "btn-dark sig-bg" : "btn-outline-secondary border-0") d-flex align-items-center w-100 p-2 my-1"
-                    @onclick="() => SetCurrentVehicle(vehicle)">
+                            @onclick="() => SetCurrentVehicle(vehicle)">
                         <span class="@((services.BookingStatus(vehicle.RegNo) == VehicleStatus.Available) ? "bi-circle-fill text-success" : "bi-circle-fill text-danger") me-2">
                         </span>
                         @vehicle.Make
@@ -117,9 +117,9 @@
             <h4 class="fw-bold pt-4 border-bottom  pb-2">Rent Now</h4>
             <div class="font-monospace">
                 <div class="">
-                    <NavLink class="btn btn-sm btn-dark sig-bg" href="contact">
+                    <a class="btn btn-sm btn-dark sig-bg" href="contact">
                         Inqueries
-                    </NavLink>
+                    </a>
                 </div>
             </div>
         </div>

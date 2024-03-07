@@ -9,8 +9,10 @@ html, body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1:focus {
+h1:focus, .navbar-toggler, .navbar-toggler:focus, .navbar-toggler:active, .navbar-toggler.active {
     outline: none;
+    box-shadow: none;
+    border: none;
 }
 
 a {
@@ -23,6 +25,11 @@ a h4 {
 
 a h4:hover {
     color: #434d93 !important;
+}
+
+.nav-item {
+    color: var(--tertiary-color) !important;
+    text-transform: uppercase;
 }
 
 .logo {
