@@ -2,78 +2,58 @@
 
 <PageTitle>Home</PageTitle>
 
-<div class="card text-white rounded-0 border-0 d-none d-md-block">
-    <div class="card-body p-0">
-        <img src="images/Home/home.png" class="img-fluid rounded-0 w-100" alt="Two vintage cars in a field of grass" />
-        <div class="card-img-overlay d-flex flex-column justify-content-end" style="background-color: rgba(0, 0, 0, 0.0);">
-            <h1 class="card-title fw-bold ps-1">Mr C's Classic Cars Collection</h1>
-            <h5 class="card-text fw-bold p-2 pt-0">Embrace the Legacy – Your Destination for Renting Timeless Vintage Vehicles</h5>
+<div class="container-fluid p-0">
+    <div class="row m-5 py-5">
+        <div class="col-12 col-lg-6 d-flex align-items-end mt-3">
+            <div class="d-block">
+                <h1>Mr C's Classic Car Rental</h1>
+                <h2 class="fw-light">Embrace the Legacy - Your Destination for Vintage Classics</h2>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 mt-3">
+            <img src="/images/Home/home.png" alt="Classic Car" class="img-fluid border border-dark rounded">
         </div>
     </div>
-</div>
-
-<div class="container-fluid p-4">
-    <div class="row">
-
-        <!-- Fleet -->
-        <div class="col-xl pb-4">
-            <div class="card text-white sig-border">
-                <img src="images/Home/fleet.png" class="card-img" alt="Vintage Car Fleet">
-                <div class="card-img-overlay d-flex flex-column justify-content-end" style="background-color: rgba(0, 0, 0, 0.6)">
-                    <div class="mt-auto px-3 overflow-auto scrollbar">
-                        <h2 class="card-title text-uppercase fw-bold">Rental Fleet</h2>
-                        <p class="card-text fw-bold">Explore our collection of timeless classics.</p>
-                    </div>
-                    <div class="card-footer p-3 pb-0 border-0">
-                        <NavLink class="btn btn-sm btn-light w-100" href="fleet">
-                            Explore
-                        </NavLink>
-                    </div>
+    <div class="row m-5 py-5">
+        <div class="col-12 col-lg-4">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h3 class="card-title">Rental Fleet</h3>
+                    <a href="fleet">
+                        <h4 class="card-text">Explore our collection of timeless classics.</h4>
+                    </a>
                 </div>
+                <a href="fleet">
+                    <img class="card-img-bottom border border-dark rounded" src="images/Home/fleet.png" alt="Car Fleet">
+                </a>
             </div>
         </div>
-
-        <!-- Reviews -->
-        <div class="col-xl pb-4">
-            <div class="card text-white sig-border">
-                <img src="images/Home/testimonials.png" class="card-img" alt="Testimonials">
-                <div class="card-img-overlay d-flex flex-column justify-content-end" style="background-color: rgba(0, 0, 0, 0.6)">
-                    <div class="mt-auto px-3 overflow-auto scrollbar text-outline">
-                        <h2 class="card-title text-uppercase fw-bold">REVIEWS</h2>
-                        <p class="card-text fw-bold">See what our valued customers have to say.</p>
-                    </div>
-                    <div class="card-footer p-3 pb-0 border-0">
-                        <NavLink class="btn btn-sm btn-light w-100" href="testimonials">
-                            Explore
-                        </NavLink>
-                    </div>
+        <div class="col-12 col-lg-4">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h3 class="card-title">Reviews</h3>
+                    <a href="testimonials">
+                        <h4 class="card-text">See what our valued customers have to say</h4>
+                    </a>
                 </div>
+                <a href="testimonials">
+                    <img class="card-img-bottom border border-dark rounded" src="images/Home/testimonials.png" alt="Car Fleet">
+                </a>
             </div>
         </div>
-
-        <!-- Contact -->
-        <div class="col-xl pb-4">
-            <div class="card text-white sig-border">
-                <img src="images/Home/contact.png" class="card-img" alt="Old Telephone">
-                <div class="card-img-overlay d-flex flex-column justify-content-end" style="background-color: rgba(0, 0, 0, 0.6)">
-                    <div class="mt-auto px-3 overflow-auto scrollbar">
-                        <h2 class="card-title text-uppercase fw-bold">Contact</h2>
-                        <p class="card-text fw-bold">Need assistance? We are here to help.</p>
-                    </div>
-                    <div class="card-footer p-3 pb-0 border-0">
-                        <NavLink class="btn btn-sm btn-light w-100" href="contact">
-                            Explore
-                        </NavLink>
-                    </div>
+        <div class="col-12 col-lg-4">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h3 class="card-title">Contact</h3>
+                    <a href="contact">
+                        <h4 class="card-text">Need assistance? We are here to help.</h4>
+                    </a>
                 </div>
+                <a href="contact">
+                    <img class="card-img-bottom border border-dark rounded" src="images/Home/contact.png" alt="Car Fleet">
+                </a>
             </div>
         </div>
     </div>
-</div>
-
-<div class="container-fluid p-5">
-    <div class="row mb-5">
-        <h3 class="text-center mb-0"><img src="images/Assets/logo-white.png" class="w-25" /></h3>
-        <h2 class="text-center text-muted fst-italic fw-light">A Collection of Classics</h2>
-    </div>
+    <Wordmark />
 </div>

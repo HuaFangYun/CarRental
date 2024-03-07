@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
@@ -15,6 +15,13 @@
 	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="wwwroot\bootstrap\bootstrap.bundle.min.js" />
+	  <None Include="wwwroot\bootstrap\bootstrap.min.css.map" />
+	  <None Include="wwwroot\bootstrap\font\bootstrap-icons.scss" />
+	  <None Include="wwwroot\bootstrap\font\fonts\bootstrap-icons.woff2" />
 	</ItemGroup>
 
 	<ItemGroup>

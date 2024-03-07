@@ -1,5 +1,4 @@
-﻿using CarRental.Classes;
-using CarRental.Enums;
+﻿using CarRental.Enums;
 using CarRental.Extensions;
 using CarRental.Interfaces;
 
@@ -9,18 +8,30 @@ public class Services
 {
     private readonly IData _db;
 
-    public Services(IData db) => _db = db;
+    public Services(IData db)
+    {
+        _db = db;
+    }
 
-    public IEnumerable<T> Get<T>() where T : class => _db.Get<T>().ToList();
+    public IEnumerable<T> Get<T>() where T : class
+    {
+        return _db.Get<T>().ToList();
+    }
 
-    public T Single<T>(Func<T, bool> predicate) where T : class => _db.Single(predicate);
+    public T Single<T>(Func<T, bool> predicate) where T : class
+    {
+        return _db.Single(predicate);
+    }
 
-    public void Add<T>(T entity) where T : class => _db.Add(entity);
+    public void Add<T>(T entity) where T : class
+    {
+        _db.Add(entity);
+    }
 
     public float? TotalCost(IBooking b)
     {
         return b.KmDriven.HasValue
-            ? b.KmDriven.Value * b.Vehicle.CostKm + b.Vehicle.CostDay * b.RentDate.Duration(b.ReturnDate)
+            ? (b.KmDriven.Value * b.Vehicle.CostKm) + (b.Vehicle.CostDay * b.RentDate.Duration(b.ReturnDate))
             : b.Vehicle.CostDay * b.RentDate.Duration(b.ReturnDate);
     }
 
@@ -50,8 +61,10 @@ public class Services
 
     private void UpdateOdometer(IBooking b)
     {
-        var vehicleToUpdate = _db.Single<IVehicle>(v => v.RegNo == b.Vehicle.RegNo);
+        IVehicle vehicleToUpdate = _db.Single<IVehicle>(v => v.RegNo == b.Vehicle.RegNo);
         if (vehicleToUpdate != null)
+        {
             vehicleToUpdate.Odometer += (int)(b.KmDriven ?? 0);
+        }
     }
 }
