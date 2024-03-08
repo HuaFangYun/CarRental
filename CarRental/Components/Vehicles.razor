@@ -3,18 +3,18 @@
 <div class="container-fluid py-5">
     <div class="row my-5">
         <h2 class="display-4">Our Vehicles</h2>
-        <h3 class="display-6 bla">Take a Look at Our Currated Collection</h3>
+        <h3 class="display-6 fw-light highlight">Take a Look at Our Currated Collection</h3>
     </div>
     <div class="row">
 
         <!-- Vehicle Selection Column -->
         <div class="col-12 col-lg-3">
             <h4 class="fw-light border-bottom pb-2">Select a Model</h4>
-            <div class="font-monospace">
+            <div>
                 @foreach (var vehicle in vehicles)
                 {
                     <button type="button"
-                            class="btn btn-sm @(vehicle.RegNo == currentVehicle.RegNo ? "btn-dark" : "btn-outline-secondary border-0") d-flex align-items-center w-100 p-2 my-1"
+                            class="btn btn-sm @(vehicle.RegNo == currentVehicle.RegNo ? "btn-outline-dark" : "btn-outline-dark border-0") d-flex align-items-center w-100 p-2 my-1"
                             @onclick="() => SetCurrentVehicle(vehicle)">
                         <span class="@((services.BookingStatus(vehicle.RegNo) == VehicleStatus.Available) ? "bi-circle-fill text-success" : "bi-circle-fill text-danger") me-2">
                         </span>
@@ -23,7 +23,7 @@
                 }
             </div>
             <h4 class="pt-4 border-bottom pb-2">Rent Now</h4>
-            <div class="font-monospace">
+            <div class="">
                 <div class="">
                     <a class="btn btn-sm btn-dark" href="contact">
                         Inqueries
@@ -34,11 +34,10 @@
 
         <!-- Vehicle Image Column -->
         <div class="col-12 col-lg-6 text-center">
-            <h4 class="fw-light">@currentVehicle.Make</h4>
-            <h6 class="font-monospace">@currentVehicle.Year</h6>
+            <h4 class="display-6">@currentVehicle.Make</h4>
+            <small class="text-muted">@currentVehicle.Year</small>
             <img src="@($"/images/Fleet/{currentVehicle.RegNo}.png")" alt="Image of @currentVehicle.RegNo" class="img-fluid w-100" />
-            <p class="text-start bi-dash-lg m-0"></p>
-            <h6 class="text-start text-muted font-monospace">@currentVehicle.Info</h6>
+            <h6 class="text-start text-muted ">@currentVehicle.Info</h6>
         </div>
 
         <!-- Vehicle Information Column -->
@@ -49,15 +48,15 @@
                         <td colspan="2" class="border-bottom fw-light h4">Vehicle Details</td>
                     </tr>
                     <tr>
-                        <td class="col-3 fw-bold font-monospace">Type:</td>
+                        <td class="col-3 fw-bold ">Type:</td>
                         <td class="col-9">@currentVehicle.VehicleType</td>
                     </tr>
                     <tr>
-                        <td class="col-3 fw-bold font-monospace">Make:</td>
+                        <td class="col-3 fw-bold ">Make:</td>
                         <td class="col-9">@currentVehicle.Make</td>
                     </tr>
                     <tr>
-                        <td class="col-3 fw-bold font-monospace">
+                        <td class="col-3 fw-bold ">
                             @if (currentVehicle is ICar car)
                             {
                                 <span>Doors</span>
@@ -82,20 +81,20 @@
                         <td colspan="2" class="fw-light border-bottom h4 pt-4">Rental Information</td>
                     </tr>
                     <tr>
-                        <td class="col-3 fw-bold font-monospace">Odometer:</td>
+                        <td class="col-3 fw-bold ">Odometer:</td>
                         <td class="col-9">@currentVehicle.Odometer km</td>
                     </tr>
                     
                     <tr>
-                        <td class="col-3 fw-bold font-monospace">Cost/km:</td>
-                        <td class="col-9 font-monospace">@currentVehicle.CostKm €</td>
+                        <td class="col-3 fw-bold ">Cost/km:</td>
+                        <td class="col-9 ">@currentVehicle.CostKm €</td>
                     </tr>
                     <tr>
-                        <td class="col-3 fw-bold font-monospace">Cost/day:</td>
+                        <td class="col-3 fw-bold ">Cost/day:</td>
                         <td class="col-9">@currentVehicle.CostDay €</td>
                     </tr>
                     <tr>
-                        <td class="col-3 fw-bold font-monospace">Status:</td>
+                        <td class="col-3 fw-bold ">Status:</td>
                         <td class="col-9">
                             <span class="@((services.BookingStatus(currentVehicle.RegNo) == VehicleStatus.Available) ? "bi-circle-fill text-success" : "bi-circle-fill text-danger")">
                             </span>
