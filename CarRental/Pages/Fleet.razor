@@ -6,8 +6,8 @@
 @using System.Text.RegularExpressions;
 @inject Services services
 
-<div class="container">
-    <div class="row">
+<div class="container-fluid p-0">
+    <div class="row m-5">
         <div class="col text-center mt-4">
             <h2 class="fs-1 text-uppercase mb-3">Fleet</h2>
             <h4 class="fw-bold">Elegance on Wheels</h4>
@@ -15,136 +15,28 @@
             <h6 class="text-muted">Explore our exclusive collection of vintage vehicles that combine classic charm with modern comfort for your unforgettable events.</h6>
         </div>
     </div>
-</div>
 
-<div class="container-fluid my-5 py-5">
-    <div class="row h-100 pb-5">
-
-        <!-- Vehicle Information Column -->
-        <div class="col-12 col-lg-3 d-flex flex-column mt-5 pt-5">
-            <table class="table table-borderless m-0">
-                <tbody>
-                    <tr>
-                        <td colspan="2" class="fw-bold border-bottom h4">Vehicle Details</td>
-                    </tr>
-                    <tr>
-                        <td class="col-3 fw-bold font-monospace">Reg. No:</td>
-                        <td class="col-9">@currentVehicle.RegNo</td>
-                    </tr>
-                    <tr>
-                        <td class="col-3 fw-bold font-monospace">Type:</td>
-                        <td class="col-9">@currentVehicle.VehicleType</td>
-                    </tr>
-                    <tr>
-                        <td class="col-3 fw-bold font-monospace">Make:</td>
-                        <td class="col-9">@currentVehicle.Make</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="fw-bold border-bottom h4 pt-4">Rental Information</td>
-                    </tr>
-                    <tr>
-                        <td class="col-3 fw-bold font-monospace">Odometer:</td>
-                        <td class="col-9">@currentVehicle.Odometer km</td>
-                    </tr>
-                    <tr>
-                        <td class="col-3 fw-bold font-monospace">
-                            @if (currentVehicle is ICar car)
-                            {
-                                <span>Doors</span>
-                            }
-                            else if (currentVehicle is IMotorcycle mc)
-                            {
-                                <span>Seats</span>
-                            }
-                        </td>
-                        <td class="col-9">
-                            @if (currentVehicle is ICar cars)
-                            {
-                                @cars.Doors.ToString()
-                            }
-                            else if (currentVehicle is IMotorcycle mcs)
-                            {
-                                @mcs.Seats.ToString()
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-3 fw-bold font-monospace">Cost/km:</td>
-                        <td class="col-9 font-monospace">@currentVehicle.CostKm €</td>
-                    </tr>
-                    <tr>
-                        <td class="col-3 fw-bold font-monospace">Cost/day:</td>
-                        <td class="col-9">@currentVehicle.CostDay €</td>
-                    </tr>
-                    <tr>
-                        <td class="col-3 fw-bold font-monospace">Status:</td>
-                        <td class="col-9">
-                            <span class="@((services.BookingStatus(currentVehicle.RegNo) == VehicleStatus.Available) ? "bi-circle-fill text-success" : "bi-circle-fill text-danger")">
-                            </span>
-                            <span class="text-uppercase">
-                                @(services.BookingStatus(currentVehicle.RegNo) == VehicleStatus.Available ? " Available" : " Booked")
-                            </span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Vehicle Image Column -->
-        <div class="col-12 col-lg-6 text-center pt-5">
-            <h3 class="fw-bold">@currentVehicle.Make</h3>
-            <h6 class="font-monospace">@currentVehicle.Year</h6>
-            <img src="@($"/images/Fleet/{currentVehicle.RegNo}.png")" alt="Image of @currentVehicle.RegNo" class="img-fluid w-100" />
-            <p class="text-start bi-dash-lg m-0"></p>
-            <h6 class="text-start text-muted font-monospace">@currentVehicle.Info</h6>
-        </div>
-
-        <!-- Vehicle Selection Column -->
-        <div class="col-12 col-lg-3 pt-5">
-            <h4 class="fw-bold border-bottom mt-5 pb-2">Select a Model</h4>
-            <div class="font-monospace">
-                @foreach (var vehicle in vehicles)
-                {
-                    <button type="button"
-                            class="btn btn-sm @(vehicle.RegNo == currentVehicle.RegNo ? "btn-dark sig-bg" : "btn-outline-secondary border-0") d-flex align-items-center w-100 p-2 my-1"
-                            @onclick="() => SetCurrentVehicle(vehicle)">
-                        <span class="@((services.BookingStatus(vehicle.RegNo) == VehicleStatus.Available) ? "bi-circle-fill text-success" : "bi-circle-fill text-danger") me-2">
-                        </span>
-                        @vehicle.Make
-                    </button>
-                }
-            </div>
-            <h4 class="fw-bold pt-4 border-bottom  pb-2">Rent Now</h4>
-            <div class="font-monospace">
-                <div class="">
-                    <a class="btn btn-sm btn-dark sig-bg" href="contact">
-                        Inqueries
-                    </a>
-                </div>
-            </div>
-        </div>
+    <div class="row m-5">
+        <Vehicles />
     </div>
-</div>
 
-<!-- Current Deals Section -->
-<div class="container-fluid p-5">
-    <div class="row mb-5">
+    <div class="row m-5">
         <div class="col text-center">
             <h2 class="fs-2 text-uppercase mb-3">Current Deals</h2>
             <p class="text-muted">Don't miss out on our exclusive rental deals designed to help you save more and ride in style!</p>
         </div>
     </div>
 
-    <div class="row row-cols-1 row-cols-xl-3 g-5">
+    <div class="row row-cols-1 row-cols-xl-3 m-5 g-5">
         <!-- First deal -->
         <div class="col">
-            <div class="card h-100 position-relative sig-border">
+            <div class="card h-100">
                 <img src="/images/Fleet/luxury.jpg" class="card-img-top" alt="Luxury Car Image">
                 <div class="card-body border-top border-warning">
                     <h5 class="card-title"><strong>Luxurious Getaway for Less</strong> </h5>
                     <p class="card-text"><em>Elevate Your Journey with Opulent Comfort</em><br>Savor the lavishness of our top-tier luxury vehicles and revel in the sophistication they bring to your travel. Enjoy a 15% discount and experience grandeur on the road for less.</p>
                 </div>
-                <a href="links" class="card-footer btn btn-dark sig-bg d-flex text-warning justify-content-between align-items-center">
+                <a href="links" class="card-footer btn btn-dark sig-bg d-flex text-warning justify-content-between align-items-center border-0">
                     <span class="h5"><i class="bi bi-award-fill text-warning"></i> Claim Deal</span>
                     <small class="text-white">Offer valid until 15 Nov 2023</small>
                 </a>
@@ -153,13 +45,13 @@
 
         <!-- Second deal -->
         <div class="col">
-            <div class="card h-100 position-relative sig-border">
+            <div class="card h-100">
                 <img src="/images/Fleet/winter.jpg" class="card-img-top" alt="Winter Car Image">
                 <div class="card-body border-top border-warning">
                     <h5 class="card-title"><strong>Special Winter Wonderland Drive</strong></h5>
                     <p class="card-text"><em>Warm Up Your Winter Travels with Stylish Sedans</em><br>This winter, let our sedans be your companion on frosty roads with a 20% discount. It’s more than just a car rental—it's a promise of cozy journeys and serene drives.</p>
                 </div>
-                <a href="links" class="card-footer btn btn-dark sig-bg d-flex text-warning justify-content-between align-items-center">
+                <a href="links" class="card-footer btn btn-dark sig-bg d-flex text-warning justify-content-between align-items-center border-0">
                     <span class="h5"><i class="bi bi-award-fill text-warning"></i> Claim Deal</span>
                     <small class="text-white">Offer valid until 31 Dec 2023</small>
                 </a>
@@ -168,131 +60,124 @@
 
         <!-- Third deal -->
         <div class="col">
-            <div class="card h-100 position-relative sig-border">
+            <div class="card h-100">
                 <img src="/images/Fleet/summer.jpg" class="card-img-top" alt="Summer Car Image">
                 <div class="card-body border-top border-warning">
                     <h5 class="card-title"><strong>Summer Roadtrip Adventure Awaits</strong></h5>
                     <p class="card-text"><em>Embrace the Sun with Our Summer Convertible Special</em><br>Plan for the ultimate summer with a 10% discount on convertibles. Add excitement to your summer adventures with the wind in your hair and the horizon ahead.</p>
                 </div>
-                <a href="links" class="card-footer btn btn-dark sig-bg d-flex text-warning justify-content-between align-items-center">
+                <a href="links" class="card-footer btn btn-dark d-flex text-warning justify-content-between align-items-center border-0">
                     <span class="h5"><i class="bi bi-award-fill text-warning"></i> Claim Deal</span>
                     <small class="text-white">Offer valid until 31 Mars 2024</small>
                 </a>
             </div>
         </div>
     </div>
-</div>
 
-<div class="container-fluid bg-white my-5 py-5">
-    <div class="row mb-5">
+    <div class="row bg-white m-5 py-5">
         <div class="col text-center">
             <h2 class="fs-2 text-uppercase mb-3">Frequently Asked Questions</h2>
         </div>
     </div>
 
-    <div class="container my-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <input class="form-control" id="faqSearchInput" type="text" placeholder="Search FAQs..." aria-label="Search">
-            </div>
+    <div class="row justify-content-center m-5">
+        <div class="col-md-8">
+            <input class="form-control" id="faqSearchInput" type="text" placeholder="Search FAQs..." aria-label="Search">
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-8 mx-auto">
+    <div class="row m-5">
 
-            <!-- Start of accordion for FAQs -->
-            <div class="accordion sig-border rounded" id="bookingFAQ">
+        <!-- Start of accordion for FAQs -->
+        <div class="accordion rounded" id="bookingFAQ">
 
-                <!-- FAQ Item 1 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            How do I book a car?
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#bookingFAQ">
-                        <div class="accordion-body">
-                            Booking a car with us is easy! Just use our online booking form, select your dates, choose a car, and enter your details. You can also call us directly to book over the phone.
-                        </div>
+            <!-- FAQ Item 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        How do I book a car?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        Booking a car with us is easy! Just use our online booking form, select your dates, choose a car, and enter your details. You can also call us directly to book over the phone.
                     </div>
                 </div>
+            </div>
 
-                <!-- FAQ Item 2 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            What do I need to bring when I pick up the car?
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#bookingFAQ">
-                        <div class="accordion-body">
-                            Please bring your driver's license, the credit card used for booking, and your confirmation number. If insurance is required, please bring proof of insurance as well.
-                        </div>
+            <!-- FAQ Item 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        What do I need to bring when I pick up the car?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        Please bring your driver's license, the credit card used for booking, and your confirmation number. If insurance is required, please bring proof of insurance as well.
                     </div>
                 </div>
+            </div>
 
-                <!-- FAQ Item 3 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Can I modify or cancel my booking?
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#bookingFAQ">
-                        <div class="accordion-body">
-                            Yes, you can modify or cancel your booking. For modifications, log in to your account or contact us. Cancellations can be made up to 24 hours before the pick-up time without any fees.
-                        </div>
+            <!-- FAQ Item 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Can I modify or cancel my booking?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        Yes, you can modify or cancel your booking. For modifications, log in to your account or contact us. Cancellations can be made up to 24 hours before the pick-up time without any fees.
                     </div>
                 </div>
+            </div>
 
-                <!-- FAQ Item 4 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Are there any mileage limits for the rentals?
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#bookingFAQ">
-                        <div class="accordion-body">
-                            Most of our rental plans come with unlimited mileage, but some special vehicles or offers may have mileage limits. Please check the specific terms for each rental.
-                        </div>
+            <!-- FAQ Item 4 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Are there any mileage limits for the rentals?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        Most of our rental plans come with unlimited mileage, but some special vehicles or offers may have mileage limits. Please check the specific terms for each rental.
                     </div>
                 </div>
+            </div>
 
-                <!-- FAQ Item 5 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFive">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            What insurance options are available?
-                        </button>
-                    </h2>
-                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#bookingFAQ">
-                        <div class="accordion-body">
-                            We offer a variety of insurance options for your rental including collision damage waiver, theft protection, and third-party liability. These can be selected during the booking process.
-                        </div>
+            <!-- FAQ Item 5 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        What insurance options are available?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        We offer a variety of insurance options for your rental including collision damage waiver, theft protection, and third-party liability. These can be selected during the booking process.
                     </div>
                 </div>
+            </div>
 
-                <!-- FAQ Item 6 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingSix">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            Do you offer roadside assistance?
-                        </button>
-                    </h2>
-                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#bookingFAQ">
-                        <div class="accordion-body">
-                            Yes, we offer 24/7 roadside assistance with all of our rentals for your peace of mind. This service covers a range of issues from flat tires to mechanical problems.
-                        </div>
+            <!-- FAQ Item 6 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Do you offer roadside assistance?
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        Yes, we offer 24/7 roadside assistance with all of our rentals for your peace of mind. This service covers a range of issues from flat tires to mechanical problems.
                     </div>
                 </div>
             </div>
 
         </div>
+        <Wordmark />
     </div>
-
-    <Wordmark />
 </div>
 
 @code {
@@ -310,4 +195,4 @@
     {
         currentVehicle = vehicle;
     }
-}
+    }
