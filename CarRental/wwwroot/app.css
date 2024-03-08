@@ -60,6 +60,13 @@ a {
     background: rgba(0, 0, 0, 0.5);
 }
 
+.custom-link .card {
+    transition: all 0.3s ease;
+}
+
+.custom-link:hover .card {
+    opacity: 0.8;
+}
 
 .wordmark {
     max-width: 400px;
@@ -210,3 +217,30 @@ a {
     .loading-progress-text:after {
         content: var(--blazor-load-percentage-text, "Loading");
     }
+
+
+@media (max-width: 575.9px) {
+    html {
+        font-size: 13px;
+
+    }
+    
+    .display-1 {
+        font-size: 20px !important;
+
+    }
+
+    .display-2 {
+        font-size: 18px !important;
+
+    }
+
+    .display-6 {
+        font-size: 14px !important;
+
+    }
+}
+@media (min-width: 576px) { html { font-size: 15px; } }
+@media (min-width: 768px) { html { font-size: 16px; } }
+@media (min-width: 992px) { html { font-size: 17px; } }
+@media (min-width: 1200px) { html { font-size: 18px; } }
