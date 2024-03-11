@@ -45,7 +45,7 @@ a {
 
 .overlay-title {
     color: var(--primary-color);
-    text-shadow: 1px 1px 1px var(--tertiary-color), 0 0 1em var(--tertiary-color), 0 0 0.1em var(--tertiary-color);
+    text-shadow: 1px 1px 1px var(--secondary-color), 0 0 1em var(--secondary-color), 0 0 0.1em var(--secondary-color);
     font-weight: bold;
     margin: 0px;
 }
