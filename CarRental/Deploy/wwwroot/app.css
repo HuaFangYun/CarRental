@@ -1,0 +1,229 @@
+:root {
+    --primary-color: #ffffff;
+    --secondary-color: #212529;
+    --tertiary-color: #026699;
+    --quaternary-color: #dee2e6;
+}
+
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1:focus, .navbar-toggler, .navbar-toggler:focus, .navbar-toggler:active, .navbar-toggler.active {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo {
+    width: 200px;
+}
+
+.btn-sm {
+    padding: 0px 8px;
+    font-size: 0.8rem;
+    border-radius: 0.2rem;
+}
+
+.sub-heading {
+    color: var(--tertiary-color);
+    font-weight: 100;
+}
+
+.vehicle-selection-title {
+    color: var(--secondary-color);
+    font-size: 22px;
+    font-weight: 100;
+    border-bottom: 1px solid var(--quaternary-color) !important;
+    margin: 1px !important;
+    padding: 9px !important;
+}
+
+.overlay-title {
+    color: var(--primary-color);
+    text-shadow: 1px 1px 1px var(--tertiary-color), 0 0 1em var(--tertiary-color), 0 0 0.1em var(--tertiary-color);
+    font-weight: bold;
+    margin: 0px;
+}
+
+.card-img-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 5px 15px;
+}
+
+.nav-card {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav-card .card {
+    transition: all 0.3s ease;
+}
+
+.nav-card:hover .card {
+    opacity: 0.8;
+}
+
+.wordmark {
+    max-width: 400px;
+}
+
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+}
+
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+
+    .star-rating label {
+        color: lightgray;
+        padding: 0 5px;
+        cursor: pointer;
+    }
+
+    .star-rating input:checked ~ label {
+        color: orange;
+    }
+
+
+
+@media (max-width: 767.99px) {
+    * {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    * {
+        font-size: 12px;
+    }
+
+    .timeline {
+        position: relative;
+        padding: 0;
+        width: 100%;
+    }
+
+        .timeline .line {
+            height: auto;
+            min-height: 100%;
+            width: 3px;
+            background: #233448;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            margin-left: -2px;
+            z-index: 1;
+        }
+}
+
+@media (min-width: 993px) {
+    * {
+        font-size: 14px;
+    }
+
+    .timeline {
+        position: relative;
+        padding: 0;
+        width: 100%;
+    }
+
+        .timeline .line {
+            height: auto;
+            min-height: 100%;
+            width: 3px;
+            background: #233448;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            margin-left: -2px;
+            z-index: 1;
+        }
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+.blazor-error-boundary {
+    background: url(data:image/svg+xml;base64,PHN2Zy...) no-repeat 1rem/1.8rem, #b32121;
+    padding: 1rem 1rem 1rem 3.7rem;
+    color: white;
+}
+
+    .blazor-error-boundary::after {
+        content: "An error has occurred.";
+    }
+
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.validation-message {
+    color: red;
+}
+
+.loading-progress {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 20vh auto 1rem auto;
+}
+
+    .loading-progress circle {
+        fill: none;
+        stroke: #e0e0e0;
+        stroke-width: 0.6rem;
+        transform-origin: 50% 50%;
+        transform: rotate(-90deg);
+    }
+
+        .loading-progress circle:last-child {
+            stroke: #1b6ec2;
+            stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+            transition: stroke-dasharray 0.05s ease-in-out;
+        }
+
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+}
+
+    .loading-progress-text:after {
+        content: var(--blazor-load-percentage-text, "Loading");
+    }
+
+
+@media (max-width: 575.9px) { html { font-size: 13px; } }
+@media (min-width: 576px) { html { font-size: 15px; } }
+@media (min-width: 768px) { html { font-size: 16px; } }
+@media (min-width: 992px) { html { font-size: 17px; } }
+@media (min-width: 1200px) { html { font-size: 18px; } }
