@@ -1,15 +1,19 @@
-﻿@inject Services services
+﻿@inject AppServices services
 
-<div class="container-fluid py-5">
-    <div class="row my-5">
-        <h2 class="display-4">Our Vehicles</h2>
-        <h3 class="display-6 fw-light highlight">Take a Look at Our Currated Collection</h3>
-    </div>
+<div class="container-fluid">
+
+    <!-- Headings -->
     <div class="row">
+        <h2 class="display-5">Our Vehicles</h2>
+        <h3 class="sub-heading">Take a Look at Our Currated Collection</h3>
+    </div>
+
+    <!-- Headings -->
+    <div class="row mt-3">
 
         <!-- Vehicle Selection Column -->
-        <div class="col-12 col-lg-3">
-            <h4 class="fw-light border-bottom pb-2">Select a Model</h4>
+        <div class="col-12 col-lg-3 py-3">
+            <h4 class="vehicle-selection-title">Select a Model</h4>
             <div>
                 @foreach (var vehicle in vehicles)
                 {
@@ -22,30 +26,26 @@
                     </button>
                 }
             </div>
-            <h4 class="pt-4 border-bottom pb-2">Rent Now</h4>
-            <div class="">
-                <div class="">
-                    <a class="btn btn-sm btn-dark" href="contact">
-                        Inqueries
-                    </a>
-                </div>
-            </div>
+            <h4 class="vehicle-selection-title pt-4">Rent Now</h4>
+            <a class="btn btn-sm btn-dark m-2" href="contact">
+                Inqueries
+            </a>
         </div>
 
         <!-- Vehicle Image Column -->
-        <div class="col-12 col-lg-6 text-center">
-            <h4 class="display-6">@currentVehicle.Make</h4>
+        <div class="col-12 col-lg-6 text-center py-3">
+            <h4 class="fw-light">@currentVehicle.Make</h4>
             <small class="text-muted">@currentVehicle.Year</small>
             <img src="@($"/images/Fleet/{currentVehicle.RegNo}.png")" alt="Image of @currentVehicle.RegNo" class="img-fluid w-100" />
             <h6 class="text-start text-muted ">@currentVehicle.Info</h6>
         </div>
 
         <!-- Vehicle Information Column -->
-        <div class="col-12 col-lg-3">
+        <div class="col-12 col-lg-3 py-3">
             <table class="table table-borderless m-0">
                 <tbody>
                     <tr>
-                        <td colspan="2" class="border-bottom fw-light h4">Vehicle Details</td>
+                        <td colspan="2" class="vehicle-selection-title">Vehicle Details</td>
                     </tr>
                     <tr>
                         <td class="col-3 fw-bold ">Type:</td>
@@ -78,13 +78,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="fw-light border-bottom h4 pt-4">Rental Information</td>
+                        <td colspan="2" class="vehicle-selection-title pt-4">Rental Information</td>
                     </tr>
                     <tr>
                         <td class="col-3 fw-bold ">Odometer:</td>
                         <td class="col-9">@currentVehicle.Odometer km</td>
                     </tr>
-                    
+
                     <tr>
                         <td class="col-3 fw-bold ">Cost/km:</td>
                         <td class="col-9 ">@currentVehicle.CostKm €</td>

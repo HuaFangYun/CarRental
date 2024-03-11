@@ -1,10 +1,5 @@
 ﻿@page "/booking-system"
-@using CarRental.Classes;
-@using CarRental.Interfaces;
-@using CarRental.Enums;
-@using System.Linq;
-@using System.Text.RegularExpressions;
-@inject Services services
+@inject AppServices bs
 
 <PageTitle>Booking Overview</PageTitle>
 <Alert Message="@errorMessage" OnClose="CloseAlert" />
@@ -94,9 +89,9 @@
                             </td>
                             <td>@v.CostKm €</td>
                             <td>@v.CostDay €</td>
-                            <td class="@(services.BookingStatus(v.RegNo) == VehicleStatus.Available ? "text-success bi-circle-fill" : "text-danger bi-circle-fill")"></td>
+                            <td class="@(bs.BookingStatus(v.RegNo) == VehicleStatus.Available ? "text-success bi-circle-fill" : "text-danger bi-circle-fill")"></td>
                             <td>
-                                @if (services.BookingStatus(v.RegNo) == VehicleStatus.Available)
+                                @if (bs.BookingStatus(v.RegNo) == VehicleStatus.Available)
                                 {
                                     <div class="d-flex align-items-center">
                                         <select @bind="selectedCustomer" disabled="@isProcessing" class="drop-down">
@@ -223,7 +218,7 @@
                             <td><input @bind-value="b.KmDriven" @bind-value:event="oninput" placeholder="Enter value upon return" disabled="@(b.Status == VehicleStatus.Available)" /></td>
                             <td><input type="date" @bind="b.RentDate" class="w-100" disabled="@(b.Status == VehicleStatus.Available)" /></td>
                             <td><input type="date" @bind="b.ReturnDate" placeholder="yyyy-MM-dd" class="w-100" disabled="@(b.Status == VehicleStatus.Available)" /></td>
-                            <td>@services.TotalCost(b) €</td>
+                            <td>@bs.TotalCost(b) €</td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     @if (b.Status == VehicleStatus.Available)
@@ -296,9 +291,9 @@
 
     protected override void OnInitialized()
     {
-        bookings = services.Get<IBooking>().ToList();
-        customers = services.Get<IPerson>().ToList();
-        vehicles = services.Get<IVehicle>().ToList();
+        bookings = bs.Get<IBooking>().ToList();
+        customers = bs.Get<IPerson>().ToList();
+        vehicles = bs.Get<IVehicle>().ToList();
     }
 
     private void ToggleInstructions() => showInstructions = !showInstructions;
@@ -364,16 +359,16 @@
 
             if (typeOfVehicle == "Car")
             {
-                services.Add(newCar);
+                bs.Add(newCar);
                 newCar = new Car();
             }
             else if (typeOfVehicle == "Motorcycle")
             {
-                services.Add(newMC);
+                bs.Add(newMC);
                 newMC = new Motorcycle();
             }
 
-            vehicles = services.Get<IVehicle>().ToList();
+            vehicles = bs.Get<IVehicle>().ToList();
             errorMessage = string.Empty;
         }
         catch (Exception ex)
@@ -402,10 +397,10 @@
                 return;
             }
 
-            services.Add(newCustomer);
+            bs.Add(newCustomer);
             newCustomer = new Customer();
 
-            customers = services.Get<IPerson>().ToList();
+            customers = bs.Get<IPerson>().ToList();
             errorMessage = string.Empty;
         }
         catch (Exception ex)
@@ -420,7 +415,7 @@
         try
         {
             await Task.Delay(5000);
-            services.RentVehicle(v, selectedCustomer, customers);
+            bs.RentVehicle(v, selectedCustomer, customers);
         }
         catch (Exception ex)
         {
@@ -429,8 +424,8 @@
         finally
         {
             isProcessing = false;
-            bookings = services.Get<IBooking>().ToList();
-            vehicles = services.Get<IVehicle>().ToList();
+            bookings = bs.Get<IBooking>().ToList();
+            vehicles = bs.Get<IVehicle>().ToList();
             selectedCustomer = string.Empty;
         }
     }
@@ -439,7 +434,7 @@
     {
         try
         {
-            services.ReturnVehicle(b);
+            bs.ReturnVehicle(b);
         }
         catch (Exception ex)
         {

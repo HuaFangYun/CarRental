@@ -3,83 +3,220 @@
 <PageTitle>Home</PageTitle>
 
 <div class="container-fluid p-0">
-    <div class="row m-5">
-        <div class="col pb-5">
-            <h1 class="display-1 m-0 px-3">Welcome to Mr C's</h1>
-            <h2 class="display-6 px-3">Your Destination for Renting Vintage Classics</h2>
-            <img src="images/Home/home.png" class="img-fluid border border-dark rounded mt-3" alt="Workshop">
+
+    <!-- Introduction Banner -->
+    <div class="row m-5 pb-5">
+        <div class="col-lg-6 d-flex align-items-center">
+            <div class="d-block">
+                <h1 class="display-4 mb-0">Welcome to Mr C's</h1>
+                <h2 class="display-6 sub-heading"><i class="bi-dash display-6"></i>A Collection of Classics</h2>
+                <p class="h4 fw-light mt-5 pe-5">Step into a bygone era with Mr C's distinguished collection of classic cars. Experience the artistry of timeless design and superior engineering.</p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img src="images/Home/fleet.png" class="img-fluid border rounded-5 mt-3 p-0" alt="Mr C's Workshop">
         </div>
     </div>
 
-    <div class="row m-5">
+    <!-- Vehicle Selection -->
+    <div class="row m-5 py-5">
         <Vehicles />
     </div>
 
-    <div class="row m-5 p-0 g-5">
-        <div class="col-lg-6">
-            <a href="fleet" class="custom-link">
-                <div class="card border-0">
-                    <img src="images/Home/fleet.png" class="card-img rounded" alt="Car Fleet">
-                    <div class="card-img-overlay rounded">
-                        <div class="d-flex align-items-end h-100">
-                            <div class="d-block">
-                                <h3 class="display-3 custom-title">Rental Fleet</h3>
-                                <h4 class="h2 custom-subtitle">Explore our collection of classics</h4>
-                            </div>
-                        </div>
+    <!-- Navigation Cards -->
+    <div class="row m-5 py-5">
+        <div class="col-md-4 py-3">
+            <a href="testimonials" class="nav-card">
+                <div class="card">
+                    <img src="images/Home/testimonials.png" class="card-img" alt="Example of Testimonials">
+                    <div class="card-img-overlay">
+                        <h3 class="display-4 overlay-title">Reviews</h3>
                     </div>
                 </div>
             </a>
         </div>
-
-        <div class="col-lg-6">
-            <a href="testimonials" class="custom-link">
-                <div class="card border-0">
-                    <img src="images/Home/testimonials.png" class="card-img rounded" alt="Example of Testimonials">
-                    <div class="card-img-overlay rounded">
-                        <div class="d-flex align-items-end h-100">
-                            <div class="d-block">
-                                <h3 class="display-3 custom-title">Reviews</h3>
-                                <h4 class="h2 custom-subtitle">See what our valued customers say</h4>
-                            </div>
-                        </div>
+        <div class="col-md-4 py-3">
+            <a href="about" class="nav-card">
+                <div class="card">
+                    <img src="images/Home/about.png" class="card-img" alt="Picture of Mr C's in the 80's'">
+                    <div class="card-img-overlay">
+                        <h3 class="display-4 overlay-title">About</h3>
                     </div>
                 </div>
             </a>
         </div>
-
-        <div class="col-lg-6">
-            <a href="about" class="custom-link">
-                <div class="card border-0">
-                    <img src="images/Home/about.png" class="card-img rounded" alt="Old Picture of Mr C's">
-                    <div class="card-img-overlay rounded">
-                        <div class="d-flex align-items-end h-100">
-                            <div class="d-block">
-                                <h3 class="display-3 custom-title">About Mr C's</h3>
-                                <h4 class="h2 custom-subtitle">Our History - Our Future</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-lg-6">
-            <a href="contact" class="custom-link">
-                <div class="card border-0">
-                    <img src="images/Home/contact.png" class="card-img rounded" alt="Retro Phone">
-                    <div class="card-img-overlay rounded">
-                        <div class="d-flex align-items-end h-100">
-                            <div class="d-block">
-                                <h3 class="display-3 custom-title">Contact</h3>
-                                <h4 class="h2 custom-subtitle">Need assistance? We are here to help</h4>
-                            </div>
-                        </div>
+        <div class="col-md-4 py-3">
+            <a href="contact" class="nav-card">
+                <div class="card">
+                    <img src="images/Home/contact.png" class="card-img" alt="Retro Phone">
+                    <div class="card-img-overlay">
+                        <h3 class="display-4 overlay-title">Contact</h3>
                     </div>
                 </div>
             </a>
         </div>
     </div>
 
+    <!-- Current Deals -->
+    <div class="row m-5 py-5">
+        <div class="col text-center">
+            <h2 class="fs-2 text-uppercase mb-3">Current Deals</h2>
+            <p class="text-muted">Don't miss out on our exclusive rental deals designed to help you save more and ride in style!</p>
+        </div>
+
+        <div class="row row-cols-1 row-cols-xl-3 m-5 g-5">
+            <!-- First deal -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/images/Fleet/luxury.jpg" class="card-img-top" alt="Luxury Car Image">
+                    <div class="card-body border-top border-warning">
+                        <h5 class="card-title"><strong>Luxurious Getaway for Less</strong> </h5>
+                        <p class="card-text"><em>Elevate Your Journey with Opulent Comfort</em><br>Savor the lavishness of our top-tier luxury vehicles and revel in the sophistication they bring to your travel. Enjoy a 15% discount and experience grandeur on the road for less.</p>
+                    </div>
+                    <a href="links" class="card-footer btn btn-dark sig-bg d-flex text-warning justify-content-between align-items-center border-0">
+                        <span><i class="bi bi-award-fill"></i> Claim Deal</span>
+                        <small>Offer valid until 15 Nov 2023</small>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Second deal -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/images/Fleet/winter.jpg" class="card-img-top" alt="Winter Car Image">
+                    <div class="card-body border-top border-warning">
+                        <h5 class="card-title"><strong>Special Winter Wonderland Drive</strong></h5>
+                        <p class="card-text"><em>Warm Up Your Winter Travels with Stylish Sedans</em><br>This winter, let our sedans be your companion on frosty roads with a 20% discount. It’s more than just a car rental—it's a promise of cozy journeys and serene drives.</p>
+                    </div>
+                    <a href="links" class="card-footer btn btn-dark sig-bg d-flex text-warning justify-content-between align-items-center border-0">
+                        <span><i class="bi bi-award-fill"></i> Claim Deal</span>
+                        <small>Offer valid until 31 Dec 2023</small>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Third deal -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/images/Fleet/summer.jpg" class="card-img-top" alt="Summer Car Image">
+                    <div class="card-body border-top border-warning">
+                        <h5 class="card-title"><strong>Summer Roadtrip Adventure Awaits</strong></h5>
+                        <p class="card-text"><em>Embrace the Sun with Our Summer Convertible Special</em><br>Plan for the ultimate summer with a 10% discount on convertibles. Add excitement to your summer adventures with the wind in your hair and the horizon ahead.</p>
+                    </div>
+                    <a href="links" class="card-footer btn btn-dark sig-bg d-flex text-warning justify-content-between align-items-center border-0">
+                        <span><i class="bi bi-award-fill"></i> Claim Deal</span>
+                        <small>Offer valid until 31 Mars 2024</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row bg-white m-5 py-5">
+        <div class="col text-center">
+            <h2 class="fs-2 text-uppercase mb-3">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <input class="form-control" id="faqSearchInput" type="text" placeholder="Search FAQs..." aria-label="Search">
+            </div>
+        </div>
+
+
+        <!-- Start of accordion for FAQs -->
+        <div class="accordion rounded" id="bookingFAQ">
+
+            <!-- FAQ Item 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        How do I book a car?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        Booking a car with us is easy! Just use our online booking form, select your dates, choose a car, and enter your details. You can also call us directly to book over the phone.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        What do I need to bring when I pick up the car?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        Please bring your driver's license, the credit card used for booking, and your confirmation number. If insurance is required, please bring proof of insurance as well.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Can I modify or cancel my booking?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        Yes, you can modify or cancel your booking. For modifications, log in to your account or contact us. Cancellations can be made up to 24 hours before the pick-up time without any fees.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Are there any mileage limits for the rentals?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        Most of our rental plans come with unlimited mileage, but some special vehicles or offers may have mileage limits. Please check the specific terms for each rental.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        What insurance options are available?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        We offer a variety of insurance options for your rental including collision damage waiver, theft protection, and third-party liability. These can be selected during the booking process.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 6 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Do you offer roadside assistance?
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#bookingFAQ">
+                    <div class="accordion-body">
+                        Yes, we offer 24/7 roadside assistance with all of our rentals for your peace of mind. This service covers a range of issues from flat tires to mechanical problems.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <Wordmark />
 </div>
+

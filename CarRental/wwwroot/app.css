@@ -1,21 +1,8 @@
 :root {
     --primary-color: #ffffff;
     --secondary-color: #212529;
-    --tertiary-color: #f3e0bc;
-    --quaternary-color: #fcf5d9;
-    --gradient: linear-gradient(to bottom right, #fcf5d9, #d28b00, #212529);
-}
-
-.highlight {
-    font-weight: bold;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-    width: auto;
-    font-family: var(--font-family);
+    --tertiary-color: #026699;
+    --quaternary-color: #dee2e6;
 }
 
 html, body {
@@ -32,16 +19,9 @@ a {
     text-decoration: none;
 }
 
-.nav-item {
-    color: var(--tertiary-color) !important;
-    text-transform: uppercase;
-}
-
 .logo {
     width: 200px;
 }
-
-
 
 .btn-sm {
     padding: 0px 8px;
@@ -49,30 +29,45 @@ a {
     border-radius: 0.2rem;
 }
 
-.custom-title {
-    color: var(--primary-color);
-    text-shadow: 1px 1px 1px var(--secondary-color), 0 0 1em var(--secondary-color), 0 0 0.1em var(--secondary-color);
-}
-
-.custom-subtitle {
+.sub-heading {
     color: var(--tertiary-color);
-    text-shadow: 1px 1px 1px var(--secondary-color), 0 0 1em var(--secondary-color), 0 0 0.1em var(--secondary-color);
+    font-weight: 100;
 }
 
-.custom-link {
+.vehicle-selection-title {
+    color: var(--secondary-color);
+    font-size: 22px;
+    font-weight: 100;
+    border-bottom: 1px solid var(--quaternary-color) !important;
+    margin: 1px !important;
+    padding: 9px !important;
+}
+
+.overlay-title {
+    color: var(--primary-color);
+    text-shadow: 1px 1px 1px var(--tertiary-color), 0 0 1em var(--tertiary-color), 0 0 0.1em var(--tertiary-color);
+    font-weight: bold;
+    margin: 0px;
+}
+
+.card-img-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 5px 15px;
+}
+
+.nav-card {
     color: inherit;
     text-decoration: none;
 }
 
-.card-img-overlay {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.custom-link .card {
+.nav-card .card {
     transition: all 0.3s ease;
 }
 
-.custom-link:hover .card {
+.nav-card:hover .card {
     opacity: 0.8;
 }
 
@@ -227,27 +222,7 @@ a {
     }
 
 
-@media (max-width: 575.9px) {
-    html {
-        font-size: 13px;
-
-    }
-    
-    .display-1 {
-        font-size: 20px !important;
-
-    }
-
-    .display-2 {
-        font-size: 18px !important;
-
-    }
-
-    .display-6 {
-        font-size: 14px !important;
-
-    }
-}
+@media (max-width: 575.9px) { html { font-size: 13px; } }
 @media (min-width: 576px) { html { font-size: 15px; } }
 @media (min-width: 768px) { html { font-size: 16px; } }
 @media (min-width: 992px) { html { font-size: 17px; } }

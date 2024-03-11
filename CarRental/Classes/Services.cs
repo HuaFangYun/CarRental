@@ -4,11 +4,11 @@ using CarRental.Interfaces;
 
 namespace CarRental.Classes;
 
-public class Services
+public class AppServices
 {
     private readonly IData _db;
 
-    public Services(IData db)
+    public AppServices(IData db)
     {
         _db = db;
     }
