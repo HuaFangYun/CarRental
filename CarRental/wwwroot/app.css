@@ -63,8 +63,7 @@ a {
 }
 
     .nav-link:hover {
-        color: var(--tertiary-color) !important;
-        font-weight: bold;
+        color: var(--quaternary-color) !important;
     }
 
 .nav-card {
