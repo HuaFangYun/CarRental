@@ -34,10 +34,10 @@
 
         <!-- Vehicle Image Column -->
         <div class="col-12 col-lg-6 text-center py-3">
-            <h4 class="fw-light">@currentVehicle.Make</h4>
+            <h5 class="fw-light">@currentVehicle.Make</h5>
             <small class="text-muted">@currentVehicle.Year</small>
             <img src="@($"/images/Fleet/{currentVehicle.RegNo}.png")" alt="Image of @currentVehicle.RegNo" class="img-fluid w-100" />
-            <h6 class="text-start text-muted ">@currentVehicle.Info</h6>
+            <p class="text-start">@currentVehicle.Info</p>
         </div>
 
         <!-- Vehicle Information Column -->
