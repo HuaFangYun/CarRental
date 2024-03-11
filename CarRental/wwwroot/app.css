@@ -52,8 +52,7 @@ a {
 
 .card-img-overlay {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: end;
     background: rgba(0, 0, 0, 0.3);
     padding: 5px 15px;
 }
