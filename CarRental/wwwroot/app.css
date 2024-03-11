@@ -41,6 +41,14 @@ a {
     width: 200px;
 }
 
+
+
+.btn-sm {
+    padding: 0px 8px;
+    font-size: 0.8rem;
+    border-radius: 0.2rem;
+}
+
 .custom-title {
     color: var(--primary-color);
     text-shadow: 1px 1px 1px var(--secondary-color), 0 0 1em var(--secondary-color), 0 0 0.1em var(--secondary-color);
