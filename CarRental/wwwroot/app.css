@@ -4,7 +4,7 @@
     --tertiary-color: #026699;
     --quaternary-color: #dee2e6;
     --quinary-color: #233448;
-    --gradient: linear-gradient(90deg, var(--quinary-color) 0%, var(--tertiary-color) 50%, var(--primary-color) 100%);
+    --gradient: linear-gradient(90deg, #554949 0%, var(--quinary-color) 50%, var(--quaternary-color) 100%);
 }
 
 html, body {
@@ -20,7 +20,10 @@ h1:focus, .navbar-toggler, .navbar-toggler:focus, .navbar-toggler:active, .navba
 .banner {
     background: var(--gradient);
     width: 100%;
+    margin: 0px;
     color: var(--primary-color);
+    border-top: 1px solid var(--tertiary-color);
+    border-bottom: 1px solid var(--tertiary-color);
 }
 
 a {
