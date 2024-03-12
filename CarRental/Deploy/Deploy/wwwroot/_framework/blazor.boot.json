@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "CarRental",
   "resources": {
-    "hash": "sha256-fAlLQBmL8S/LmZR7JKXJ5C5DlqrRTmM6JydNaHE1hDc=",
+    "hash": "sha256-Bt50BzBZxXpA6nwjXj88Zj2JuhAB3d76bfALk7g/vz4=",
     "jsModuleNative": {
       "dotnet.native.8.0.2.bfuvqv3gnl.js": "sha256-UjI8rw1wp9rBkUcQGAtrrl4cnQ3hgYlDpNHyLCoo8Xc="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "CarRental.wasm": "sha256-RKIzKucSLcZfyQB59D1yQbJ9P02O3UvItomCDFDXMNA=",
+      "CarRental.wasm": "sha256-91RiHRxawkGwtZK3WW8ks7loxRMjCWRGSMWti4GYpdM=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-z2OC7mfwkahcs3jLZe+pCsCKeZBDlWzOxjxpvFW5/UQ=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-+AeGjj5Wt7MXCBN/RE7iGr6POmyixEMA42E+6DHDetM=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-XZD3tHlm7Gqn+AKf2i0RaiP+KuSV62HRKkIryz2t7mo=",

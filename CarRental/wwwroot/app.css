@@ -3,6 +3,7 @@
     --secondary-color: #212529;
     --tertiary-color: #026699;
     --quaternary-color: #dee2e6;
+    --quinary-color: #233448;
 }
 
 html, body {
@@ -66,7 +67,7 @@ a {
 }
 
 .card:hover {
-    background: var(--tertiary-color);
+    background: var(--quinary-color);
     color: white;
     transform: scale(1.02, 1.02);
     -webkit-transform: scale(1.02, 1.02);
