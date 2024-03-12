@@ -4,7 +4,7 @@
     --tertiary-color: #026699;
     --quaternary-color: #dee2e6;
     --quinary-color: #233448;
-    --gradient: linear-gradient(90deg, #554949 0%, var(--quinary-color) 50%, var(--quaternary-color) 100%);
+    --gradient: linear-gradient(130deg, var(--quinary-color) 0%, #304863 40%, #818AA3 70%, var(--quaternary-color) 100%);
 }
 
 html, body {
