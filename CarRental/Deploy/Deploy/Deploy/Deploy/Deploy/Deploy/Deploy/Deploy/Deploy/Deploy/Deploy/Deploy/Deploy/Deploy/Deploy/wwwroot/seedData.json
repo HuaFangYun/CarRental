@@ -1,0 +1,101 @@
+{
+  "customers": [
+    {
+      "ssn": "891010-0168",
+      "firstName": "Charlie",
+      "lastName": "Sharp"
+    },
+    {
+      "ssn": "690830-8572",
+      "firstName": "Visilia",
+      "lastName": "Studiya"
+    },
+    {
+      "ssn": "821003-6612",
+      "firstName": "Blaine",
+      "lastName": "Bootstrap"
+    }
+  ],
+
+  "vehicles": [
+    {
+      "regNo": "AND243",
+      "make": "Porche",
+      "odometer": 5500,
+      "costKm": 1,
+      "vehicleType": "Touring",
+      "doors": 2
+    },
+    {
+      "regNo": "AWL853",
+      "make": "Ford",
+      "odometer": 6000,
+      "costKm": 1,
+      "vehicleType": "Touring",
+      "doors": 0
+    },
+    {
+      "regNo": "PQZ552",
+      "make": "Duesenberg",
+      "odometer": 1000,
+      "costKm": 1.5,
+      "vehicleType": "Luxury",
+      "doors": 2
+    },
+    {
+      "regNo": "VUQ516",
+      "make": "Buick",
+      "odometer": 5600,
+      "costKm": 1,
+      "vehicleType": "Convertible",
+      "doors": 2
+    },
+    {
+      "regNo": "IEN716",
+      "make": "Chevrolet",
+      "odometer": 2950,
+      "costKm": 1,
+      "vehicleType": "Hardtop",
+      "doors": 2
+    },
+    {
+      "regNo": "ENN712",
+      "make": "Chevrolet",
+      "odometer": 9700,
+      "costKm": 1,
+      "vehicleType": "Convertible",
+      "doors": 2
+    },
+    {
+      "regNo": "MBU852",
+      "make": "Yamaha",
+      "odometer": 8780,
+      "costKm": 0.5,
+      "vehicleType": "Standard",
+      "seats": 1
+    },
+    {
+      "regNo": "WCK661",
+      "make": "Benelli",
+      "odometer": 7370,
+      "costKm": 0.5,
+      "vehicleType": "Standard",
+      "seats": 2
+    }
+  ],
+
+  "bookings": [
+    {
+      "vehicleRegNo": "ENN712",
+      "customerSSN": "891010-0168"
+    },
+    {
+      "vehicleRegNo": "MBU852",
+      "customerSSN": "690830-8572"
+    },
+    {
+      "vehicleRegNo": "WCK661",
+      "customerSSN": "821003-6612"
+    }
+  ]
+}
