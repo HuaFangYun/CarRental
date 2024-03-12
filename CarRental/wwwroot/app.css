@@ -19,8 +19,6 @@ h1:focus, .navbar-toggler, .navbar-toggler:focus, .navbar-toggler:active, .navba
 
 .banner {
     background: var(--gradient);
-    margin: 0px 0px 45px 0px;
-    padding: 0px 0px;
     width: 100%;
     color: var(--primary-color);
 }
