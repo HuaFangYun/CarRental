@@ -22,8 +22,6 @@ h1:focus, .navbar-toggler, .navbar-toggler:focus, .navbar-toggler:active, .navba
     width: 100%;
     margin: 0px;
     color: var(--primary-color);
-    border-top: 1px solid var(--tertiary-color);
-    border-bottom: 1px solid var(--tertiary-color);
 }
 
 a {
