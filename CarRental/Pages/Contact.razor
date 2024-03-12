@@ -11,35 +11,32 @@
     </div>
 </div>
 
-<div class="row m-5 py-5">
-    <FAQ />
-</div>
-
-<div class="container-fluid p-5">
-    <div class="row">
-        <div class="col">
-            <form>
-                <div>
-                    <label for="questionText" class="form-label">Enter your inquery:</label>
-                    <textarea id="questionText" name="question" class="form-control placeholder-form-text" rows="5" placeholder=""></textarea>
-                </div>
-                <div class="mt-3">
-                    <label for="phoneNumber" class="form-label">Phone number:</label>
-                    <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control placeholder-form-text" placeholder="+0">
-                </div>
-                <div class="mt-3">
-                    <label for="email" class="form-label">E-mail:</label>
-                    <input type="email" class="form-control placeholder-form-text" id="email" name="email" placeholder="email@email.com" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We will never share your email with anyone else.</div>
-                </div>
-                <div class="my-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="termsCheckbox" name="terms">
-                    <label class="form-check-label" for="termsCheckbox">I agree to the <a href="links">terms</a> of service.</label>
-                </div>
-                <button type="submit" class="btn btn-dark">Submit</button>
-            </form>
-        </div>
+<div class="container-fluid">
+    <div class="row m-2 mt-5 py-5">
+        <h2 class="display-5">Contact Form</h2>
+        <form>
+            <div>
+                <label for="questionText" class="form-label">Enter your inquery:</label>
+                <textarea id="questionText" name="question" class="form-control placeholder-form-text" rows="5" placeholder=""></textarea>
+            </div>
+            <div class="mt-3">
+                <label for="phoneNumber" class="form-label">Phone number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control placeholder-form-text" placeholder="+0">
+            </div>
+            <div class="mt-3">
+                <label for="email" class="form-label">E-mail:</label>
+                <input type="email" class="form-control placeholder-form-text" id="email" name="email" placeholder="email@email.com" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We will never share your email with anyone else.</div>
+            </div>
+            <div class="my-3 form-check">
+                <input type="checkbox" class="form-check-input" id="termsCheckbox" name="terms">
+                <label class="form-check-label" for="termsCheckbox">I agree to the <a href="links">terms</a> of service.</label>
+            </div>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
     </div>
-
-    <Wordmark />
 </div>
+
+<FAQ />
+
+<Wordmark />
