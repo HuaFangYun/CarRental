@@ -165,12 +165,12 @@ a {
         .timeline .line {
             height: auto;
             min-height: 100%;
-            width: 3px;
-            background: #233448;
+            width: 1px;
+            background: var(--secondary-color);
             position: absolute;
             left: 50%;
             top: 0;
-            margin-left: -2px;
+            margin-left: -1px;
             z-index: 1;
         }
 }
