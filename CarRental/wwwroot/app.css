@@ -4,6 +4,7 @@
     --tertiary-color: #026699;
     --quaternary-color: #dee2e6;
     --quinary-color: #233448;
+    --gradient: linear-gradient(90deg, var(--quinary-color) 0%, var(--tertiary-color) 50%, var(--primary-color) 100%);
 }
 
 html, body {
@@ -14,6 +15,14 @@ h1:focus, .navbar-toggler, .navbar-toggler:focus, .navbar-toggler:active, .navba
     outline: none;
     box-shadow: none;
     border: none;
+}
+
+.banner {
+    background: var(--gradient);
+    margin: 0px 0px 45px 0px;
+    padding: 0px 0px;
+    width: 100%;
+    color: var(--primary-color);
 }
 
 a {
@@ -58,6 +67,11 @@ a {
     padding: 5px 15px;
 }
 
+.card {
+    background: var(--quinary-color);
+    color: var(--primary-color);
+}
+
 .card::after {
     position: absolute;
     z-index: -1;
@@ -67,8 +81,8 @@ a {
 }
 
 .card:hover {
-    background: var(--quinary-color);
-    color: white;
+    background: var(--primary-color);
+    color: var(--secondary-color);
     transform: scale(1.02, 1.02);
     -webkit-transform: scale(1.02, 1.02);
     backface-visibility: hidden;
