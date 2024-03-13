@@ -4,7 +4,7 @@
     --tertiary-color: #026699;
     --quaternary-color: #dee2e6;
     --quinary-color: #233448;
-    --gradient: linear-gradient(130deg, var(--quinary-color) 0%, #304863 40%, #818AA3 70%, var(--quaternary-color) 100%);
+    --gradient: linear-gradient(90deg, #2d3340 0%, var(--primary-color) 100%);
 }
 
 html, body {
@@ -62,7 +62,7 @@ a {
 .card-img-overlay {
     display: flex;
     align-items: end;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.0);
     padding: 5px 15px;
 }
 
